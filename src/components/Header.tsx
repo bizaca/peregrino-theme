@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef, useCallback } from "react";
+import { useState, useEffect, useRef, useCallback, useSyncExternalStore } from "react";
 import Link from "next/link";
 import { usePathname, useSearchParams } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
@@ -10,18 +10,25 @@ import { useCart } from "@/context/CartContext";
 import { siteConfig } from "@/data/site-config";
 import { cn } from "@/lib/utils";
 
+const noop = () => () => {};
+
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [mounted, setMounted] = useState(false);
+  const mounted = useSyncExternalStore(noop, () => true, () => false);
   const { totalItems, toggleCart } = useCart();
   const mobileNavRef = useRef<HTMLDivElement>(null);
   const menuButtonRef = useRef<HTMLButtonElement>(null);
   const pathname = usePathname();
   const searchParams = useSearchParams();
+  const [prevPathname, setPrevPathname] = useState(pathname);
 
   const [scrolled, setScrolled] = useState(false);
 
-  useEffect(() => setMounted(true), []);
+  // Close mobile menu on route changes (render-phase derived state)
+  if (prevPathname !== pathname) {
+    setPrevPathname(pathname);
+    setIsMobileMenuOpen(false);
+  }
 
   // Track scroll position for header shadow
   useEffect(() => {
@@ -39,11 +46,6 @@ export default function Header() {
     }
     return () => { document.body.style.overflow = ""; };
   }, [isMobileMenuOpen]);
-
-  // Close mobile menu on route changes
-  useEffect(() => {
-    setIsMobileMenuOpen(false);
-  }, [pathname]);
 
   // Focus trap for mobile menu
   const handleMobileMenuKeyDown = useCallback(

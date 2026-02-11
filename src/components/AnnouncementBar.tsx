@@ -1,21 +1,23 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useSyncExternalStore } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X } from "lucide-react";
 
 const DISMISSED_KEY = "peregrino-announcement-dismissed";
+const noop = () => () => {};
 
 export default function AnnouncementBar() {
-  const [isVisible, setIsVisible] = useState(false);
-
-  useEffect(() => {
-    const dismissed = sessionStorage.getItem(DISMISSED_KEY);
-    if (!dismissed) setIsVisible(true);
-  }, []);
+  const notDismissed = useSyncExternalStore(
+    noop,
+    () => !sessionStorage.getItem(DISMISSED_KEY),
+    () => false
+  );
+  const [manuallyDismissed, setManuallyDismissed] = useState(false);
+  const isVisible = notDismissed && !manuallyDismissed;
 
   const handleDismiss = () => {
-    setIsVisible(false);
+    setManuallyDismissed(true);
     sessionStorage.setItem(DISMISSED_KEY, "1");
   };
 

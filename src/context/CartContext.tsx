@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, useContext, useState, useCallback, useEffect, type ReactNode } from "react";
+import { createContext, useContext, useState, useCallback, useSyncExternalStore, type ReactNode } from "react";
 
 export interface CartItem {
   productId: string;
@@ -35,36 +35,60 @@ function getItemKey(item: { productId: string; size: string; grind: string }) {
 const CART_STORAGE_KEY = "peregrino-cart";
 const MAX_ITEM_QUANTITY = 20;
 
-function loadCart(): CartItem[] {
-  if (typeof window === "undefined") return [];
+// ─── External cart store ───────────────────────────────────────────
+// Keeps cart data in a module-level variable backed by localStorage.
+// Using useSyncExternalStore avoids both set-state-in-effect and
+// refs-during-render lint violations in React 19.
+
+let _cartItems: CartItem[] = [];
+const _listeners = new Set<() => void>();
+let _initialized = false;
+
+function _initStore() {
+  if (_initialized) return;
+  _initialized = true;
   try {
-    const stored = localStorage.getItem(CART_STORAGE_KEY);
-    return stored ? JSON.parse(stored) : [];
-  } catch {
-    return [];
-  }
+    const raw = localStorage.getItem(CART_STORAGE_KEY);
+    if (raw) _cartItems = JSON.parse(raw);
+  } catch { /* corrupted storage — start fresh */ }
 }
 
+function _emitChange() {
+  for (const listener of _listeners) listener();
+}
+
+function _updateCart(updater: (prev: CartItem[]) => CartItem[]) {
+  _cartItems = updater(_cartItems);
+  localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(_cartItems));
+  _emitChange();
+}
+
+function subscribeCart(cb: () => void) {
+  _listeners.add(cb);
+  return () => { _listeners.delete(cb); };
+}
+
+function getCartSnapshot(): CartItem[] {
+  _initStore();
+  return _cartItems;
+}
+
+function getCartServerSnapshot(): CartItem[] {
+  return [];
+}
+
+// ─── Provider ──────────────────────────────────────────────────────
+
 export function CartProvider({ children }: { children: ReactNode }) {
-  const [items, setItems] = useState<CartItem[]>([]);
+  const items = useSyncExternalStore(subscribeCart, getCartSnapshot, getCartServerSnapshot);
   const [isOpen, setIsOpen] = useState(false);
-
-  // Load cart from localStorage on mount (avoids hydration mismatch)
-  useEffect(() => {
-    setItems(loadCart());
-  }, []);
-
-  // Persist to localStorage on every change
-  useEffect(() => {
-    localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(items));
-  }, [items]);
 
   const openCart = useCallback(() => setIsOpen(true), []);
   const closeCart = useCallback(() => setIsOpen(false), []);
   const toggleCart = useCallback(() => setIsOpen((prev) => !prev), []);
 
   const addItem = useCallback((newItem: Omit<CartItem, "quantity">, quantity = 1) => {
-    setItems((prev) => {
+    _updateCart((prev) => {
       const key = getItemKey(newItem);
       const existing = prev.find((item) => getItemKey(item) === key);
       if (existing) {
@@ -81,7 +105,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
 
   const removeItem = useCallback(
     (productId: string, size: string, grind: string) => {
-      setItems((prev) =>
+      _updateCart((prev) =>
         prev.filter((item) => getItemKey(item) !== `${productId}-${size}-${grind}`)
       );
     },
@@ -95,7 +119,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
         return;
       }
       const clamped = Math.min(quantity, MAX_ITEM_QUANTITY);
-      setItems((prev) =>
+      _updateCart((prev) =>
         prev.map((item) =>
           getItemKey(item) === `${productId}-${size}-${grind}`
             ? { ...item, quantity: clamped }
@@ -106,7 +130,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
     [removeItem]
   );
 
-  const clearCart = useCallback(() => setItems([]), []);
+  const clearCart = useCallback(() => _updateCart(() => []), []);
 
   const totalItems = items.reduce((sum, item) => sum + item.quantity, 0);
   const totalPrice = items.reduce(

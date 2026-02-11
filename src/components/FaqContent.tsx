@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronDown, Package, Coffee, Truck, CreditCard, RotateCcw, HelpCircle } from "lucide-react";
 import { siteConfig } from "@/data/site-config";

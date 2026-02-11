@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { RotateCcw, ShieldCheck, Clock, MessageCircle, CheckCircle, XCircle, ArrowRight } from "lucide-react";
+import { ShieldCheck, Clock, MessageCircle, CheckCircle, XCircle, ArrowRight } from "lucide-react";
 import { siteConfig } from "@/data/site-config";
 
 const acceptedReasons = [

@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { ArrowRight, Coffee, Leaf, Heart, Award, Globe } from "lucide-react";
+import { ArrowRight, Coffee, Leaf, Heart, Globe } from "lucide-react";
 import { generatedImages } from "@/data/generated-images";
 
 const values = [
