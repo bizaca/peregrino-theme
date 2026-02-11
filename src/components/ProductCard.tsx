@@ -3,7 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { ShoppingBag, Star } from "lucide-react";
+import { ShoppingBag, Star, Award } from "lucide-react";
 import { type Product, formatPrice, getDiscountPercentage } from "@/data/products";
 import { useCart } from "@/context/CartContext";
 
@@ -77,25 +77,33 @@ export default function ProductCard({ product, index = 0 }: ProductCardProps) {
 
         {/* Content */}
         <div className="p-4">
-          {/* Rating */}
-          {product.rating > 0 && (
-            <div className="flex items-center gap-1 mb-2">
-              {Array.from({ length: 5 }).map((_, i) => (
-                <Star
-                  key={i}
-                  size={12}
-                  className={
-                    i < Math.round(product.rating)
-                      ? "fill-accent text-accent"
-                      : "text-border"
-                  }
-                />
-              ))}
-              <span className="text-text-tertiary text-xs ml-1">
-                ({product.reviewCount})
-              </span>
-            </div>
-          )}
+          {/* Rating + SCA */}
+          <div className="flex items-center gap-2 mb-2">
+            {product.rating > 0 && (
+              <div className="flex items-center gap-1">
+                {Array.from({ length: 5 }).map((_, i) => (
+                  <Star
+                    key={i}
+                    size={12}
+                    className={
+                      i < Math.round(product.rating)
+                        ? "fill-accent text-accent"
+                        : "text-border"
+                    }
+                  />
+                ))}
+                <span className="text-text-tertiary text-xs ml-1">
+                  ({product.reviewCount})
+                </span>
+              </div>
+            )}
+            {product.cupScore && (
+              <div className="flex items-center gap-1 bg-sage-bg text-sage px-2 py-0.5 rounded-full ml-auto">
+                <Award size={10} />
+                <span className="text-[10px] font-semibold">{product.cupScore}</span>
+              </div>
+            )}
+          </div>
 
           {/* Name */}
           <h3 className="font-heading text-lg font-semibold text-dark group-hover:text-accent transition-colors duration-300 mb-1 line-clamp-1">

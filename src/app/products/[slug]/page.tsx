@@ -49,7 +49,7 @@ export default function ProductDetailPage() {
       grind,
       price: variant.price,
       image: product.image,
-    });
+    }, quantity);
   };
 
   return (

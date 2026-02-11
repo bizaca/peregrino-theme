@@ -20,7 +20,10 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Peregrino Coffee Roasters | Café de Especialidad",
+  title: {
+    default: "Peregrino Coffee Roasters | Café de Especialidad",
+    template: "%s | Peregrino Coffee",
+  },
   description:
     "Tostadores de café de especialidad desde 2016. Granos frescos de Perú, Colombia, Bolivia, Costa Rica y Brasil. Envíos a todo Chile.",
   keywords: [
@@ -30,6 +33,20 @@ export const metadata: Metadata = {
     "granos café",
     "Peregrino Coffee",
   ],
+  openGraph: {
+    type: "website",
+    locale: "es_CL",
+    siteName: "Peregrino Coffee Roasters",
+    title: "Peregrino Coffee Roasters | Café de Especialidad",
+    description:
+      "Tostadores de café de especialidad desde 2016. Granos frescos de Perú, Colombia, Bolivia, Costa Rica y Brasil.",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Peregrino Coffee Roasters",
+    description:
+      "Café de especialidad tostado semanalmente con granos de Latinoamérica.",
+  },
 };
 
 export default function RootLayout({
