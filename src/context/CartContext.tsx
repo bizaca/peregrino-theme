@@ -66,7 +66,23 @@ function _updateCart(updater: (prev: CartItem[]) => CartItem[]) {
 
 function subscribeCart(cb: () => void) {
   _listeners.add(cb);
-  return () => { _listeners.delete(cb); };
+
+  // Sync cart across browser tabs via the storage event
+  const onStorage = (e: StorageEvent) => {
+    if (e.key !== CART_STORAGE_KEY) return;
+    try {
+      _cartItems = e.newValue ? JSON.parse(e.newValue) : [];
+    } catch {
+      _cartItems = [];
+    }
+    cb();
+  };
+  window.addEventListener("storage", onStorage);
+
+  return () => {
+    _listeners.delete(cb);
+    window.removeEventListener("storage", onStorage);
+  };
 }
 
 function getCartSnapshot(): CartItem[] {
