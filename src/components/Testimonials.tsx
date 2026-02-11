@@ -3,6 +3,13 @@
 import { motion } from "framer-motion";
 import { Star, Quote } from "lucide-react";
 
+const avatarColors = [
+  { bg: "bg-accent/10", text: "text-accent" },
+  { bg: "bg-sage/10", text: "text-sage" },
+  { bg: "bg-[#7C6E5F]/10", text: "text-[#7C6E5F]" },
+  { bg: "bg-accent-dark/10", text: "text-accent-dark" },
+];
+
 const testimonials = [
   {
     name: "Catalina Vásquez",
@@ -103,7 +110,7 @@ export default function Testimonials() {
               <div className="flex items-center justify-between">
                 <div>
                   <div className="flex items-center gap-2">
-                    <div className="w-9 h-9 rounded-full bg-accent/10 flex items-center justify-center text-accent font-heading font-bold text-sm">
+                    <div className={`w-9 h-9 rounded-full ${avatarColors[index % avatarColors.length].bg} flex items-center justify-center ${avatarColors[index % avatarColors.length].text} font-heading font-bold text-sm`}>
                       {testimonial.name.split(" ").map((n) => n[0]).join("")}
                     </div>
                     <div>

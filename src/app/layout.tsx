@@ -62,11 +62,17 @@ export default function RootLayout({
     <html lang="es" className={`${playfair.variable} ${inter.variable}`}>
       <body className="antialiased">
         <CartProvider>
+          <a
+            href="#main-content"
+            className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[100] focus:bg-accent focus:text-white focus:px-4 focus:py-2 focus:rounded-full focus:text-sm focus:font-medium"
+          >
+            Saltar al contenido
+          </a>
           <AnnouncementBar />
           <Suspense>
             <Header />
           </Suspense>
-          <main>{children}</main>
+          <main id="main-content">{children}</main>
           <Footer />
           <CartDrawer />
           <WhatsAppButton />

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import Link from "next/link";
 import { usePathname, useSearchParams } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
@@ -14,8 +14,38 @@ export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
   const { totalItems, toggleCart } = useCart();
+  const mobileNavRef = useRef<HTMLDivElement>(null);
+  const menuButtonRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => setMounted(true), []);
+
+  // Focus trap for mobile menu
+  const handleMobileMenuKeyDown = useCallback(
+    (e: React.KeyboardEvent) => {
+      if (!isMobileMenuOpen || !mobileNavRef.current) return;
+      if (e.key === "Escape") {
+        setIsMobileMenuOpen(false);
+        menuButtonRef.current?.focus();
+        return;
+      }
+      if (e.key === "Tab") {
+        const focusable = mobileNavRef.current.querySelectorAll<HTMLElement>(
+          'a[href], button:not([disabled])'
+        );
+        if (focusable.length === 0) return;
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+        if (e.shiftKey && document.activeElement === first) {
+          e.preventDefault();
+          last.focus();
+        } else if (!e.shiftKey && document.activeElement === last) {
+          e.preventDefault();
+          first.focus();
+        }
+      }
+    },
+    [isMobileMenuOpen]
+  );
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
@@ -38,6 +68,7 @@ export default function Header() {
         <div className="flex items-center justify-between h-16 md:h-20">
           {/* Mobile menu button */}
           <button
+            ref={menuButtonRef}
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             className="md:hidden p-2 text-dark-muted hover:text-accent transition-colors"
             aria-label="Menú"
@@ -146,11 +177,15 @@ export default function Header() {
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
+            ref={mobileNavRef}
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.25, ease: "easeInOut" }}
             className="md:hidden bg-surface border-t border-border-light overflow-hidden"
+            onKeyDown={handleMobileMenuKeyDown}
+            role="dialog"
+            aria-label="Menú de navegación"
           >
             <nav className="px-4 py-4 space-y-1">
               {mainNavItems.map((item, i) => {

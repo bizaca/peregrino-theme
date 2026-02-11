@@ -166,6 +166,8 @@ export default function ProductsContent() {
           {/* Filter toggle */}
           <button
             onClick={() => setShowFilters(!showFilters)}
+            aria-expanded={showFilters}
+            aria-label="Mostrar filtros de producto"
             className={cn(
               "flex items-center gap-2 px-5 py-3 rounded-full border text-sm font-medium transition-all",
               showFilters
@@ -191,11 +193,12 @@ export default function ProductsContent() {
                 <label className="text-sm font-medium text-dark mb-2 block">
                   Origen
                 </label>
-                <div className="flex flex-wrap gap-2">
+                <div className="flex flex-wrap gap-2" role="group" aria-label="Filtrar por origen">
                   {origins.map((origin) => (
                     <button
                       key={origin}
                       onClick={() => setSelectedOrigin(origin)}
+                      aria-pressed={selectedOrigin === origin}
                       className={cn(
                         "px-3 py-1.5 rounded-full text-sm transition-all",
                         selectedOrigin === origin
@@ -212,11 +215,12 @@ export default function ProductsContent() {
                 <label className="text-sm font-medium text-dark mb-2 block">
                   Proceso
                 </label>
-                <div className="flex flex-wrap gap-2">
+                <div className="flex flex-wrap gap-2" role="group" aria-label="Filtrar por proceso">
                   {processes.map((process) => (
                     <button
                       key={process}
                       onClick={() => setSelectedProcess(process)}
+                      aria-pressed={selectedProcess === process}
                       className={cn(
                         "px-3 py-1.5 rounded-full text-sm transition-all",
                         selectedProcess === process
