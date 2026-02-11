@@ -1,8 +1,35 @@
 "use client";
 
+import { useRef, useEffect, useState } from "react";
 import Image from "next/image";
-import { motion } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import { generatedImages } from "@/data/generated-images";
+
+function AnimatedStat({ value, suffix = "" }: { value: number; suffix?: string }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const isInView = useInView(ref, { once: true, margin: "-50px" });
+  const [display, setDisplay] = useState(0);
+
+  useEffect(() => {
+    if (!isInView) return;
+    let start = 0;
+    const end = value;
+    const duration = 1200;
+    const step = Math.ceil(duration / end);
+    const timer = setInterval(() => {
+      start += 1;
+      setDisplay(start);
+      if (start >= end) clearInterval(timer);
+    }, step);
+    return () => clearInterval(timer);
+  }, [isInView, value]);
+
+  return (
+    <div ref={ref} className="font-heading text-2xl md:text-3xl font-bold text-accent">
+      {isInView ? display : 0}{suffix}
+    </div>
+  );
+}
 
 export default function AboutSection() {
   return (
@@ -66,15 +93,15 @@ export default function AboutSection() {
             {/* Stats */}
             <div className="grid grid-cols-3 gap-4 md:gap-6 mt-8 pt-8 border-t border-border">
               <div>
-                <div className="font-heading text-2xl md:text-3xl font-bold text-accent">8+</div>
+                <AnimatedStat value={8} suffix="+" />
                 <div className="text-text-tertiary text-xs md:text-sm mt-1">Años de experiencia</div>
               </div>
               <div>
-                <div className="font-heading text-2xl md:text-3xl font-bold text-accent">5</div>
+                <AnimatedStat value={5} />
                 <div className="text-text-tertiary text-xs md:text-sm mt-1">Países de origen</div>
               </div>
               <div>
-                <div className="font-heading text-2xl md:text-3xl font-bold text-accent">100%</div>
+                <AnimatedStat value={100} suffix="%" />
                 <div className="text-text-tertiary text-xs md:text-sm mt-1">Especialidad</div>
               </div>
             </div>

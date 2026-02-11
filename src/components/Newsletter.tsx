@@ -117,6 +117,7 @@ export default function Newsletter() {
                     disabled={status === "loading"}
                     aria-label="Correo electrónico"
                     aria-describedby="newsletter-home-status"
+                    aria-invalid={status === "error"}
                     className={`w-full bg-white/10 border text-white placeholder:text-white/40 rounded-full px-5 py-3.5 focus:outline-none transition-colors disabled:opacity-50 ${
                       status === "error"
                         ? "border-red-400/50 focus:border-red-400"
@@ -145,6 +146,7 @@ export default function Newsletter() {
           <div id="newsletter-home-status" aria-live="polite" className="mt-2 min-h-[1.25rem]">
             {status === "error" && (
               <motion.p
+                role="alert"
                 initial={{ opacity: 0, y: -4 }}
                 animate={{ opacity: 1, y: 0 }}
                 className="flex items-center justify-center gap-1.5 text-red-400 text-xs"

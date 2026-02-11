@@ -82,7 +82,7 @@ export default function Testimonials() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
-              className="relative bg-surface border border-border-light rounded-2xl p-6 md:p-8"
+              className="relative bg-surface border border-border-light rounded-2xl p-6 md:p-8 hover:shadow-lg hover:shadow-accent/5 hover:-translate-y-0.5 transition-all duration-300"
             >
               {/* Quote icon */}
               <Quote

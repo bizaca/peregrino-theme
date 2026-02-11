@@ -68,9 +68,17 @@ export default function HeroCarousel() {
 
   return (
     <section
-      className="grain-overlay relative w-full h-[55vh] md:h-[70vh] lg:h-[80vh] overflow-hidden bg-dark-soft"
+      className="grain-overlay relative w-full h-[55vh] md:h-[70vh] lg:h-[80vh] overflow-hidden bg-dark-soft focus-visible:outline-none"
       onTouchStart={handleTouchStart}
       onTouchEnd={handleTouchEnd}
+      onKeyDown={(e) => {
+        if (e.key === "ArrowLeft") { e.preventDefault(); prev(); }
+        if (e.key === "ArrowRight") { e.preventDefault(); next(); }
+      }}
+      tabIndex={0}
+      role="region"
+      aria-roledescription="carousel"
+      aria-label="Carrusel de productos destacados"
     >
       <AnimatePresence mode="wait" custom={direction}>
         <motion.div

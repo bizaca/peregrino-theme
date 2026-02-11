@@ -75,7 +75,7 @@ export default function ProductCard({ product, index = 0 }: ProductCardProps) {
           {/* Quick add button */}
           <button
             onClick={handleQuickAdd}
-            className={`absolute bottom-3 right-3 p-2.5 rounded-full shadow-lg transition-all duration-300 ${
+            className={`absolute bottom-3 right-3 p-2.5 rounded-full shadow-lg transition-all duration-300 focus-visible:opacity-100 focus-visible:translate-y-0 focus-visible:ring-2 focus-visible:ring-white/60 focus-visible:ring-offset-2 focus-visible:ring-offset-dark/50 ${
               added
                 ? "bg-green-600 text-white scale-110 opacity-100 translate-y-0"
                 : "bg-dark-soft text-white opacity-100 md:opacity-0 md:group-hover:opacity-100 translate-y-0 md:translate-y-2 md:group-hover:translate-y-0 hover:bg-accent hover:scale-110"

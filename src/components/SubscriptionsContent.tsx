@@ -119,10 +119,10 @@ export default function SubscriptionsContent() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 + index * 0.1 }}
-              className={`relative bg-surface rounded-2xl border-2 p-6 md:p-8 ${
+              className={`relative bg-surface rounded-2xl border-2 p-6 md:p-8 transition-all duration-300 ${
                 plan.popular
-                  ? "border-accent shadow-xl shadow-accent/10 md:scale-105"
-                  : "border-border-light"
+                  ? "border-accent shadow-xl shadow-accent/10 md:scale-105 hover:shadow-2xl hover:shadow-accent/15"
+                  : "border-border-light hover:border-accent/30 hover:shadow-lg hover:shadow-accent/5 hover:-translate-y-1"
               }`}
             >
               {plan.popular && (

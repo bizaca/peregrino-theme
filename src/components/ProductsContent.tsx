@@ -253,13 +253,26 @@ export default function ProductsContent() {
 
         {/* Empty state */}
         {filteredProducts.length === 0 && (
-          <div className="text-center py-16">
-            <p className="text-text-secondary text-lg mb-2">
+          <div className="text-center py-20">
+            <div className="w-16 h-16 rounded-full bg-base-warm flex items-center justify-center mx-auto mb-5">
+              <Search size={28} className="text-text-tertiary" />
+            </div>
+            <p className="font-heading text-xl font-semibold text-dark mb-2">
               No se encontraron productos
             </p>
-            <p className="text-text-tertiary text-sm">
+            <p className="text-text-secondary text-sm max-w-sm mx-auto mb-6">
               Intenta con otros filtros o términos de búsqueda
             </p>
+            <button
+              onClick={() => {
+                setSearch("");
+                setSelectedOrigin("Todos");
+                setSelectedProcess("Todos");
+              }}
+              className="text-accent hover:text-accent-dark text-sm font-medium transition-colors"
+            >
+              Limpiar filtros
+            </button>
           </div>
         )}
       </div>
