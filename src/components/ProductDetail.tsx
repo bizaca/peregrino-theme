@@ -364,7 +364,7 @@ export default function ProductDetail({ product }: ProductDetailProps) {
       </section>
 
       {/* Sticky mobile add-to-cart bar */}
-      <div className="fixed bottom-0 left-0 right-0 bg-surface/98 backdrop-blur-md border-t border-border-light px-4 py-3 z-40 lg:hidden shadow-[0_-4px_12px_rgba(0,0,0,0.05)]">
+      <div className="fixed bottom-0 left-0 right-0 bg-surface/98 backdrop-blur-md border-t border-border-light px-4 py-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] z-40 lg:hidden shadow-[0_-4px_12px_rgba(0,0,0,0.05)]">
         <div className="flex items-center gap-3">
           <div className="flex-1 min-w-0">
             <p className="text-dark font-semibold text-sm truncate">{product.name}</p>

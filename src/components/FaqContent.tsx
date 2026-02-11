@@ -131,7 +131,7 @@ function FaqAccordionItem({ item, isOpen, onToggle }: { item: FaqItem; isOpen: b
     <div className="border-b border-border-light last:border-b-0">
       <button
         onClick={onToggle}
-        className="w-full flex items-center justify-between gap-4 py-5 text-left group"
+        className="w-full flex items-center justify-between gap-4 py-5 px-2 -mx-2 text-left group hover:bg-accent-bg/30 rounded-lg transition-colors"
         aria-expanded={isOpen}
       >
         <span className={cn(

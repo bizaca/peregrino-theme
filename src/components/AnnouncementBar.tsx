@@ -37,7 +37,7 @@ export default function AnnouncementBar() {
             </p>
             <button
               onClick={handleDismiss}
-              className="absolute right-3 top-1/2 -translate-y-1/2 p-1 text-text-tertiary hover:text-base-warm transition-colors"
+              className="absolute right-3 top-1/2 -translate-y-1/2 p-1.5 text-text-tertiary hover:text-base-warm hover:bg-white/10 rounded-full transition-all"
               aria-label="Cerrar anuncio"
             >
               <X size={16} />

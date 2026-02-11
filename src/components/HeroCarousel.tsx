@@ -167,14 +167,14 @@ export default function HeroCarousel() {
       {/* Navigation arrows - hidden on small mobile, visible from sm up */}
       <button
         onClick={prev}
-        className="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 p-2.5 bg-white/10 hover:bg-white/20 backdrop-blur-sm rounded-full text-white transition-all duration-300 z-10 hidden sm:flex items-center justify-center"
+        className="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 p-2.5 bg-white/10 hover:bg-white/20 active:scale-90 backdrop-blur-sm rounded-full text-white transition-all duration-300 z-10 hidden sm:flex items-center justify-center"
         aria-label="Anterior"
       >
         <ChevronLeft size={20} />
       </button>
       <button
         onClick={next}
-        className="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 p-2.5 bg-white/10 hover:bg-white/20 backdrop-blur-sm rounded-full text-white transition-all duration-300 z-10 hidden sm:flex items-center justify-center"
+        className="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 p-2.5 bg-white/10 hover:bg-white/20 active:scale-90 backdrop-blur-sm rounded-full text-white transition-all duration-300 z-10 hidden sm:flex items-center justify-center"
         aria-label="Siguiente"
       >
         <ChevronRight size={20} />

@@ -223,3 +223,14 @@ body {
   background-color: var(--color-accent-bg);
   color: var(--color-accent-dark);
 }
+
+/* Reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .animate-shimmer,
+  .animate-marquee,
+  .animate-gradient-shift { animation: none; }
+  .card-shine::before { transition: none; }
+  .img-zoom { transition: none; }
+  .btn-press { transition: none; }
+}

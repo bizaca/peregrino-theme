@@ -44,7 +44,7 @@ export default function ProductCard({ product, index = 0 }: ProductCardProps) {
       <Link
         href={`/products/${product.slug}`}
         aria-label={`Ver ${product.name}`}
-        className="group block bg-surface rounded-2xl overflow-hidden border border-border-light hover:border-accent/30 transition-all duration-300 hover:shadow-xl hover:shadow-accent/5"
+        className="group block bg-surface rounded-2xl overflow-hidden border border-border-light hover:border-accent/30 transition-all duration-300 hover:shadow-xl hover:shadow-accent/5 card-shine"
       >
         {/* Image container */}
         <div className="relative aspect-square overflow-hidden bg-base-warm">
@@ -108,6 +108,9 @@ export default function ProductCard({ product, index = 0 }: ProductCardProps) {
               )}
             </AnimatePresence>
           </button>
+          <span role="status" aria-live="polite" className="sr-only">
+            {added ? "Producto agregado al carrito" : ""}
+          </span>
         </div>
 
         {/* Content */}
