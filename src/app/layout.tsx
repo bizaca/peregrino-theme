@@ -5,6 +5,7 @@ import { CartProvider } from "@/context/CartContext";
 import AnnouncementBar from "@/components/AnnouncementBar";
 import Header from "@/components/Header";
 import CartDrawer from "@/components/CartDrawer";
+import WhatsAppButton from "@/components/WhatsAppButton";
 import Footer from "@/components/Footer";
 import "./globals.css";
 
@@ -66,6 +67,7 @@ export default function RootLayout({
           <main>{children}</main>
           <Footer />
           <CartDrawer />
+          <WhatsAppButton />
         </CartProvider>
       </body>
     </html>
