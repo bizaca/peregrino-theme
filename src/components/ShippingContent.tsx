@@ -102,9 +102,9 @@ export default function ShippingContent() {
                 <div className="p-3 bg-accent-bg rounded-xl w-fit mx-auto mb-4 text-accent">
                   {step.icon}
                 </div>
-                <h2 className="font-heading text-lg font-semibold text-dark mb-2">
+                <h3 className="font-heading text-lg font-semibold text-dark mb-2">
                   {step.title}
-                </h2>
+                </h3>
                 <p className="text-text-secondary text-sm leading-relaxed">
                   {step.description}
                 </p>
@@ -123,36 +123,41 @@ export default function ShippingContent() {
           <h2 className="font-heading text-2xl md:text-3xl font-bold text-dark mb-8 text-center">
             Zonas y Tarifas
           </h2>
-          <div className="bg-surface border border-border-light rounded-2xl overflow-hidden">
-            <div className="hidden sm:grid grid-cols-4 gap-4 px-6 py-4 bg-base-warm border-b border-border-light text-sm font-medium text-dark">
-              <span>Zona</span>
-              <span>Tiempo estimado</span>
-              <span>Costo</span>
-              <span>Nota</span>
-            </div>
-            {shippingZones.map((zone, index) => (
-              <div
-                key={zone.zone}
-                className={`grid grid-cols-1 sm:grid-cols-4 gap-2 sm:gap-4 px-6 py-5 ${
-                  index !== shippingZones.length - 1 ? "border-b border-border-light" : ""
-                }`}
-              >
-                <div>
-                  <span className="sm:hidden text-text-tertiary text-xs">Zona: </span>
-                  <span className="font-medium text-dark">{zone.zone}</span>
-                </div>
-                <div className="flex items-center gap-1.5">
-                  <Clock size={14} className="text-text-tertiary sm:hidden" />
-                  <span className="text-text-secondary text-sm">{zone.time}</span>
-                </div>
-                <div>
-                  <span className="font-semibold text-accent-dark">{zone.cost}</span>
-                </div>
-                <div>
-                  <span className="text-text-tertiary text-sm">{zone.note || "—"}</span>
-                </div>
+          <div role="table" aria-label="Tarifas de envío por zona" className="bg-surface border border-border-light rounded-2xl overflow-hidden">
+            <div role="rowgroup" className="hidden sm:block">
+              <div role="row" className="grid grid-cols-4 gap-4 px-6 py-4 bg-base-warm border-b border-border-light text-sm font-medium text-dark">
+                <span role="columnheader">Zona</span>
+                <span role="columnheader">Tiempo estimado</span>
+                <span role="columnheader">Costo</span>
+                <span role="columnheader">Nota</span>
               </div>
-            ))}
+            </div>
+            <div role="rowgroup">
+              {shippingZones.map((zone, index) => (
+                <div
+                  key={zone.zone}
+                  role="row"
+                  className={`grid grid-cols-1 sm:grid-cols-4 gap-2 sm:gap-4 px-6 py-5 ${
+                    index !== shippingZones.length - 1 ? "border-b border-border-light" : ""
+                  }`}
+                >
+                  <div role="cell">
+                    <span className="sm:hidden text-text-tertiary text-xs">Zona: </span>
+                    <span className="font-medium text-dark">{zone.zone}</span>
+                  </div>
+                  <div role="cell" className="flex items-center gap-1.5">
+                    <Clock size={14} className="text-text-tertiary sm:hidden" />
+                    <span className="text-text-secondary text-sm">{zone.time}</span>
+                  </div>
+                  <div role="cell">
+                    <span className="font-semibold text-accent-dark">{zone.cost}</span>
+                  </div>
+                  <div role="cell">
+                    <span className="text-text-tertiary text-sm">{zone.note || "—"}</span>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </motion.div>
 

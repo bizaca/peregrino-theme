@@ -137,7 +137,7 @@ export default function CartPage() {
                       >
                         <Minus size={14} />
                       </button>
-                      <span className="w-8 text-center font-medium text-dark text-sm">
+                      <span className="w-8 text-center font-medium text-dark text-sm" aria-live="polite" aria-atomic="true">
                         {item.quantity}
                       </span>
                       <button
@@ -199,7 +199,14 @@ export default function CartPage() {
                         {Math.round(percentage)}%
                       </span>
                     </div>
-                    <div className="w-full h-1.5 bg-sage/10 rounded-full overflow-hidden">
+                    <div
+                      className="w-full h-1.5 bg-sage/10 rounded-full overflow-hidden"
+                      role="progressbar"
+                      aria-valuenow={Math.round(percentage)}
+                      aria-valuemin={0}
+                      aria-valuemax={100}
+                      aria-label={freeShipping ? "Envío gratis alcanzado" : `${Math.round(percentage)}% hacia envío gratis`}
+                    >
                       <motion.div
                         initial={{ width: 0 }}
                         animate={{ width: `${percentage}%` }}
