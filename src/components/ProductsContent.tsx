@@ -139,7 +139,7 @@ export default function ProductsContent() {
               onChange={(e) => setSearch(e.target.value)}
               placeholder="Buscar por nombre, origen o notas..."
               aria-label="Buscar productos"
-              className="w-full bg-surface border border-border rounded-full pl-11 pr-4 py-3 text-dark placeholder:text-text-tertiary focus:outline-none focus:border-accent focus:ring-2 focus:ring-accent/20 transition-colors text-sm"
+              className="w-full bg-surface border border-border rounded-full pl-11 pr-4 py-3 text-dark placeholder:text-text-tertiary focus:outline-none input-focus text-sm"
             />
           </div>
 
@@ -149,7 +149,7 @@ export default function ProductsContent() {
               value={sortBy}
               onChange={(e) => setSortBy(e.target.value as SortOption)}
               aria-label="Ordenar productos"
-              className="appearance-none bg-surface border border-border rounded-full pl-10 pr-8 py-3 text-sm text-dark-muted font-medium cursor-pointer focus:outline-none focus:border-accent focus:ring-2 focus:ring-accent/20 transition-colors"
+              className="appearance-none bg-surface border border-border rounded-full pl-10 pr-8 py-3 text-sm text-dark-muted font-medium cursor-pointer focus:outline-none input-focus"
             >
               {Object.entries(sortLabels).map(([value, label]) => (
                 <option key={value} value={value}>

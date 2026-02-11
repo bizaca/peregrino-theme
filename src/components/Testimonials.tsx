@@ -76,7 +76,7 @@ export default function Testimonials() {
         {/* Testimonials grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {testimonials.map((testimonial, index) => (
-            <motion.div
+            <motion.figure
               key={testimonial.name}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -102,32 +102,30 @@ export default function Testimonials() {
               </div>
 
               {/* Quote */}
-              <p className="text-dark leading-relaxed mb-6 relative z-10">
+              <blockquote className="text-dark leading-relaxed mb-6 relative z-10">
                 &ldquo;{testimonial.text}&rdquo;
-              </p>
+              </blockquote>
 
               {/* Author */}
-              <div className="flex items-center justify-between">
-                <div>
-                  <div className="flex items-center gap-2">
-                    <div className={`w-9 h-9 rounded-full ${avatarColors[index % avatarColors.length].bg} flex items-center justify-center ${avatarColors[index % avatarColors.length].text} font-heading font-bold text-sm`}>
-                      {testimonial.name.split(" ").map((n) => n[0]).join("")}
-                    </div>
-                    <div>
-                      <p className="text-dark font-medium text-sm">
-                        {testimonial.name}
-                      </p>
-                      <p className="text-text-tertiary text-xs">
-                        {testimonial.role}
-                      </p>
-                    </div>
+              <figcaption className="flex items-center justify-between">
+                <div className="flex items-center gap-2">
+                  <div className={`w-9 h-9 rounded-full ${avatarColors[index % avatarColors.length].bg} flex items-center justify-center ${avatarColors[index % avatarColors.length].text} font-heading font-bold text-sm`}>
+                    {testimonial.name.split(" ").map((n) => n[0]).join("")}
+                  </div>
+                  <div>
+                    <p className="text-dark font-medium text-sm">
+                      {testimonial.name}
+                    </p>
+                    <p className="text-text-tertiary text-xs">
+                      {testimonial.role}
+                    </p>
                   </div>
                 </div>
                 <span className="text-accent/60 text-xs font-medium bg-accent-bg px-2.5 py-1 rounded-full">
                   {testimonial.product}
                 </span>
-              </div>
-            </motion.div>
+              </figcaption>
+            </motion.figure>
           ))}
         </div>
       </div>
