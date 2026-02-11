@@ -144,9 +144,9 @@ export default function LocationsContent() {
           viewport={{ once: true }}
           className="mt-12 bg-accent-bg border border-accent/10 rounded-2xl p-8 md:p-10 text-center"
         >
-          <h3 className="font-heading text-2xl font-semibold text-dark mb-3">
+          <h2 className="font-heading text-2xl font-semibold text-dark mb-3">
             15% de descuento en retiro en tienda
-          </h3>
+          </h2>
           <p className="text-text-secondary max-w-lg mx-auto mb-6">
             Todos los pedidos que retires en nuestros locales reciben automáticamente un 15% de descuento en consumo de café.
             Haz tu pedido online y selecciona retiro en tienda.

@@ -101,9 +101,9 @@ export default function CartPage() {
                 <div className="flex-1 min-w-0">
                   <div className="flex items-start justify-between gap-3">
                     <div>
-                      <h3 className="font-heading font-semibold text-dark text-lg">
+                      <h2 className="font-heading font-semibold text-dark text-lg">
                         {item.name}
-                      </h3>
+                      </h2>
                       <p className="text-text-tertiary text-sm mt-0.5">
                         {item.size} · {item.grind}
                       </p>

@@ -102,9 +102,9 @@ export default function ShippingContent() {
                 <div className="p-3 bg-accent-bg rounded-xl w-fit mx-auto mb-4 text-accent">
                   {step.icon}
                 </div>
-                <h3 className="font-heading text-lg font-semibold text-dark mb-2">
+                <h2 className="font-heading text-lg font-semibold text-dark mb-2">
                   {step.title}
-                </h3>
+                </h2>
                 <p className="text-text-secondary text-sm leading-relaxed">
                   {step.description}
                 </p>
@@ -167,9 +167,9 @@ export default function ShippingContent() {
             <div className="p-3 bg-accent/10 rounded-xl w-fit mb-4 text-accent">
               <Store size={24} />
             </div>
-            <h3 className="font-heading text-xl font-semibold text-dark mb-3">
+            <h2 className="font-heading text-xl font-semibold text-dark mb-3">
               Retiro en Tienda
-            </h3>
+            </h2>
             <p className="text-text-secondary text-sm leading-relaxed mb-4">
               Retira tu pedido gratis en cualquiera de nuestros locales en Santiago.
               Todos los retiros reciben un <span className="font-semibold text-accent">15% de descuento</span> en consumo de café.
@@ -194,9 +194,9 @@ export default function ShippingContent() {
             <div className="p-3 bg-sage/10 rounded-xl w-fit mb-4 text-sage">
               <ShieldCheck size={24} />
             </div>
-            <h3 className="font-heading text-xl font-semibold text-dark mb-3">
+            <h2 className="font-heading text-xl font-semibold text-dark mb-3">
               Garantía de Frescura
-            </h3>
+            </h2>
             <p className="text-text-secondary text-sm leading-relaxed mb-4">
               Todos nuestros cafés se despachan dentro de los primeros 14 días desde su fecha de tueste.
               Si tu pedido llega en mal estado, lo reponemos sin costo.
@@ -225,9 +225,9 @@ export default function ShippingContent() {
           viewport={{ once: true }}
           className="text-center bg-base-warm rounded-2xl p-8 md:p-12 border border-border-light"
         >
-          <h3 className="font-heading text-2xl font-semibold text-dark mb-3">
+          <h2 className="font-heading text-2xl font-semibold text-dark mb-3">
             ¿Listo para pedir?
-          </h3>
+          </h2>
           <p className="text-text-secondary mb-6 max-w-md mx-auto">
             Explora nuestra selección de cafés de especialidad y recibe tu pedido fresco en casa.
           </p>

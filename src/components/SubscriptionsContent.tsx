@@ -130,9 +130,9 @@ export default function SubscriptionsContent() {
                   Más Popular
                 </div>
               )}
-              <h3 className="font-heading text-xl font-bold text-dark mb-1">
+              <h2 className="font-heading text-xl font-bold text-dark mb-1">
                 {plan.name}
-              </h3>
+              </h2>
               <p className="text-text-secondary text-sm mb-4">
                 {plan.description}
               </p>
@@ -260,9 +260,9 @@ export default function SubscriptionsContent() {
             className="bg-surface border border-border-light rounded-2xl p-8 md:p-12"
           >
             <MessageCircle size={32} className="text-accent mx-auto mb-4" />
-            <h3 className="font-heading text-2xl font-semibold text-dark mb-3">
+            <h2 className="font-heading text-2xl font-semibold text-dark mb-3">
               ¿Tienes dudas sobre las suscripciones?
-            </h3>
+            </h2>
             <p className="text-text-secondary mb-6 max-w-md mx-auto">
               Escríbenos por WhatsApp y te ayudamos a elegir el plan perfecto para ti.
             </p>

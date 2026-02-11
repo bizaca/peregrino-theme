@@ -197,9 +197,9 @@ export default function WholesaleContent() {
           className="text-center bg-dark-soft rounded-2xl p-8 md:p-12"
         >
           <MessageCircle size={32} className="text-accent-light mx-auto mb-4" />
-          <h3 className="font-heading text-2xl font-semibold text-white mb-3">
+          <h2 className="font-heading text-2xl font-semibold text-white mb-3">
             ¿Interesado en ser cliente mayorista?
-          </h3>
+          </h2>
           <p className="text-white/60 mb-6 max-w-md mx-auto">
             Cuéntanos sobre tu negocio y prepararemos una propuesta personalizada.
           </p>

@@ -101,9 +101,9 @@ export default function Footer() {
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.1 }}
           >
-            <h3 className="text-white font-semibold text-sm uppercase tracking-wider mb-4 after:content-[''] after:block after:w-6 after:h-0.5 after:bg-accent/40 after:mt-2">
+            <p className="text-white font-semibold text-sm uppercase tracking-wider mb-4 after:content-[''] after:block after:w-6 after:h-0.5 after:bg-accent/40 after:mt-2">
               Tienda
-            </h3>
+            </p>
             <ul className="space-y-2.5">
               {footerLinks.tienda.map((link) => (
                 <li key={link.href}>
@@ -125,9 +125,9 @@ export default function Footer() {
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
-            <h3 className="text-white font-semibold text-sm uppercase tracking-wider mb-4 after:content-[''] after:block after:w-6 after:h-0.5 after:bg-accent/40 after:mt-2">
+            <p className="text-white font-semibold text-sm uppercase tracking-wider mb-4 after:content-[''] after:block after:w-6 after:h-0.5 after:bg-accent/40 after:mt-2">
               Empresa
-            </h3>
+            </p>
             <ul className="space-y-2.5">
               {footerLinks.empresa.map((link) => (
                 <li key={link.href}>
@@ -149,9 +149,9 @@ export default function Footer() {
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.3 }}
           >
-            <h3 className="text-white font-semibold text-sm uppercase tracking-wider mb-4 after:content-[''] after:block after:w-6 after:h-0.5 after:bg-accent/40 after:mt-2">
+            <p className="text-white font-semibold text-sm uppercase tracking-wider mb-4 after:content-[''] after:block after:w-6 after:h-0.5 after:bg-accent/40 after:mt-2">
               Ayuda
-            </h3>
+            </p>
             <ul className="space-y-2.5">
               {footerLinks.ayuda.map((link) => (
                 <li key={link.href}>

@@ -40,9 +40,9 @@ export default function NewsletterForm() {
 
   return (
     <div>
-      <h3 className="text-white font-semibold text-sm uppercase tracking-wider mb-3">
+      <p className="text-white font-semibold text-sm uppercase tracking-wider mb-3">
         Newsletter
-      </h3>
+      </p>
       <p className="text-white/50 text-sm mb-4">
         Recibe novedades, ofertas exclusivas y tips de preparación.
       </p>

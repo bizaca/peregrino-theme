@@ -144,9 +144,9 @@ export default function ContactContent() {
                   aria-live="polite"
                 >
                   <CheckCircle size={48} className="text-green-600 mx-auto mb-4" />
-                  <h3 className="font-heading text-2xl font-semibold text-dark mb-2">
+                  <h2 className="font-heading text-2xl font-semibold text-dark mb-2">
                     ¡Mensaje enviado!
-                  </h3>
+                  </h2>
                   <p className="text-text-secondary mb-6">
                     Tu mensaje fue redirigido a nuestro WhatsApp. Te responderemos lo antes posible.
                   </p>
