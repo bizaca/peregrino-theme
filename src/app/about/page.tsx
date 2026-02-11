@@ -1,10 +1,17 @@
-import ComingSoon from "@/components/ComingSoon";
+import type { Metadata } from "next";
+import AboutContent from "@/components/AboutContent";
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "Nuestra Historia",
-  description: "Conoce la historia de Peregrino Coffee Roasters, tostadores de café de especialidad desde 2016.",
+  description:
+    "Conoce la historia de Peregrino Coffee Roasters. Desde 2016 tostando café de especialidad con granos de Latinoamérica.",
+  openGraph: {
+    title: "Nuestra Historia | Peregrino Coffee",
+    description:
+      "Tostadores de café de especialidad desde 2016. Trabajamos con productores de Perú, Colombia, Bolivia, Costa Rica y Brasil.",
+  },
 };
 
 export default function AboutPage() {
-  return <ComingSoon title="Nuestra Historia" description="Desde 2016 tostando café de especialidad con pasión. Pronto podrás conocer más sobre nuestro viaje." />;
+  return <AboutContent />;
 }

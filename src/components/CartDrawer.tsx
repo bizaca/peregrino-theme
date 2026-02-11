@@ -7,6 +7,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { X, Plus, Minus, ShoppingBag, Trash2 } from "lucide-react";
 import { useCart } from "@/context/CartContext";
 import { formatPrice } from "@/data/products";
+import { siteConfig } from "@/data/site-config";
 
 export default function CartDrawer() {
   const { items, isOpen, closeCart, removeItem, updateQuantity, totalPrice, totalItems } =
@@ -180,9 +181,9 @@ export default function CartDrawer() {
                 {/* Shipping notice */}
                 <div className="bg-sage-bg rounded-lg px-4 py-2.5 text-center">
                   <p className="text-sage text-sm">
-                    {totalPrice >= 35000
-                      ? "Envío gratis para comunas de RM"
-                      : `Faltan ${formatPrice(35000 - totalPrice)} para envío gratis (RM)`}
+                    {totalPrice >= siteConfig.commerce.freeShippingThreshold
+                      ? siteConfig.commerce.freeShippingLabel
+                      : `Faltan ${formatPrice(siteConfig.commerce.freeShippingThreshold - totalPrice)} para envío gratis (RM)`}
                   </p>
                 </div>
 

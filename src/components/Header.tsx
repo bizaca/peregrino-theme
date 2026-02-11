@@ -7,6 +7,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { ShoppingBag, Menu, X, Instagram, Facebook, Youtube, User } from "lucide-react";
 import { mainNavItems } from "@/data/navigation";
 import { useCart } from "@/context/CartContext";
+import { siteConfig } from "@/data/site-config";
 import { cn } from "@/lib/utils";
 
 export default function Header() {
@@ -59,7 +60,7 @@ export default function Header() {
             {/* Social links - desktop only */}
             <div className="hidden lg:flex items-center gap-1 mr-3">
               <a
-                href="https://instagram.com"
+                href={siteConfig.social.instagram}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="p-1.5 text-text-tertiary hover:text-accent transition-colors"
@@ -68,7 +69,7 @@ export default function Header() {
                 <Instagram size={17} />
               </a>
               <a
-                href="https://facebook.com"
+                href={siteConfig.social.facebook}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="p-1.5 text-text-tertiary hover:text-accent transition-colors"
@@ -77,7 +78,7 @@ export default function Header() {
                 <Facebook size={17} />
               </a>
               <a
-                href="https://youtube.com"
+                href={siteConfig.social.youtube}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="p-1.5 text-text-tertiary hover:text-accent transition-colors"
@@ -170,13 +171,13 @@ export default function Header() {
                 );
               })}
               <div className="flex items-center gap-4 px-3 pt-4 border-t border-border-light mt-4">
-                <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="text-text-tertiary hover:text-accent transition-colors">
+                <a href={siteConfig.social.instagram} target="_blank" rel="noopener noreferrer" className="text-text-tertiary hover:text-accent transition-colors">
                   <Instagram size={20} />
                 </a>
-                <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="text-text-tertiary hover:text-accent transition-colors">
+                <a href={siteConfig.social.facebook} target="_blank" rel="noopener noreferrer" className="text-text-tertiary hover:text-accent transition-colors">
                   <Facebook size={20} />
                 </a>
-                <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" className="text-text-tertiary hover:text-accent transition-colors">
+                <a href={siteConfig.social.youtube} target="_blank" rel="noopener noreferrer" className="text-text-tertiary hover:text-accent transition-colors">
                   <Youtube size={20} />
                 </a>
               </div>

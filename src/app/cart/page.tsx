@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import { ShoppingBag, Minus, Plus, Trash2, ArrowLeft, ArrowRight } from "lucide-react";
 import { useCart } from "@/context/CartContext";
 import { formatPrice } from "@/data/products";
+import { siteConfig } from "@/data/site-config";
 
 export default function CartPage() {
   const { items, removeItem, updateQuantity, totalPrice, clearCart } = useCart();
@@ -38,7 +39,7 @@ export default function CartPage() {
     );
   }
 
-  const shippingThreshold = 35000;
+  const shippingThreshold = siteConfig.commerce.freeShippingThreshold;
   const freeShipping = totalPrice >= shippingThreshold;
 
   const whatsappMessage = encodeURIComponent(
@@ -222,7 +223,7 @@ export default function CartPage() {
 
               {/* Checkout button */}
               <a
-                href={`https://wa.me/56912345678?text=${whatsappMessage}`}
+                href={`https://wa.me/${siteConfig.contact.whatsapp}?text=${whatsappMessage}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-full flex items-center justify-center gap-2 bg-accent hover:bg-accent-dark text-white font-medium py-3.5 rounded-full transition-all duration-300 hover:shadow-lg mb-3"

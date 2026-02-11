@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Instagram, Facebook, Youtube, MapPin, Mail, Phone } from "lucide-react";
+import { siteConfig } from "@/data/site-config";
 
 const footerLinks = {
   tienda: [
@@ -48,7 +49,7 @@ export default function Footer() {
             </p>
             <div className="flex items-center gap-3">
               <a
-                href="https://instagram.com"
+                href={siteConfig.social.instagram}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="p-2 bg-white/5 hover:bg-accent/20 rounded-full text-white/50 hover:text-accent-light transition-all"
@@ -57,7 +58,7 @@ export default function Footer() {
                 <Instagram size={18} />
               </a>
               <a
-                href="https://facebook.com"
+                href={siteConfig.social.facebook}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="p-2 bg-white/5 hover:bg-accent/20 rounded-full text-white/50 hover:text-accent-light transition-all"
@@ -66,7 +67,7 @@ export default function Footer() {
                 <Facebook size={18} />
               </a>
               <a
-                href="https://youtube.com"
+                href={siteConfig.social.youtube}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="p-2 bg-white/5 hover:bg-accent/20 rounded-full text-white/50 hover:text-accent-light transition-all"
@@ -135,15 +136,15 @@ export default function Footer() {
             <div className="mt-6 space-y-2">
               <div className="flex items-center gap-2 text-white/40 text-sm">
                 <Mail size={14} />
-                <span>hola@peregrinocoffee.cl</span>
+                <span>{siteConfig.contact.email}</span>
               </div>
               <div className="flex items-center gap-2 text-white/40 text-sm">
                 <Phone size={14} />
-                <span>+56 9 1234 5678</span>
+                <span>{siteConfig.contact.phone}</span>
               </div>
               <div className="flex items-center gap-2 text-white/40 text-sm">
                 <MapPin size={14} />
-                <span>Santiago, Chile</span>
+                <span>{siteConfig.contact.location}</span>
               </div>
             </div>
           </div>
