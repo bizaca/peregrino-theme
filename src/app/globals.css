@@ -215,7 +215,7 @@ body {
 .input-focus:focus {
   background-color: var(--color-surface);
   border-color: var(--color-accent);
-  box-shadow: 0 0 0 3px rgba(184, 115, 74, 0.1);
+  box-shadow: 0 0 0 3px rgba(160, 100, 59, 0.1);
 }
 
 /* Selection color */
