@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
@@ -11,6 +11,8 @@ import { cn } from "@/lib/utils";
 export default function HeroCarousel() {
   const [current, setCurrent] = useState(0);
   const [direction, setDirection] = useState(1);
+  const touchStartX = useRef(0);
+  const touchEndX = useRef(0);
 
   const goTo = useCallback(
     (index: number) => {
@@ -35,6 +37,18 @@ export default function HeroCarousel() {
     return () => clearInterval(timer);
   }, [next]);
 
+  // Touch swipe handlers for mobile
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.touches[0].clientX;
+  };
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    touchEndX.current = e.changedTouches[0].clientX;
+    const diff = touchStartX.current - touchEndX.current;
+    if (Math.abs(diff) > 50) {
+      diff > 0 ? next() : prev();
+    }
+  };
+
   const slide = heroSlides[current];
 
   const variants = {
@@ -53,7 +67,11 @@ export default function HeroCarousel() {
   };
 
   return (
-    <section className="relative w-full h-[55vh] md:h-[70vh] lg:h-[80vh] overflow-hidden bg-dark-soft">
+    <section
+      className="relative w-full h-[55vh] md:h-[70vh] lg:h-[80vh] overflow-hidden bg-dark-soft"
+      onTouchStart={handleTouchStart}
+      onTouchEnd={handleTouchEnd}
+    >
       <AnimatePresence mode="wait" custom={direction}>
         <motion.div
           key={slide.id}

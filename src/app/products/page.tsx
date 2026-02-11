@@ -68,7 +68,8 @@ export default function ProductsPage() {
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder="Buscar por nombre, origen o notas..."
-              className="w-full bg-surface border border-border rounded-full pl-11 pr-4 py-3 text-dark placeholder:text-text-tertiary focus:outline-none focus:border-accent transition-colors text-sm"
+              aria-label="Buscar productos"
+              className="w-full bg-surface border border-border rounded-full pl-11 pr-4 py-3 text-dark placeholder:text-text-tertiary focus:outline-none focus:border-accent focus:ring-2 focus:ring-accent/20 transition-colors text-sm"
             />
           </div>
 
