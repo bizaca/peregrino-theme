@@ -65,14 +65,14 @@ export default function FeaturedProducts() {
             <div className="flex items-center gap-2">
               <button
                 onClick={() => scroll("left")}
-                className="p-2 border border-border hover:border-accent rounded-full text-dark-muted hover:text-accent transition-all"
+                className="p-2 border border-border hover:border-accent rounded-full text-dark-muted hover:text-accent active:scale-90 transition-all"
                 aria-label="Anterior"
               >
                 <ChevronLeft size={18} />
               </button>
               <button
                 onClick={() => scroll("right")}
-                className="p-2 border border-border hover:border-accent rounded-full text-dark-muted hover:text-accent transition-all"
+                className="p-2 border border-border hover:border-accent rounded-full text-dark-muted hover:text-accent active:scale-90 transition-all"
                 aria-label="Siguiente"
               >
                 <ChevronRight size={18} />

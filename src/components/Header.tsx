@@ -240,13 +240,13 @@ export default function Header() {
                 );
               })}
               <div className="flex items-center gap-4 px-3 pt-4 border-t border-border-light mt-4">
-                <a href={siteConfig.social.instagram} target="_blank" rel="noopener noreferrer" className="text-text-tertiary hover:text-accent transition-colors">
+                <a href={siteConfig.social.instagram} target="_blank" rel="noopener noreferrer" className="text-text-tertiary hover:text-accent hover:scale-110 transition-all">
                   <Instagram size={20} />
                 </a>
-                <a href={siteConfig.social.facebook} target="_blank" rel="noopener noreferrer" className="text-text-tertiary hover:text-accent transition-colors">
+                <a href={siteConfig.social.facebook} target="_blank" rel="noopener noreferrer" className="text-text-tertiary hover:text-accent hover:scale-110 transition-all">
                   <Facebook size={20} />
                 </a>
-                <a href={siteConfig.social.youtube} target="_blank" rel="noopener noreferrer" className="text-text-tertiary hover:text-accent transition-colors">
+                <a href={siteConfig.social.youtube} target="_blank" rel="noopener noreferrer" className="text-text-tertiary hover:text-accent hover:scale-110 transition-all">
                   <Youtube size={20} />
                 </a>
               </div>
