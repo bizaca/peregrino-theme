@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { products, getProductBySlug, formatPrice } from "@/data/products";
+import { siteConfig } from "@/data/site-config";
 import ProductDetail from "@/components/ProductDetail";
 
 interface ProductPageProps {
@@ -37,5 +38,42 @@ export default async function ProductPage({ params }: ProductPageProps) {
     notFound();
   }
 
-  return <ProductDetail product={product} />;
+  const lowestPrice = Math.min(...product.variants.map((v) => v.price));
+  const highestPrice = Math.max(...product.variants.map((v) => v.price));
+
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    name: product.name,
+    description: product.description,
+    image: product.image,
+    brand: { "@type": "Brand", name: siteConfig.name },
+    offers: {
+      "@type": "AggregateOffer",
+      priceCurrency: siteConfig.commerce.currency,
+      lowPrice: lowestPrice,
+      highPrice: highestPrice,
+      offerCount: product.variants.length,
+      availability: product.inStock
+        ? "https://schema.org/InStock"
+        : "https://schema.org/OutOfStock",
+    },
+    aggregateRating: {
+      "@type": "AggregateRating",
+      ratingValue: product.rating,
+      reviewCount: product.reviewCount,
+      bestRating: 5,
+    },
+    ...(product.origin && { countryOfOrigin: { "@type": "Country", name: product.origin } }),
+  };
+
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <ProductDetail product={product} />
+    </>
+  );
 }

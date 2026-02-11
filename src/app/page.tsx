@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { siteConfig } from "@/data/site-config";
 import HeroCarousel from "@/components/HeroCarousel";
 import TrustBadges from "@/components/TrustBadges";
 import CategoryGrid from "@/components/CategoryGrid";
@@ -13,9 +14,40 @@ export const metadata: Metadata = {
   alternates: { canonical: "https://peregrinocoffee.cl" },
 };
 
+const organizationJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: siteConfig.name,
+  url: siteConfig.url,
+  description: siteConfig.description,
+  foundingDate: `${siteConfig.foundedYear}`,
+  contactPoint: {
+    "@type": "ContactPoint",
+    email: siteConfig.contact.email,
+    telephone: siteConfig.contact.phone,
+    contactType: "customer service",
+    areaServed: "CL",
+    availableLanguage: "Spanish",
+  },
+  sameAs: [
+    siteConfig.social.instagram,
+    siteConfig.social.facebook,
+    siteConfig.social.youtube,
+  ],
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "Santiago",
+    addressCountry: "CL",
+  },
+};
+
 export default function HomePage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
+      />
       <HeroCarousel />
       <TrustBadges />
       <CategoryGrid />

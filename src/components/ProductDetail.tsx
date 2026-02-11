@@ -1,9 +1,9 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { Star, ShoppingBag, ChevronRight, Minus, Plus, MapPin, Mountain, Droplets, Leaf, Award, Check } from "lucide-react";
 import { type Product, getRelatedProducts, formatPrice, getDiscountPercentage } from "@/data/products";
 import { useCart } from "@/context/CartContext";
@@ -26,7 +26,7 @@ export default function ProductDetail({ product }: ProductDetailProps) {
   const hasDiscount = variant.originalPrice && variant.originalPrice > variant.price;
   const grind = product.grindOptions.length > 0 ? product.grindOptions[selectedGrind] : "N/A";
 
-  const handleAddToCart = () => {
+  const handleAddToCart = useCallback(() => {
     addItem({
       productId: product.id,
       name: product.name,
@@ -37,7 +37,7 @@ export default function ProductDetail({ product }: ProductDetailProps) {
     }, quantity);
     setAddedToCart(true);
     setTimeout(() => setAddedToCart(false), 2000);
-  };
+  }, [addItem, product, variant, grind, quantity]);
 
   return (
     <div className="min-h-screen bg-base">
@@ -228,8 +228,31 @@ export default function ProductDetail({ product }: ProductDetailProps) {
                     : "bg-accent hover:bg-accent-dark hover:shadow-lg"
                 )}
               >
-                {addedToCart ? <Check size={18} /> : <ShoppingBag size={18} />}
-                {addedToCart ? "Agregado" : "Agregar al Carrito"}
+                <AnimatePresence mode="wait" initial={false}>
+                  {addedToCart ? (
+                    <motion.span
+                      key="check"
+                      initial={{ scale: 0 }}
+                      animate={{ scale: 1 }}
+                      exit={{ scale: 0 }}
+                      className="flex items-center gap-2"
+                    >
+                      <Check size={18} />
+                      Agregado
+                    </motion.span>
+                  ) : (
+                    <motion.span
+                      key="bag"
+                      initial={{ scale: 0 }}
+                      animate={{ scale: 1 }}
+                      exit={{ scale: 0 }}
+                      className="flex items-center gap-2"
+                    >
+                      <ShoppingBag size={18} />
+                      Agregar al Carrito
+                    </motion.span>
+                  )}
+                </AnimatePresence>
               </button>
             </div>
 
@@ -311,10 +334,13 @@ export default function ProductDetail({ product }: ProductDetailProps) {
           </div>
           <button
             onClick={handleAddToCart}
-            className="flex items-center gap-2 bg-accent hover:bg-accent-dark text-white font-medium px-5 py-3 rounded-full transition-all duration-300 shrink-0"
+            className={cn(
+              "flex items-center gap-2 text-white font-medium px-5 py-3 rounded-full transition-all duration-300 shrink-0",
+              addedToCart ? "bg-sage" : "bg-accent hover:bg-accent-dark"
+            )}
           >
-            <ShoppingBag size={16} />
-            <span className="text-sm">Agregar</span>
+            {addedToCart ? <Check size={16} /> : <ShoppingBag size={16} />}
+            <span className="text-sm">{addedToCart ? "Listo" : "Agregar"}</span>
           </button>
         </div>
       </div>
