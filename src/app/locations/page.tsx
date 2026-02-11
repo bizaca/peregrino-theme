@@ -1,17 +1,19 @@
 import type { Metadata } from "next";
+import { siteConfig } from "@/data/site-config";
 import LocationsContent from "@/components/LocationsContent";
 
 export const metadata: Metadata = {
   title: "Nuestros Locales",
   description:
     "Visita nuestros cafés de especialidad en Santiago, Chile. Horarios, direcciones y cómo llegar.",
+  alternates: { canonical: "/locations" },
 };
 
 const locationsJsonLd = {
   "@context": "https://schema.org",
   "@type": "Organization",
-  name: "Peregrino Coffee Roasters",
-  url: "https://peregrinocoffee.cl",
+  name: siteConfig.name,
+  url: siteConfig.url,
   location: [
     {
       "@type": "CoffeeShop",

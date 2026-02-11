@@ -6,6 +6,7 @@ import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { Star, ShoppingBag, ChevronRight, Minus, Plus, MapPin, Mountain, Droplets, Leaf, Award, Check, Share2, Link as LinkIcon } from "lucide-react";
 import { type Product, getRelatedProducts, formatPrice, getDiscountPercentage } from "@/data/products";
+import { siteConfig } from "@/data/site-config";
 import { useCart } from "@/context/CartContext";
 import ProductCard from "@/components/ProductCard";
 import { cn } from "@/lib/utils";
@@ -316,7 +317,7 @@ export default function ProductDetail({ product }: ProductDetailProps) {
               <Share2 size={16} className="text-text-tertiary" />
               <span className="text-text-tertiary text-sm">Compartir:</span>
               <a
-                href={`https://wa.me/?text=${encodeURIComponent(`${product.name} - Café de especialidad de ${product.origin} ☕ https://peregrinocoffee.cl/products/${product.slug}`)}`}
+                href={`https://wa.me/?text=${encodeURIComponent(`${product.name} - Café de especialidad de ${product.origin} ☕ ${siteConfig.url}/products/${product.slug}`)}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="p-2 bg-base-warm hover:bg-accent-bg text-text-secondary hover:text-accent rounded-full transition-all"
@@ -326,7 +327,7 @@ export default function ProductDetail({ product }: ProductDetailProps) {
               </a>
               <button
                 onClick={() => {
-                  navigator.clipboard.writeText(`https://peregrinocoffee.cl/products/${product.slug}`);
+                  navigator.clipboard.writeText(`${siteConfig.url}/products/${product.slug}`);
                   setLinkCopied(true);
                   setTimeout(() => setLinkCopied(false), 2000);
                 }}

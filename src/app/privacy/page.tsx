@@ -5,6 +5,7 @@ export const metadata: Metadata = {
   title: "Política de Privacidad",
   description:
     "Política de privacidad y protección de datos personales de Peregrino Coffee Roasters.",
+  alternates: { canonical: "/privacy" },
 };
 
 export default function PrivacyPage() {

@@ -22,6 +22,7 @@ export async function generateMetadata({ params }: ProductPageProps): Promise<Me
   return {
     title: product.name,
     description: `${product.name} — ${product.tastingNotes}. ${product.origin}, ${product.region}. Desde ${price}.`,
+    alternates: { canonical: `/products/${slug}` },
     openGraph: {
       title: `${product.name} | Peregrino Coffee`,
       description: product.description,

@@ -1,7 +1,8 @@
 import type { MetadataRoute } from "next";
 import { products } from "@/data/products";
+import { siteConfig } from "@/data/site-config";
 
-const BASE_URL = "https://peregrinocoffee.cl";
+const BASE_URL = siteConfig.url;
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const staticPages: MetadataRoute.Sitemap = [

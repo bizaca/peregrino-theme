@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { siteConfig } from "@/data/site-config";
 
 const sections = [
   {
@@ -97,8 +98,8 @@ const sections = [
     content: (
       <p>
         Para consultas sobre estos términos, contáctenos en{" "}
-        <a href="mailto:hola@peregrinocoffee.cl" className="text-accent hover:underline">
-          hola@peregrinocoffee.cl
+        <a href={`mailto:${siteConfig.contact.email}`} className="text-accent hover:underline">
+          {siteConfig.contact.email}
         </a>.
       </p>
     ),

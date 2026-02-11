@@ -11,6 +11,7 @@ import { cn } from "@/lib/utils";
 export default function HeroCarousel() {
   const [current, setCurrent] = useState(0);
   const [direction, setDirection] = useState(1);
+  const [isPaused, setIsPaused] = useState(false);
   const touchStartX = useRef(0);
   const touchEndX = useRef(0);
   const sectionRef = useRef<HTMLElement>(null);
@@ -41,9 +42,10 @@ export default function HeroCarousel() {
   }, []);
 
   useEffect(() => {
+    if (isPaused) return;
     const timer = setInterval(next, 6000);
     return () => clearInterval(timer);
-  }, [next]);
+  }, [next, isPaused]);
 
   // Touch swipe handlers for mobile
   const handleTouchStart = (e: React.TouchEvent) => {
@@ -78,6 +80,14 @@ export default function HeroCarousel() {
     <section
       ref={sectionRef}
       className="grain-overlay relative w-full h-[55vh] md:h-[70vh] lg:h-[80vh] overflow-hidden bg-dark-soft focus-visible:outline-none"
+      onMouseEnter={() => setIsPaused(true)}
+      onMouseLeave={() => setIsPaused(false)}
+      onFocus={() => setIsPaused(true)}
+      onBlur={(e) => {
+        if (!sectionRef.current?.contains(e.relatedTarget as Node)) {
+          setIsPaused(false);
+        }
+      }}
       onTouchStart={handleTouchStart}
       onTouchEnd={handleTouchEnd}
       onKeyDown={(e) => {

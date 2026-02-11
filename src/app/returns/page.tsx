@@ -5,6 +5,7 @@ export const metadata: Metadata = {
   title: "Cambios y Devoluciones",
   description:
     "Política de cambios y devoluciones de Peregrino Coffee Roasters. Tu satisfacción es nuestra prioridad.",
+  alternates: { canonical: "/returns" },
 };
 
 export default function ReturnsPage() {

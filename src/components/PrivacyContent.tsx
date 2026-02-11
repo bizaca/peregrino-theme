@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { siteConfig } from "@/data/site-config";
 
 const sections = [
   {
@@ -80,8 +81,8 @@ const sections = [
         </ul>
         <p className="mt-2">
           Para ejercer estos derechos, contáctenos en{" "}
-          <a href="mailto:hola@peregrinocoffee.cl" className="text-accent hover:underline">
-            hola@peregrinocoffee.cl
+          <a href={`mailto:${siteConfig.contact.email}`} className="text-accent hover:underline">
+            {siteConfig.contact.email}
           </a>.
         </p>
       </>
@@ -113,8 +114,8 @@ const sections = [
       <p>
         Para consultas sobre esta política de privacidad o el tratamiento de sus datos personales,
         contáctenos en{" "}
-        <a href="mailto:hola@peregrinocoffee.cl" className="text-accent hover:underline">
-          hola@peregrinocoffee.cl
+        <a href={`mailto:${siteConfig.contact.email}`} className="text-accent hover:underline">
+          {siteConfig.contact.email}
         </a>.
       </p>
     ),

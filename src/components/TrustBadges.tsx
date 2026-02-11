@@ -42,7 +42,7 @@ export default function TrustBadges() {
           {/* Render badges twice for seamless loop */}
           {[...trustBadges, ...trustBadges].map((badge, index) => (
             <BadgeItem
-              key={index}
+              key={`${badge.text}-${index}`}
               badge={badge}
               showDivider={true}
             />
