@@ -7,10 +7,12 @@ import { X } from "lucide-react";
 const DISMISSED_KEY = "peregrino-announcement-dismissed";
 const noop = () => () => {};
 const getNotDismissed = () => !sessionStorage.getItem(DISMISSED_KEY);
-const getFalse = () => false;
+const getTrue = () => true;
 
 export default function AnnouncementBar() {
-  const notDismissed = useSyncExternalStore(noop, getNotDismissed, getFalse);
+  // Server snapshot returns true so the bar renders in SSR (prevents CLS).
+  // On client hydration, sessionStorage is checked; if dismissed, bar unmounts.
+  const notDismissed = useSyncExternalStore(noop, getNotDismissed, getTrue);
   const [manuallyDismissed, setManuallyDismissed] = useState(false);
   const isVisible = notDismissed && !manuallyDismissed;
 
@@ -23,7 +25,7 @@ export default function AnnouncementBar() {
     <AnimatePresence>
       {isVisible && (
         <motion.div
-          initial={{ height: 0, opacity: 0 }}
+          initial={false}
           animate={{ height: "auto", opacity: 1 }}
           exit={{ height: 0, opacity: 0 }}
           transition={{ duration: 0.3, ease: "easeInOut" }}
