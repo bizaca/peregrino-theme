@@ -16,9 +16,17 @@ export default function Error({
   }, [error]);
 
   return (
-    <div className="min-h-screen bg-base flex items-center justify-center">
-      <div className="text-center px-4">
-        <AlertTriangle size={48} className="text-accent mx-auto mb-6" />
+    <div className="min-h-screen bg-base flex items-center justify-center relative overflow-hidden">
+      {/* Background decoration */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-1/3 -left-20 w-72 h-72 bg-accent-red/5 rounded-full blur-3xl" />
+        <div className="absolute bottom-1/3 -right-20 w-72 h-72 bg-accent/5 rounded-full blur-3xl" />
+      </div>
+
+      <div className="text-center px-4 relative z-10">
+        <div className="w-20 h-20 rounded-full bg-accent-red/10 flex items-center justify-center mx-auto mb-6">
+          <AlertTriangle size={36} className="text-accent-red" />
+        </div>
         <h1 className="font-heading text-3xl font-bold text-dark mb-3">
           Algo salió mal
         </h1>

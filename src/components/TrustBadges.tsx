@@ -32,9 +32,9 @@ export default function TrustBadges() {
           return (
             <div
               key={index}
-              className="flex items-center gap-2.5 px-6 py-4 text-dark-muted"
+              className="flex items-center gap-2.5 px-6 py-4 text-dark-muted hover:text-dark transition-colors duration-200 group cursor-default"
             >
-              <Icon size={17} className="text-accent shrink-0" />
+              <Icon size={17} className="text-accent shrink-0 group-hover:scale-110 transition-transform duration-200" />
               <span className="text-sm whitespace-nowrap">{badge.text}</span>
               {index < trustBadges.length - 1 && (
                 <div className="w-px h-4 bg-border ml-6" />
