@@ -1,5 +1,5 @@
 import { Suspense } from "react";
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Playfair_Display, Inter } from "next/font/google";
 import { CartProvider } from "@/context/CartContext";
 import AnnouncementBar from "@/components/AnnouncementBar";
@@ -24,7 +24,15 @@ const inter = Inter({
   display: "swap",
 });
 
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 5,
+  themeColor: "#2D2926",
+};
+
 export const metadata: Metadata = {
+  metadataBase: new URL("https://peregrinocoffee.cl"),
   title: {
     default: "Peregrino Coffee Roasters | Café de Especialidad",
     template: "%s | Peregrino Coffee",
@@ -45,12 +53,21 @@ export const metadata: Metadata = {
     title: "Peregrino Coffee Roasters | Café de Especialidad",
     description:
       "Tostadores de café de especialidad desde 2016. Granos frescos de Perú, Colombia, Bolivia, Costa Rica y Brasil.",
+    images: [
+      {
+        url: "/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Peregrino Coffee Roasters - Café de Especialidad",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Peregrino Coffee Roasters",
     description:
       "Café de especialidad tostado semanalmente con granos de Latinoamérica.",
+    images: ["/og-image.jpg"],
   },
 };
 
