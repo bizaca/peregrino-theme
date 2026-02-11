@@ -38,6 +38,8 @@ export default function Newsletter() {
           fill
           className="object-cover"
           sizes="100vw"
+          placeholder="blur"
+          blurDataURL="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTkyMCIgaGVpZ2h0PSI2MDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0iIzJEMjkyNiIvPjwvc3ZnPg=="
         />
         <div className="absolute inset-0 bg-dark/75 backdrop-blur-[2px]" />
       </div>

@@ -78,6 +78,8 @@ export default function AboutContent() {
             fill
             className="object-cover opacity-30"
             priority
+            placeholder="blur"
+            blurDataURL="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTkyMCIgaGVpZ2h0PSIxMDgwIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9IiMyRDI5MjYiLz48L3N2Zz4="
           />
           <div className="absolute inset-0 bg-gradient-to-b from-dark/60 to-dark-soft" />
         </div>
@@ -128,6 +130,8 @@ export default function AboutContent() {
                   fill
                   className="object-cover"
                   sizes="(max-width: 1024px) 100vw, 50vw"
+                  placeholder="blur"
+                  blurDataURL="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iODAwIiBoZWlnaHQ9IjYwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjMkQyOTI2Ii8+PC9zdmc+"
                 />
               </div>
               <div className="hidden md:block absolute -bottom-4 -right-4 w-32 h-32 border-2 border-accent/20 rounded-2xl" />

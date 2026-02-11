@@ -1,16 +1,18 @@
 import { Suspense } from "react";
+import dynamic from "next/dynamic";
 import type { Metadata, Viewport } from "next";
 import { Playfair_Display, Inter } from "next/font/google";
 import { CartProvider } from "@/context/CartContext";
 import AnnouncementBar from "@/components/AnnouncementBar";
 import Header from "@/components/Header";
-import CartDrawer from "@/components/CartDrawer";
-import WhatsAppButton from "@/components/WhatsAppButton";
-import BackToTop from "@/components/BackToTop";
-import ScrollToTop from "@/components/ScrollToTop";
-import ScrollProgress from "@/components/ScrollProgress";
 import Footer from "@/components/Footer";
+import ScrollProgress from "@/components/ScrollProgress";
 import "./globals.css";
+
+const CartDrawer = dynamic(() => import("@/components/CartDrawer"));
+const WhatsAppButton = dynamic(() => import("@/components/WhatsAppButton"));
+const BackToTop = dynamic(() => import("@/components/BackToTop"));
+const ScrollToTop = dynamic(() => import("@/components/ScrollToTop"));
 
 const playfair = Playfair_Display({
   variable: "--font-heading",
@@ -53,21 +55,12 @@ export const metadata: Metadata = {
     title: "Peregrino Coffee Roasters | Café de Especialidad",
     description:
       "Tostadores de café de especialidad desde 2016. Granos frescos de Perú, Colombia, Bolivia, Costa Rica y Brasil.",
-    images: [
-      {
-        url: "/og-image.jpg",
-        width: 1200,
-        height: 630,
-        alt: "Peregrino Coffee Roasters - Café de Especialidad",
-      },
-    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Peregrino Coffee Roasters",
     description:
       "Café de especialidad tostado semanalmente con granos de Latinoamérica.",
-    images: ["/og-image.jpg"],
   },
 };
 
@@ -88,7 +81,22 @@ export default function RootLayout({
           </a>
           <ScrollProgress />
           <AnnouncementBar />
-          <Suspense>
+          <Suspense
+            fallback={
+              <header className="sticky top-0 z-50 bg-surface/95 backdrop-blur-md border-b border-border-light">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6">
+                  <div className="flex items-center justify-between h-16 md:h-20">
+                    <div className="w-6 h-6 md:hidden" />
+                    <div className="flex flex-col items-center">
+                      <span className="font-heading text-xl md:text-2xl font-bold text-dark tracking-wider">PEREGRINO</span>
+                      <span className="text-[10px] md:text-xs text-text-secondary tracking-[0.3em] uppercase">Coffee Roasters</span>
+                    </div>
+                    <div className="w-10 h-10" />
+                  </div>
+                </div>
+              </header>
+            }
+          >
             <Header />
           </Suspense>
           <main id="main-content">{children}</main>
