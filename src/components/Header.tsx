@@ -11,10 +11,12 @@ import { siteConfig } from "@/data/site-config";
 import { cn } from "@/lib/utils";
 
 const noop = () => () => {};
+const getTrue = () => true;
+const getFalse = () => false;
 
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const mounted = useSyncExternalStore(noop, () => true, () => false);
+  const mounted = useSyncExternalStore(noop, getTrue, getFalse);
   const { totalItems, toggleCart } = useCart();
   const mobileNavRef = useRef<HTMLDivElement>(null);
   const menuButtonRef = useRef<HTMLButtonElement>(null);

@@ -43,6 +43,7 @@ const MAX_ITEM_QUANTITY = 20;
 let _cartItems: CartItem[] = [];
 const _listeners = new Set<() => void>();
 let _initialized = false;
+const EMPTY_CART: CartItem[] = [];
 
 function _initStore() {
   if (_initialized) return;
@@ -74,7 +75,7 @@ function getCartSnapshot(): CartItem[] {
 }
 
 function getCartServerSnapshot(): CartItem[] {
-  return [];
+  return EMPTY_CART;
 }
 
 // ─── Provider ──────────────────────────────────────────────────────

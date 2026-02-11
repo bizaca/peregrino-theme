@@ -6,13 +6,11 @@ import { X } from "lucide-react";
 
 const DISMISSED_KEY = "peregrino-announcement-dismissed";
 const noop = () => () => {};
+const getNotDismissed = () => !sessionStorage.getItem(DISMISSED_KEY);
+const getFalse = () => false;
 
 export default function AnnouncementBar() {
-  const notDismissed = useSyncExternalStore(
-    noop,
-    () => !sessionStorage.getItem(DISMISSED_KEY),
-    () => false
-  );
+  const notDismissed = useSyncExternalStore(noop, getNotDismissed, getFalse);
   const [manuallyDismissed, setManuallyDismissed] = useState(false);
   const isVisible = notDismissed && !manuallyDismissed;
 
