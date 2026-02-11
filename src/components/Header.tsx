@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname, useSearchParams } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
@@ -12,7 +12,10 @@ import { cn } from "@/lib/utils";
 
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
   const { totalItems, toggleCart } = useCart();
+
+  useEffect(() => setMounted(true), []);
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
@@ -106,10 +109,14 @@ export default function Header() {
               aria-label="Carrito"
             >
               <ShoppingBag size={20} />
-              {totalItems > 0 && (
-                <span className="absolute -top-0.5 -right-0.5 bg-accent text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">
+              {mounted && totalItems > 0 && (
+                <motion.span
+                  initial={{ scale: 0 }}
+                  animate={{ scale: 1 }}
+                  className="absolute -top-0.5 -right-0.5 bg-accent text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center"
+                >
                   {totalItems}
-                </span>
+                </motion.span>
               )}
             </button>
           </div>

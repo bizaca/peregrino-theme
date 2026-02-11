@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Instagram, Facebook, Youtube, MapPin, Mail, Phone } from "lucide-react";
 import { siteConfig } from "@/data/site-config";
+import NewsletterForm from "./NewsletterForm";
 
 const footerLinks = {
   tienda: [
@@ -47,7 +48,7 @@ export default function Footer() {
               Tostadores de café de especialidad desde 2016. Trabajamos directamente
               con productores latinoamericanos para traerte lo mejor en cada taza.
             </p>
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-3 mb-8">
               <a
                 href={siteConfig.social.instagram}
                 target="_blank"
@@ -76,6 +77,9 @@ export default function Footer() {
                 <Youtube size={18} />
               </a>
             </div>
+
+            {/* Newsletter */}
+            <NewsletterForm />
           </div>
 
           {/* Links columns */}

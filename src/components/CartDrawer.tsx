@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useRef, useCallback } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
@@ -12,6 +12,8 @@ import { siteConfig } from "@/data/site-config";
 export default function CartDrawer() {
   const { items, isOpen, closeCart, removeItem, updateQuantity, totalPrice, totalItems } =
     useCart();
+  const drawerRef = useRef<HTMLDivElement>(null);
+  const previousFocusRef = useRef<HTMLElement | null>(null);
 
   // Lock body scroll when cart is open
   useEffect(() => {
@@ -25,14 +27,53 @@ export default function CartDrawer() {
     };
   }, [isOpen]);
 
-  // Close on Escape key
+  // Save and restore focus, auto-focus close button on open
   useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape" && isOpen) closeCart();
-    };
+    if (isOpen) {
+      previousFocusRef.current = document.activeElement as HTMLElement;
+      // Focus the close button after animation settles
+      const timer = setTimeout(() => {
+        const closeBtn = drawerRef.current?.querySelector<HTMLButtonElement>("[aria-label='Cerrar carrito']");
+        closeBtn?.focus();
+      }, 100);
+      return () => clearTimeout(timer);
+    } else if (previousFocusRef.current) {
+      previousFocusRef.current.focus();
+      previousFocusRef.current = null;
+    }
+  }, [isOpen]);
+
+  // Focus trap + Escape key
+  const handleKeyDown = useCallback(
+    (e: KeyboardEvent) => {
+      if (!isOpen) return;
+      if (e.key === "Escape") {
+        closeCart();
+        return;
+      }
+      if (e.key === "Tab" && drawerRef.current) {
+        const focusable = drawerRef.current.querySelectorAll<HTMLElement>(
+          'a[href], button:not([disabled]), input:not([disabled]), [tabindex]:not([tabindex="-1"])'
+        );
+        if (focusable.length === 0) return;
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+        if (e.shiftKey && document.activeElement === first) {
+          e.preventDefault();
+          last.focus();
+        } else if (!e.shiftKey && document.activeElement === last) {
+          e.preventDefault();
+          first.focus();
+        }
+      }
+    },
+    [isOpen, closeCart]
+  );
+
+  useEffect(() => {
     document.addEventListener("keydown", handleKeyDown);
     return () => document.removeEventListener("keydown", handleKeyDown);
-  }, [isOpen, closeCart]);
+  }, [handleKeyDown]);
 
   return (
     <AnimatePresence>
@@ -49,6 +90,7 @@ export default function CartDrawer() {
 
           {/* Drawer */}
           <motion.div
+            ref={drawerRef}
             role="dialog"
             aria-modal="true"
             aria-labelledby="cart-drawer-title"

@@ -68,7 +68,7 @@ export default function HeroCarousel() {
 
   return (
     <section
-      className="relative w-full h-[55vh] md:h-[70vh] lg:h-[80vh] overflow-hidden bg-dark-soft"
+      className="grain-overlay relative w-full h-[55vh] md:h-[70vh] lg:h-[80vh] overflow-hidden bg-dark-soft"
       onTouchStart={handleTouchStart}
       onTouchEnd={handleTouchEnd}
     >
@@ -161,7 +161,7 @@ export default function HeroCarousel() {
         <ChevronRight size={20} />
       </button>
 
-      {/* Dots */}
+      {/* Progress dots */}
       <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex items-center gap-2.5 z-10" role="tablist" aria-label="Slides del carrusel">
         {heroSlides.map((_, index) => (
           <button
@@ -169,14 +169,24 @@ export default function HeroCarousel() {
             role="tab"
             onClick={() => goTo(index)}
             className={cn(
-              "transition-all duration-300 rounded-full",
+              "relative transition-all duration-300 rounded-full overflow-hidden",
               index === current
-                ? "w-8 h-2 bg-white"
+                ? "w-10 h-2 bg-white/20"
                 : "w-2 h-2 bg-white/30 hover:bg-white/60"
             )}
             aria-label={`Ir a slide ${index + 1}`}
             aria-selected={index === current}
-          />
+          >
+            {index === current && (
+              <motion.div
+                key={`progress-${current}`}
+                initial={{ width: "0%" }}
+                animate={{ width: "100%" }}
+                transition={{ duration: 6, ease: "linear" }}
+                className="absolute inset-0 bg-white rounded-full"
+              />
+            )}
+          </button>
         ))}
       </div>
     </section>
