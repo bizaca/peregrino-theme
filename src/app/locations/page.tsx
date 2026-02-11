@@ -1,10 +1,12 @@
-import ComingSoon from "@/components/ComingSoon";
+import type { Metadata } from "next";
+import LocationsContent from "@/components/LocationsContent";
 
-export const metadata = {
-  title: "Locales",
-  description: "Encuentra nuestros locales de café de especialidad en Santiago, Chile.",
+export const metadata: Metadata = {
+  title: "Nuestros Locales",
+  description:
+    "Visita nuestros cafés de especialidad en Santiago, Chile. Horarios, direcciones y cómo llegar.",
 };
 
 export default function LocationsPage() {
-  return <ComingSoon title="Nuestros Locales" description="Visítanos en Santiago. Pronto podrás ver todas nuestras ubicaciones y horarios aquí." />;
+  return <LocationsContent />;
 }
