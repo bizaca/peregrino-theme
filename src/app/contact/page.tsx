@@ -1,10 +1,12 @@
-import ComingSoon from "@/components/ComingSoon";
+import type { Metadata } from "next";
+import ContactContent from "@/components/ContactContent";
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "Contacto",
-  description: "Contáctanos para consultas sobre café de especialidad, mayoristas o servicio al cliente.",
+  description:
+    "Contáctanos para consultas sobre café de especialidad, pedidos mayoristas o servicio al cliente. Estamos en Santiago, Chile.",
 };
 
 export default function ContactPage() {
-  return <ComingSoon title="Contacto" description="Estamos trabajando en nuestro formulario de contacto. Mientras tanto, escríbenos por WhatsApp." />;
+  return <ContactContent />;
 }
