@@ -70,8 +70,9 @@ export default function ProductDetail({ product }: ProductDetailProps) {
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5 }}
+            className="sticky top-28"
           >
-            <div className="relative aspect-square rounded-2xl overflow-hidden bg-base-warm sticky top-28 shadow-lg shadow-dark/5">
+            <div className="relative aspect-square rounded-2xl overflow-hidden bg-base-warm shadow-lg shadow-dark/5">
               <Image
                 src={product.image}
                 alt={product.name}
