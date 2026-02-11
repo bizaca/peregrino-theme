@@ -84,7 +84,14 @@ export default function FeaturedProducts() {
         {/* Product carousel */}
         <div
           ref={scrollRef}
-          className="flex gap-4 md:gap-6 overflow-x-auto scrollbar-hide pb-4 -mx-4 px-4 snap-x snap-mandatory"
+          role="region"
+          aria-label="Productos destacados"
+          tabIndex={0}
+          onKeyDown={(e) => {
+            if (e.key === "ArrowLeft") scroll("left");
+            if (e.key === "ArrowRight") scroll("right");
+          }}
+          className="flex gap-4 md:gap-6 overflow-x-auto scrollbar-hide pb-4 -mx-4 px-4 snap-x snap-mandatory focus:outline-none focus-visible:ring-2 focus-visible:ring-accent/30 rounded-xl"
         >
           {featuredProducts.map((product, index) => (
             <div
