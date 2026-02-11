@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { ArrowRight, Leaf, Heart, Award, Globe } from "lucide-react";
+import { ArrowRight, Coffee, Leaf, Heart, Award, Globe } from "lucide-react";
 import { generatedImages } from "@/data/generated-images";
 
 const values = [
@@ -65,9 +65,6 @@ const timeline = [
       "Incorporamos orígenes de Costa Rica y Brasil, y lanzamos nuestra línea de cápsulas compostables para llevar el café de especialidad a más personas.",
   },
 ];
-
-// Import Coffee icon properly
-import { Coffee } from "lucide-react";
 
 export default function AboutContent() {
   return (

@@ -97,7 +97,7 @@ export default function Header() {
           <button
             ref={menuButtonRef}
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="md:hidden p-2 text-dark-muted hover:text-accent transition-colors"
+            className="md:hidden p-2 text-dark-muted hover:text-accent hover:scale-110 active:scale-95 transition-all"
             aria-label="Menú"
             aria-expanded={isMobileMenuOpen}
           >
@@ -124,7 +124,7 @@ export default function Header() {
                 href={siteConfig.social.instagram}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-1.5 text-text-tertiary hover:text-accent transition-colors"
+                className="p-1.5 text-text-tertiary hover:text-accent hover:scale-110 transition-all"
                 aria-label="Instagram"
               >
                 <Instagram size={17} />
@@ -133,7 +133,7 @@ export default function Header() {
                 href={siteConfig.social.facebook}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-1.5 text-text-tertiary hover:text-accent transition-colors"
+                className="p-1.5 text-text-tertiary hover:text-accent hover:scale-110 transition-all"
                 aria-label="Facebook"
               >
                 <Facebook size={17} />
@@ -142,7 +142,7 @@ export default function Header() {
                 href={siteConfig.social.youtube}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-1.5 text-text-tertiary hover:text-accent transition-colors"
+                className="p-1.5 text-text-tertiary hover:text-accent hover:scale-110 transition-all"
                 aria-label="YouTube"
               >
                 <Youtube size={17} />
