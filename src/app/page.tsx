@@ -12,7 +12,21 @@ export const metadata: Metadata = {
   title: "Peregrino Coffee Roasters | Café de Especialidad",
   description:
     "Tostadores de café de especialidad desde 2016. Granos frescos de Perú, Colombia, Bolivia, Costa Rica y Brasil. Envíos a todo Chile.",
-  alternates: { canonical: "https://peregrinocoffee.cl" },
+  alternates: { canonical: "/" },
+};
+
+const websiteJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: siteConfig.name,
+  url: siteConfig.url,
+  description: siteConfig.description,
+  inLanguage: "es-CL",
+  publisher: {
+    "@type": "Organization",
+    name: siteConfig.name,
+    url: siteConfig.url,
+  },
 };
 
 const organizationJsonLd = {
@@ -45,6 +59,10 @@ const organizationJsonLd = {
 export default function HomePage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }}
+      />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}

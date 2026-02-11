@@ -1,5 +1,7 @@
 import { Suspense } from "react";
 import type { Metadata } from "next";
+import { products } from "@/data/products";
+import { siteConfig } from "@/data/site-config";
 import ProductsContent from "@/components/ProductsContent";
 
 export const metadata: Metadata = {
@@ -14,9 +16,27 @@ export const metadata: Metadata = {
   },
 };
 
+const itemListJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  name: "Cafés de Especialidad",
+  numberOfItems: products.length,
+  itemListElement: products.map((product, index) => ({
+    "@type": "ListItem",
+    position: index + 1,
+    name: product.name,
+    url: `${siteConfig.url}/products/${product.slug}`,
+  })),
+};
+
 export default function ProductsPage() {
   return (
-    <Suspense
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListJsonLd) }}
+      />
+      <Suspense
       fallback={
         <div className="min-h-screen bg-base">
           <div className="bg-dark-soft py-16 md:py-24">
@@ -45,5 +65,6 @@ export default function ProductsPage() {
     >
       <ProductsContent />
     </Suspense>
+    </>
   );
 }
