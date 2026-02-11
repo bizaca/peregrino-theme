@@ -1,0 +1,146 @@
+"use client";
+
+import { useState } from "react";
+import Link from "next/link";
+import { ShoppingBag, Menu, X, Instagram, Facebook, Youtube, User } from "lucide-react";
+import { mainNavItems } from "@/data/navigation";
+import { useCart } from "@/context/CartContext";
+import { cn } from "@/lib/utils";
+
+export default function Header() {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { totalItems, toggleCart } = useCart();
+
+  return (
+    <header className="sticky top-0 z-50 bg-surface/95 backdrop-blur-md border-b border-border-light">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6">
+        <div className="flex items-center justify-between h-16 md:h-20">
+          {/* Mobile menu button */}
+          <button
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            className="md:hidden p-2 text-dark-muted hover:text-accent transition-colors"
+            aria-label="Menú"
+          >
+            {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
+
+          {/* Logo */}
+          <Link href="/" className="flex items-center gap-3 group">
+            <div className="flex flex-col items-center">
+              <span className="font-heading text-xl md:text-2xl font-bold text-dark tracking-wider group-hover:text-accent transition-colors">
+                PEREGRINO
+              </span>
+              <span className="text-[10px] md:text-xs text-text-secondary tracking-[0.3em] uppercase">
+                Coffee Roasters
+              </span>
+            </div>
+          </Link>
+
+          {/* Right side actions */}
+          <div className="flex items-center gap-2">
+            {/* Social links - desktop only */}
+            <div className="hidden lg:flex items-center gap-1 mr-3">
+              <a
+                href="https://instagram.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-1.5 text-text-tertiary hover:text-accent transition-colors"
+                aria-label="Instagram"
+              >
+                <Instagram size={17} />
+              </a>
+              <a
+                href="https://facebook.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-1.5 text-text-tertiary hover:text-accent transition-colors"
+                aria-label="Facebook"
+              >
+                <Facebook size={17} />
+              </a>
+              <a
+                href="https://youtube.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-1.5 text-text-tertiary hover:text-accent transition-colors"
+                aria-label="YouTube"
+              >
+                <Youtube size={17} />
+              </a>
+            </div>
+
+            <div className="w-px h-5 bg-border hidden lg:block" />
+
+            {/* Account */}
+            <Link
+              href="/account"
+              className="p-2 text-dark-muted hover:text-accent transition-colors"
+              aria-label="Mi cuenta"
+            >
+              <User size={20} />
+            </Link>
+
+            {/* Cart */}
+            <button
+              onClick={toggleCart}
+              className="relative p-2 text-dark-muted hover:text-accent transition-colors"
+              aria-label="Carrito"
+            >
+              <ShoppingBag size={20} />
+              {totalItems > 0 && (
+                <span className="absolute -top-0.5 -right-0.5 bg-accent text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">
+                  {totalItems}
+                </span>
+              )}
+            </button>
+          </div>
+        </div>
+
+        {/* Desktop navigation */}
+        <nav className="hidden md:flex items-center justify-center gap-1 pb-3 -mt-1">
+          {mainNavItems.map((item) => (
+            <Link
+              key={item.href}
+              href={item.href}
+              className="accent-underline px-3 py-1 text-sm text-text-secondary hover:text-dark transition-colors tracking-wide"
+            >
+              {item.label}
+            </Link>
+          ))}
+        </nav>
+      </div>
+
+      {/* Mobile navigation */}
+      <div
+        className={cn(
+          "md:hidden overflow-hidden transition-all duration-300 ease-in-out bg-surface border-t border-border-light",
+          isMobileMenuOpen ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0"
+        )}
+      >
+        <nav className="px-4 py-4 space-y-1">
+          {mainNavItems.map((item) => (
+            <Link
+              key={item.href}
+              href={item.href}
+              onClick={() => setIsMobileMenuOpen(false)}
+              className="block px-3 py-2.5 text-text-secondary hover:text-accent hover:bg-base-warm rounded-lg transition-colors text-sm tracking-wide"
+            >
+              {item.label}
+            </Link>
+          ))}
+          <div className="flex items-center gap-4 px-3 pt-3 border-t border-border-light mt-3">
+            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="text-text-tertiary hover:text-accent transition-colors">
+              <Instagram size={20} />
+            </a>
+            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="text-text-tertiary hover:text-accent transition-colors">
+              <Facebook size={20} />
+            </a>
+            <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" className="text-text-tertiary hover:text-accent transition-colors">
+              <Youtube size={20} />
+            </a>
+          </div>
+        </nav>
+      </div>
+    </header>
+  );
+}

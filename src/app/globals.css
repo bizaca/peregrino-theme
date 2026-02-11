@@ -1,18 +1,37 @@
 @import "tailwindcss";
 
 @theme inline {
-  --color-primary: #0C0A09;
-  --color-primary-light: #1C1917;
-  --color-primary-lighter: #292524;
-  --color-card: #1C1917;
-  --color-card-hover: #292524;
-  --color-gold: #C8A97E;
-  --color-gold-light: #E8D5B5;
-  --color-gold-dark: #A68B5B;
-  --color-cream: #FAF7F2;
-  --color-cream-dark: #D4CFC7;
-  --color-cream-darker: #A8A29E;
-  --color-accent-red: #DC2626;
+  /* Hipster-modern palette with elegant undertones */
+  --color-base: #FAFAF8;
+  --color-base-warm: #F3F0EB;
+  --color-base-dark: #E8E4DE;
+  --color-surface: #FFFFFF;
+  --color-surface-hover: #F7F5F2;
+
+  /* Dark tones */
+  --color-dark: #1A1A1A;
+  --color-dark-soft: #2D2926;
+  --color-dark-muted: #4A4543;
+  --color-text-secondary: #7A7570;
+  --color-text-tertiary: #A8A29E;
+
+  /* Accent — terracotta/copper (hipster coffee) */
+  --color-accent: #B8734A;
+  --color-accent-light: #D4956B;
+  --color-accent-dark: #96582F;
+  --color-accent-bg: #FDF6F0;
+
+  /* Secondary — sage green (earthy modern) */
+  --color-sage: #6B705C;
+  --color-sage-light: #8A8F7C;
+  --color-sage-bg: #F2F3EF;
+
+  /* Functional */
+  --color-accent-red: #C53030;
+  --color-border: #E2DDD6;
+  --color-border-light: #EDE9E3;
+
+  /* Typography */
   --font-heading: "Playfair Display", Georgia, serif;
   --font-body: "Inter", system-ui, sans-serif;
 }
@@ -23,68 +42,84 @@ html {
 }
 
 body {
-  background-color: var(--color-primary);
-  color: var(--color-cream);
+  background-color: var(--color-base);
+  color: var(--color-dark);
   font-family: var(--font-body);
 }
 
 /* Custom scrollbar */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: var(--color-primary);
+  background: var(--color-base);
 }
 ::-webkit-scrollbar-thumb {
-  background: var(--color-primary-lighter);
-  border-radius: 4px;
+  background: var(--color-base-dark);
+  border-radius: 3px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--color-gold-dark);
+  background: var(--color-text-tertiary);
 }
 
-/* Gold gradient text utility */
-.text-gold-gradient {
-  background: linear-gradient(135deg, var(--color-gold-light), var(--color-gold), var(--color-gold-dark));
+/* Accent gradient text */
+.text-accent-gradient {
+  background: linear-gradient(135deg, var(--color-accent), var(--color-accent-dark));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
-/* Shimmer animation for loading states */
+/* Shimmer animation */
 @keyframes shimmer {
   0% { background-position: -200% 0; }
   100% { background-position: 200% 0; }
 }
 
 .animate-shimmer {
-  background: linear-gradient(90deg, var(--color-primary-light) 25%, var(--color-primary-lighter) 50%, var(--color-primary-light) 75%);
+  background: linear-gradient(90deg, var(--color-base-warm) 25%, var(--color-base-dark) 50%, var(--color-base-warm) 75%);
   background-size: 200% 100%;
   animation: shimmer 1.5s infinite;
 }
 
-/* Smooth image zoom on hover */
+/* Smooth image zoom */
 .img-zoom {
-  transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 .img-zoom:hover {
   transform: scale(1.05);
 }
 
-/* Gold underline animation */
-.gold-underline {
+/* Underline animation */
+.accent-underline {
   position: relative;
+  display: inline-block;
 }
-.gold-underline::after {
+.accent-underline::after {
   content: '';
   position: absolute;
   bottom: -2px;
   left: 0;
   width: 0;
-  height: 1px;
-  background: var(--color-gold);
+  height: 1.5px;
+  background: var(--color-accent);
   transition: width 0.3s ease;
 }
-.gold-underline:hover::after {
+.accent-underline:hover::after {
   width: 100%;
+}
+
+/* Hide scrollbar for carousels */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Selection color */
+::selection {
+  background-color: var(--color-accent-bg);
+  color: var(--color-accent-dark);
 }
