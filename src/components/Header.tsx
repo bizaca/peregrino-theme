@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { usePathname, useSearchParams } from "next/navigation";
 import { ShoppingBag, Menu, X, Instagram, Facebook, Youtube, User } from "lucide-react";
 import { mainNavItems } from "@/data/navigation";
 import { useCart } from "@/context/CartContext";
@@ -10,6 +11,21 @@ import { cn } from "@/lib/utils";
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { totalItems, toggleCart } = useCart();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+
+  const isNavActive = (href: string) => {
+    const [itemPath, itemQuery] = href.split("?");
+    if (itemQuery) {
+      // Items with query params: match pathname + query exactly
+      const params = new URLSearchParams(itemQuery);
+      if (pathname !== itemPath) return false;
+      return Array.from(params).every(([k, v]) => searchParams.get(k) === v);
+    }
+    // Items without query params: exact match or sub-route match (except "/")
+    if (itemPath === "/") return pathname === "/";
+    return pathname === itemPath || pathname.startsWith(itemPath + "/");
+  };
 
   return (
     <header className="sticky top-0 z-50 bg-surface/95 backdrop-blur-md border-b border-border-light">
@@ -99,15 +115,21 @@ export default function Header() {
 
         {/* Desktop navigation */}
         <nav className="hidden md:flex items-center justify-center gap-1 pb-3 -mt-1">
-          {mainNavItems.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className="accent-underline px-3 py-1 text-sm text-text-secondary hover:text-dark transition-colors tracking-wide"
-            >
-              {item.label}
-            </Link>
-          ))}
+          {mainNavItems.map((item) => {
+            const isActive = isNavActive(item.href);
+            return (
+              <Link
+                key={item.href}
+                href={item.href}
+                className={cn(
+                  "accent-underline px-3 py-1 text-sm transition-colors tracking-wide",
+                  isActive ? "text-accent font-medium" : "text-text-secondary hover:text-dark"
+                )}
+              >
+                {item.label}
+              </Link>
+            );
+          })}
         </nav>
       </div>
 
@@ -115,16 +137,24 @@ export default function Header() {
       {isMobileMenuOpen && (
         <div className="md:hidden bg-surface border-t border-border-light min-h-[calc(100vh-4rem)]">
           <nav className="px-4 py-4 space-y-1">
-            {mainNavItems.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                onClick={() => setIsMobileMenuOpen(false)}
-                className="block px-3 py-3 text-text-secondary hover:text-accent hover:bg-base-warm rounded-lg transition-colors text-sm tracking-wide"
-              >
-                {item.label}
-              </Link>
-            ))}
+            {mainNavItems.map((item) => {
+              const isActive = isNavActive(item.href);
+              return (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className={cn(
+                    "block px-3 py-3 rounded-lg transition-colors text-sm tracking-wide",
+                    isActive
+                      ? "text-accent bg-accent-bg font-medium"
+                      : "text-text-secondary hover:text-accent hover:bg-base-warm"
+                  )}
+                >
+                  {item.label}
+                </Link>
+              );
+            })}
             <div className="flex items-center gap-4 px-3 pt-4 border-t border-border-light mt-4">
               <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="text-text-tertiary hover:text-accent transition-colors">
                 <Instagram size={20} />

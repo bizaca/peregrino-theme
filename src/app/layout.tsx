@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import type { Metadata } from "next";
 import { Playfair_Display, Inter } from "next/font/google";
 import { CartProvider } from "@/context/CartContext";
@@ -59,7 +60,9 @@ export default function RootLayout({
       <body className="antialiased">
         <CartProvider>
           <AnnouncementBar />
-          <Header />
+          <Suspense>
+            <Header />
+          </Suspense>
           <main>{children}</main>
           <Footer />
           <CartDrawer />

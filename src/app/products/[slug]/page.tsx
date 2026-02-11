@@ -6,8 +6,9 @@ import Link from "next/link";
 import { useParams } from "next/navigation";
 import { motion } from "framer-motion";
 import { Star, ShoppingBag, ChevronRight, Minus, Plus, MapPin, Mountain, Droplets, Leaf, Award } from "lucide-react";
-import { getProductBySlug, formatPrice, getDiscountPercentage } from "@/data/products";
+import { getProductBySlug, getRelatedProducts, formatPrice, getDiscountPercentage } from "@/data/products";
 import { useCart } from "@/context/CartContext";
+import ProductCard from "@/components/ProductCard";
 import { cn } from "@/lib/utils";
 
 export default function ProductDetailPage() {
@@ -295,6 +296,20 @@ export default function ProductDetailPage() {
           </motion.div>
         </div>
       </div>
+
+      {/* Related products */}
+      <section className="bg-base-warm py-12 md:py-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          <h2 className="font-heading text-2xl md:text-3xl font-bold text-dark mb-8">
+            También te puede gustar
+          </h2>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+            {getRelatedProducts(product.id, 4).map((related, index) => (
+              <ProductCard key={related.id} product={related} index={index} />
+            ))}
+          </div>
+        </div>
+      </section>
 
       {/* Sticky mobile add-to-cart bar */}
       <div className="fixed bottom-0 left-0 right-0 bg-surface/95 backdrop-blur-md border-t border-border-light px-4 py-3 z-40 lg:hidden">

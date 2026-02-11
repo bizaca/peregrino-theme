@@ -331,3 +331,14 @@ export function getDiscountPercentage(
 ): number {
   return Math.round(((originalPrice - price) / originalPrice) * 100);
 }
+
+export function getRelatedProducts(productId: string, limit = 4): Product[] {
+  const product = products.find((p) => p.id === productId);
+  if (!product) return products.slice(0, limit);
+
+  const others = products.filter((p) => p.id !== productId);
+  // Prioritize same origin, then different origins
+  const sameOrigin = others.filter((p) => p.origin === product.origin);
+  const diffOrigin = others.filter((p) => p.origin !== product.origin);
+  return [...sameOrigin, ...diffOrigin].slice(0, limit);
+}
