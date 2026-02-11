@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
+import { generatedImages } from "@/data/generated-images";
 
 export default function AboutSection() {
   return (
@@ -18,7 +19,7 @@ export default function AboutSection() {
           >
             <div className="relative h-[400px] md:h-[500px] rounded-2xl overflow-hidden">
               <Image
-                src="/images/about/roastery.jpg"
+                src={generatedImages.about}
                 alt="Peregrino Coffee Roastery"
                 fill
                 className="object-cover"

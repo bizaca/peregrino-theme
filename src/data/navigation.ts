@@ -1,3 +1,5 @@
+import { generatedImages } from "./generated-images";
+
 export interface NavItem {
   label: string;
   href: string;
@@ -24,7 +26,7 @@ export const heroSlides = [
     description: "Notas de miel con frutas maduras, naranja y mandarina. Un café excepcional de Cajamarca.",
     cta: "Comprar Ahora",
     href: "/products/peru-el-bambu",
-    image: "/images/hero/hero-1.jpg",
+    image: generatedImages.hero[0],
   },
   {
     id: 2,
@@ -33,7 +35,7 @@ export const heroSlides = [
     description: "Frutos rojos, chocolate y caramelo. Desde las montañas de Antioquia.",
     cta: "Descubrir",
     href: "/products/colombia-ciudad-bolivar",
-    image: "/images/hero/hero-2.jpg",
+    image: generatedImages.hero[1],
   },
   {
     id: 3,
@@ -42,7 +44,7 @@ export const heroSlides = [
     description: "Durazno, flores y acidez brillante. Una experiencia boliviana memorable.",
     cta: "Explorar",
     href: "/products/bolivia-caranavi",
-    image: "/images/hero/hero-3.jpg",
+    image: generatedImages.hero[2],
   },
   {
     id: 4,
@@ -51,7 +53,7 @@ export const heroSlides = [
     description: "Panela, frutas tropicales y cítricos. La tradición del Eje Cafetero.",
     cta: "Ver Más",
     href: "/products/colombia-yipao",
-    image: "/images/hero/hero-4.jpg",
+    image: generatedImages.hero[3],
   },
 ];
 
