@@ -243,14 +243,14 @@ export default function Header() {
                   </motion.div>
                 );
               })}
-              <div className="flex items-center gap-4 px-3 pt-4 border-t border-border-light mt-4">
-                <a href={siteConfig.social.instagram} target="_blank" rel="noopener noreferrer" className="text-text-tertiary hover:text-accent hover:scale-110 transition-all" aria-label="Instagram">
+              <div className="flex items-center gap-2 px-1 pt-4 border-t border-border-light mt-4">
+                <a href={siteConfig.social.instagram} target="_blank" rel="noopener noreferrer" className="p-3 text-text-tertiary hover:text-accent hover:scale-110 transition-all" aria-label="Instagram">
                   <Instagram size={20} />
                 </a>
-                <a href={siteConfig.social.facebook} target="_blank" rel="noopener noreferrer" className="text-text-tertiary hover:text-accent hover:scale-110 transition-all" aria-label="Facebook">
+                <a href={siteConfig.social.facebook} target="_blank" rel="noopener noreferrer" className="p-3 text-text-tertiary hover:text-accent hover:scale-110 transition-all" aria-label="Facebook">
                   <Facebook size={20} />
                 </a>
-                <a href={siteConfig.social.youtube} target="_blank" rel="noopener noreferrer" className="text-text-tertiary hover:text-accent hover:scale-110 transition-all" aria-label="YouTube">
+                <a href={siteConfig.social.youtube} target="_blank" rel="noopener noreferrer" className="p-3 text-text-tertiary hover:text-accent hover:scale-110 transition-all" aria-label="YouTube">
                   <Youtube size={20} />
                 </a>
               </div>

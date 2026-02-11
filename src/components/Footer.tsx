@@ -64,7 +64,7 @@ export default function Footer() {
                 href={siteConfig.social.instagram}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-2.5 bg-white/5 hover:bg-accent/20 rounded-full text-white/50 hover:text-accent-light hover:scale-110 transition-all"
+                className="p-3.5 bg-white/5 hover:bg-accent/20 rounded-full text-white/50 hover:text-accent-light hover:scale-110 transition-all"
                 aria-label="Instagram"
               >
                 <Instagram size={18} />
@@ -73,7 +73,7 @@ export default function Footer() {
                 href={siteConfig.social.facebook}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-2.5 bg-white/5 hover:bg-accent/20 rounded-full text-white/50 hover:text-accent-light hover:scale-110 transition-all"
+                className="p-3.5 bg-white/5 hover:bg-accent/20 rounded-full text-white/50 hover:text-accent-light hover:scale-110 transition-all"
                 aria-label="Facebook"
               >
                 <Facebook size={18} />
@@ -82,7 +82,7 @@ export default function Footer() {
                 href={siteConfig.social.youtube}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-2.5 bg-white/5 hover:bg-accent/20 rounded-full text-white/50 hover:text-accent-light hover:scale-110 transition-all"
+                className="p-3.5 bg-white/5 hover:bg-accent/20 rounded-full text-white/50 hover:text-accent-light hover:scale-110 transition-all"
                 aria-label="YouTube"
               >
                 <Youtube size={18} />
@@ -104,12 +104,12 @@ export default function Footer() {
             <p className="text-white font-semibold text-sm uppercase tracking-wider mb-4 after:content-[''] after:block after:w-6 after:h-0.5 after:bg-accent/40 after:mt-2">
               Tienda
             </p>
-            <ul className="space-y-2.5">
+            <ul className="space-y-0 md:space-y-2.5">
               {footerLinks.tienda.map((link) => (
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-sm text-white/50 hover:text-accent-light hover:translate-x-0.5 transition-all duration-200"
+                    className="block py-3 md:py-0 text-sm text-white/50 hover:text-accent-light hover:translate-x-0.5 transition-all duration-200"
                   >
                     {link.label}
                   </Link>
@@ -128,12 +128,12 @@ export default function Footer() {
             <p className="text-white font-semibold text-sm uppercase tracking-wider mb-4 after:content-[''] after:block after:w-6 after:h-0.5 after:bg-accent/40 after:mt-2">
               Empresa
             </p>
-            <ul className="space-y-2.5">
+            <ul className="space-y-0 md:space-y-2.5">
               {footerLinks.empresa.map((link) => (
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-sm text-white/50 hover:text-accent-light hover:translate-x-0.5 transition-all duration-200"
+                    className="block py-3 md:py-0 text-sm text-white/50 hover:text-accent-light hover:translate-x-0.5 transition-all duration-200"
                   >
                     {link.label}
                   </Link>
@@ -152,12 +152,12 @@ export default function Footer() {
             <p className="text-white font-semibold text-sm uppercase tracking-wider mb-4 after:content-[''] after:block after:w-6 after:h-0.5 after:bg-accent/40 after:mt-2">
               Ayuda
             </p>
-            <ul className="space-y-2.5">
+            <ul className="space-y-0 md:space-y-2.5">
               {footerLinks.ayuda.map((link) => (
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-sm text-white/50 hover:text-accent-light hover:translate-x-0.5 transition-all duration-200"
+                    className="block py-3 md:py-0 text-sm text-white/50 hover:text-accent-light hover:translate-x-0.5 transition-all duration-200"
                   >
                     {link.label}
                   </Link>
@@ -188,11 +188,11 @@ export default function Footer() {
           <p className="text-white/50 text-sm">
             &copy; {new Date().getFullYear()} Peregrino Coffee Roasters. Todos los derechos reservados.
           </p>
-          <div className="flex items-center gap-4 text-white/50 text-sm">
-            <Link href="/terms" className="hover:text-white/60 transition-colors">
+          <div className="flex items-center gap-2 text-white/50 text-sm">
+            <Link href="/terms" className="py-3 px-2 hover:text-white/60 transition-colors">
               Términos
             </Link>
-            <Link href="/privacy" className="hover:text-white/60 transition-colors">
+            <Link href="/privacy" className="py-3 px-2 hover:text-white/60 transition-colors">
               Privacidad
             </Link>
           </div>

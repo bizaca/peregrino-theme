@@ -70,7 +70,7 @@ export default function NewsletterForm() {
           <button
             type="submit"
             disabled={status === "loading" || status === "success" || !email.trim()}
-            className="bg-accent hover:bg-accent-dark disabled:opacity-50 disabled:hover:bg-accent text-white rounded-full p-2.5 transition-colors shrink-0"
+            className="bg-accent hover:bg-accent-dark disabled:opacity-50 disabled:hover:bg-accent text-white rounded-full p-3.5 transition-colors shrink-0"
             aria-label="Suscribirse al newsletter"
           >
             {status === "loading" ? (

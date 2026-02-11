@@ -113,7 +113,7 @@ export default function FeaturedProducts() {
         <div className="flex md:hidden justify-center mt-8">
           <Link
             href="/products"
-            className="group flex items-center gap-2 text-sm text-accent font-medium border border-accent rounded-full px-6 py-2.5 hover:bg-accent hover:text-white transition-all btn-press"
+            className="group flex items-center gap-2 text-sm text-accent font-medium border border-accent rounded-full px-6 py-3 hover:bg-accent hover:text-white transition-all btn-press"
           >
             Ver todos los productos
             <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
