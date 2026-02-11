@@ -86,7 +86,7 @@ export default function WholesaleContent() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
-                className="bg-surface border border-border-light rounded-2xl p-5 text-center"
+                className="bg-surface border border-border-light rounded-2xl p-5 text-center hover:shadow-md hover:shadow-accent/5 hover:-translate-y-0.5 transition-all duration-300"
               >
                 <div className="p-3 bg-accent-bg rounded-xl w-fit mx-auto mb-3 text-accent">
                   {aud.icon}
@@ -116,7 +116,7 @@ export default function WholesaleContent() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
-                className="flex gap-4 bg-surface border border-border-light rounded-2xl p-6"
+                className="flex gap-4 bg-surface border border-border-light rounded-2xl p-6 hover:shadow-md hover:shadow-accent/5 hover:border-accent/20 transition-all duration-300"
               >
                 <div className="p-3 bg-accent-bg rounded-xl h-fit text-accent shrink-0">
                   {benefit.icon}

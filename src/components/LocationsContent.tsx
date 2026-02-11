@@ -67,7 +67,7 @@ export default function LocationsContent() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
-              className="grid grid-cols-1 md:grid-cols-5 gap-6 bg-surface border border-border-light rounded-2xl overflow-hidden"
+              className="grid grid-cols-1 md:grid-cols-5 gap-6 bg-surface border border-border-light rounded-2xl overflow-hidden hover:shadow-lg hover:shadow-accent/5 hover:border-accent/20 transition-all duration-300"
             >
               {/* Image */}
               <div className="relative h-64 md:h-auto md:col-span-2">

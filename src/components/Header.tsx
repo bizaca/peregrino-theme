@@ -190,7 +190,7 @@ export default function Header() {
                 href={item.href}
                 className={cn(
                   "accent-underline px-3 py-1 text-sm transition-colors tracking-wide",
-                  isActive ? "text-accent font-medium" : "text-text-secondary hover:text-dark"
+                  isActive ? "accent-underline-active text-accent font-medium" : "text-text-secondary hover:text-dark"
                 )}
               >
                 {item.label}
