@@ -57,7 +57,6 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Peregrino Coffee Roasters",
     description:
       "Café de especialidad tostado semanalmente con granos de Latinoamérica.",
   },
