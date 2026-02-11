@@ -76,7 +76,7 @@ export default function ProductCard({ product, index = 0, headingLevel: Heading 
           {/* Quick add button */}
           <button
             onClick={handleQuickAdd}
-            className={`absolute bottom-3 right-3 p-2.5 rounded-full shadow-lg transition-all duration-300 focus-visible:opacity-100 focus-visible:translate-y-0 focus-visible:ring-2 focus-visible:ring-white/60 focus-visible:ring-offset-2 focus-visible:ring-offset-dark/50 ${
+            className={`absolute bottom-2 right-2 p-3.5 rounded-full shadow-lg transition-all duration-300 focus-visible:opacity-100 focus-visible:translate-y-0 focus-visible:ring-2 focus-visible:ring-white/60 focus-visible:ring-offset-2 focus-visible:ring-offset-dark/50 ${
               added
                 ? "bg-green-600 text-white scale-110 opacity-100 translate-y-0"
                 : "bg-dark-soft text-white opacity-100 md:opacity-0 md:group-hover:opacity-100 translate-y-0 md:translate-y-2 md:group-hover:translate-y-0 hover:bg-accent hover:scale-110"
@@ -139,7 +139,7 @@ export default function ProductCard({ product, index = 0, headingLevel: Heading 
             {product.cupScore && (
               <div className="flex items-center gap-1 bg-sage-bg text-sage px-2 py-0.5 rounded-full ml-auto">
                 <Award size={10} />
-                <span className="text-[10px] font-semibold">{product.cupScore}</span>
+                <span className="text-xs font-semibold">{product.cupScore}</span>
               </div>
             )}
           </div>

@@ -64,7 +64,7 @@ export default function Footer() {
                 href={siteConfig.social.instagram}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-2 bg-white/5 hover:bg-accent/20 rounded-full text-white/50 hover:text-accent-light hover:scale-110 transition-all"
+                className="p-2.5 bg-white/5 hover:bg-accent/20 rounded-full text-white/50 hover:text-accent-light hover:scale-110 transition-all"
                 aria-label="Instagram"
               >
                 <Instagram size={18} />
@@ -73,7 +73,7 @@ export default function Footer() {
                 href={siteConfig.social.facebook}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-2 bg-white/5 hover:bg-accent/20 rounded-full text-white/50 hover:text-accent-light hover:scale-110 transition-all"
+                className="p-2.5 bg-white/5 hover:bg-accent/20 rounded-full text-white/50 hover:text-accent-light hover:scale-110 transition-all"
                 aria-label="Facebook"
               >
                 <Facebook size={18} />
@@ -82,7 +82,7 @@ export default function Footer() {
                 href={siteConfig.social.youtube}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-2 bg-white/5 hover:bg-accent/20 rounded-full text-white/50 hover:text-accent-light hover:scale-110 transition-all"
+                className="p-2.5 bg-white/5 hover:bg-accent/20 rounded-full text-white/50 hover:text-accent-light hover:scale-110 transition-all"
                 aria-label="YouTube"
               >
                 <Youtube size={18} />

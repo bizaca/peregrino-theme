@@ -93,7 +93,7 @@ export default function RootLayout({
                     <div className="w-6 h-6 md:hidden" />
                     <div className="flex flex-col items-center">
                       <span className="font-heading text-xl md:text-2xl font-bold text-dark tracking-wider">PEREGRINO</span>
-                      <span className="text-[10px] md:text-xs text-text-secondary tracking-[0.3em] uppercase">Coffee Roasters</span>
+                      <span className="text-xs text-text-secondary tracking-[0.3em] uppercase">Coffee Roasters</span>
                     </div>
                     <div className="w-10 h-10" />
                   </div>

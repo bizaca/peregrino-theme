@@ -190,31 +190,35 @@ export default function HeroCarousel() {
         <ChevronRight size={20} />
       </button>
 
-      {/* Progress dots */}
-      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex items-center gap-2.5 z-10" role="tablist" aria-label="Slides del carrusel">
+      {/* Progress dots — padded for 44px touch targets */}
+      <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex items-center z-10" role="tablist" aria-label="Slides del carrusel">
         {heroSlides.map((_, index) => (
           <button
             key={index}
             role="tab"
             onClick={() => goTo(index)}
-            className={cn(
-              "relative transition-all duration-300 rounded-full overflow-hidden",
-              index === current
-                ? "w-10 h-2 bg-white/20"
-                : "w-2 h-2 bg-white/30 hover:bg-white/60"
-            )}
+            className="flex items-center justify-center min-w-[44px] min-h-[44px]"
             aria-label={`Ir a slide ${index + 1}`}
             aria-selected={index === current}
           >
-            {index === current && (
-              <motion.div
-                key={`progress-${current}`}
-                initial={{ width: "0%" }}
-                animate={{ width: "100%" }}
-                transition={{ duration: 6, ease: "linear" }}
-                className="absolute inset-0 bg-white rounded-full"
-              />
-            )}
+            <span
+              className={cn(
+                "relative block transition-all duration-300 rounded-full overflow-hidden",
+                index === current
+                  ? "w-10 h-2 bg-white/20"
+                  : "w-2 h-2 bg-white/30 hover:bg-white/60"
+              )}
+            >
+              {index === current && (
+                <motion.span
+                  key={`progress-${current}`}
+                  initial={{ width: "0%" }}
+                  animate={{ width: "100%" }}
+                  transition={{ duration: 6, ease: "linear" }}
+                  className="absolute inset-0 bg-white rounded-full block"
+                />
+              )}
+            </span>
           </button>
         ))}
       </div>

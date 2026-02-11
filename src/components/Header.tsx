@@ -101,7 +101,7 @@ export default function Header() {
           <button
             ref={menuButtonRef}
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="md:hidden p-2 text-dark-muted hover:text-accent hover:scale-110 active:scale-95 transition-all"
+            className="md:hidden p-2.5 -ml-2 text-dark-muted hover:text-accent hover:scale-110 active:scale-95 transition-all"
             aria-label="Menú"
             aria-expanded={isMobileMenuOpen}
           >
@@ -114,7 +114,7 @@ export default function Header() {
               <span className="font-heading text-xl md:text-2xl font-bold text-dark tracking-wider group-hover:text-accent transition-colors">
                 PEREGRINO
               </span>
-              <span className="text-[10px] md:text-xs text-text-secondary tracking-[0.3em] uppercase">
+              <span className="text-xs text-text-secondary tracking-[0.3em] uppercase">
                 Coffee Roasters
               </span>
             </div>
@@ -158,7 +158,7 @@ export default function Header() {
             {/* Account */}
             <Link
               href="/account"
-              className="p-2 text-dark-muted hover:text-accent transition-colors"
+              className="p-3 text-dark-muted hover:text-accent transition-colors"
               aria-label="Mi cuenta"
             >
               <User size={20} />
@@ -167,7 +167,7 @@ export default function Header() {
             {/* Cart */}
             <button
               onClick={toggleCart}
-              className="relative p-2 text-dark-muted hover:text-accent transition-colors"
+              className="relative p-3 -mr-2 text-dark-muted hover:text-accent transition-colors"
               aria-label="Carrito"
             >
               <ShoppingBag size={20} />
