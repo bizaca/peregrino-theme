@@ -13,4 +13,8 @@ export const generatedImages = {
   },
   about: "https://v3b.fal.media/files/b/0a8e0504/rU5mDmYyZAV1RpTz2bLx8.jpg",
   newsletter: "https://v3b.fal.media/files/b/0a8e0505/fou6yR3G5VEQ66aFN2kug.jpg",
+  locations: {
+    providencia: "https://v3b.fal.media/files/b/0a8e079a/nATCcJxt1GZ_26hjYdfN3.jpg",
+    lastarria: "https://v3b.fal.media/files/b/0a8e079b/tdGgxV_n1kiP8W0tkj9m0.jpg",
+  },
 };

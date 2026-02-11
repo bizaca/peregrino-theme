@@ -16,7 +16,7 @@ const locations = [
       weekends: "Sáb - Dom: 9:00 - 18:00",
     },
     features: ["Espresso Bar", "Brew Bar", "Tueste en vivo", "Catas mensuales"],
-    image: generatedImages.categories.beans,
+    image: generatedImages.locations.providencia,
     mapUrl: "https://maps.google.com/?q=Providencia+Santiago+Chile",
   },
   {
@@ -28,7 +28,7 @@ const locations = [
       weekends: "Sáb: 9:00 - 17:00 · Dom: Cerrado",
     },
     features: ["Espresso Bar", "Punto de retiro", "Venta de granos"],
-    image: generatedImages.categories.accessories,
+    image: generatedImages.locations.lastarria,
     mapUrl: "https://maps.google.com/?q=Lastarria+Santiago+Chile",
   },
 ];
