@@ -125,13 +125,15 @@ const faqCategories: FaqCategory[] = [
   },
 ];
 
-function FaqAccordionItem({ item, isOpen, onToggle }: { item: FaqItem; isOpen: boolean; onToggle: () => void }) {
+function FaqAccordionItem({ item, isOpen, onToggle, id }: { item: FaqItem; isOpen: boolean; onToggle: () => void; id: string }) {
   return (
     <div className="border-b border-border-light last:border-b-0">
       <button
         onClick={onToggle}
         className="w-full flex items-center justify-between gap-4 py-5 px-2 -mx-2 text-left group hover:bg-accent-bg/30 rounded-lg transition-colors"
         aria-expanded={isOpen}
+        aria-controls={`faq-panel-${id}`}
+        id={`faq-trigger-${id}`}
       >
         <span className={cn(
           "font-medium transition-colors",
@@ -153,6 +155,9 @@ function FaqAccordionItem({ item, isOpen, onToggle }: { item: FaqItem; isOpen: b
       <AnimatePresence initial={false}>
         {isOpen && (
           <motion.div
+            id={`faq-panel-${id}`}
+            role="region"
+            aria-labelledby={`faq-trigger-${id}`}
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
@@ -247,6 +252,7 @@ export default function FaqContent() {
                       item={item}
                       isOpen={openItems.has(key)}
                       onToggle={() => toggleItem(key)}
+                      id={key}
                     />
                   );
                 })}

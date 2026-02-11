@@ -47,18 +47,18 @@ export default function ProductDetail({ product }: ProductDetailProps) {
       <div className="bg-base-warm border-b border-border-light">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 py-3">
           <nav aria-label="Migas de pan" className="flex items-center gap-2 text-sm text-text-tertiary">
-            <Link href="/" className="hover:text-accent transition-colors">
+            <Link href="/" className="py-2 hover:text-accent transition-colors">
               Inicio
             </Link>
             <ChevronRight size={14} />
             <Link
               href="/products"
-              className="hover:text-accent transition-colors"
+              className="py-2 hover:text-accent transition-colors"
             >
               Productos
             </Link>
             <ChevronRight size={14} />
-            <span className="text-dark font-medium">{product.name}</span>
+            <span className="py-2 text-dark font-medium">{product.name}</span>
           </nav>
         </div>
       </div>
