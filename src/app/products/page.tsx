@@ -1,9 +1,10 @@
 "use client";
 
 import { Suspense, useState, useMemo } from "react";
+import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { motion } from "framer-motion";
-import { Search, SlidersHorizontal, Tag } from "lucide-react";
+import { Search, SlidersHorizontal, Tag, ArrowUpDown } from "lucide-react";
 import { products, type ProductCategory } from "@/data/products";
 import ProductCard from "@/components/ProductCard";
 import { cn } from "@/lib/utils";
@@ -19,6 +20,15 @@ const categoryLabels: Record<ProductCategory, string> = {
   capsulas: "Cápsulas",
 };
 
+type SortOption = "featured" | "price-asc" | "price-desc" | "name" | "rating";
+const sortLabels: Record<SortOption, string> = {
+  featured: "Destacados",
+  "price-asc": "Precio: menor a mayor",
+  "price-desc": "Precio: mayor a menor",
+  name: "Nombre A-Z",
+  rating: "Mejor valorados",
+};
+
 function ProductsContent() {
   const searchParams = useSearchParams();
   const urlCategory = searchParams.get("category") as ProductCategory | null;
@@ -28,9 +38,10 @@ function ProductsContent() {
   const [selectedOrigin, setSelectedOrigin] = useState("Todos");
   const [selectedProcess, setSelectedProcess] = useState("Todos");
   const [showFilters, setShowFilters] = useState(false);
+  const [sortBy, setSortBy] = useState<SortOption>("featured");
 
   const filteredProducts = useMemo(() => {
-    return products.filter((p) => {
+    const filtered = products.filter((p) => {
       const matchesSearch =
         p.name.toLowerCase().includes(search.toLowerCase()) ||
         p.origin.toLowerCase().includes(search.toLowerCase()) ||
@@ -46,7 +57,22 @@ function ProductsContent() {
           p.variants.some((v) => v.originalPrice && v.originalPrice > v.price));
       return matchesSearch && matchesOrigin && matchesProcess && matchesCategory && matchesFilter;
     });
-  }, [search, selectedOrigin, selectedProcess, urlCategory, urlFilter]);
+
+    return [...filtered].sort((a, b) => {
+      switch (sortBy) {
+        case "price-asc":
+          return a.variants[0].price - b.variants[0].price;
+        case "price-desc":
+          return b.variants[0].price - a.variants[0].price;
+        case "name":
+          return a.name.localeCompare(b.name, "es");
+        case "rating":
+          return b.rating - a.rating;
+        default:
+          return 0;
+      }
+    });
+  }, [search, selectedOrigin, selectedProcess, urlCategory, urlFilter, sortBy]);
 
   return (
     <div className="min-h-screen bg-base">
@@ -90,12 +116,12 @@ function ProductsContent() {
                 {urlFilter === "offers" ? "Ofertas" : categoryLabels[urlCategory!]}
               </span>
             </span>
-            <a
+            <Link
               href="/products"
               className="text-sm text-text-tertiary hover:text-accent-red transition-colors ml-1"
             >
               × Limpiar
-            </a>
+            </Link>
           </div>
         )}
 
@@ -114,6 +140,26 @@ function ProductsContent() {
               placeholder="Buscar por nombre, origen o notas..."
               aria-label="Buscar productos"
               className="w-full bg-surface border border-border rounded-full pl-11 pr-4 py-3 text-dark placeholder:text-text-tertiary focus:outline-none focus:border-accent focus:ring-2 focus:ring-accent/20 transition-colors text-sm"
+            />
+          </div>
+
+          {/* Sort dropdown */}
+          <div className="relative">
+            <select
+              value={sortBy}
+              onChange={(e) => setSortBy(e.target.value as SortOption)}
+              aria-label="Ordenar productos"
+              className="appearance-none bg-surface border border-border rounded-full pl-10 pr-8 py-3 text-sm text-dark-muted font-medium cursor-pointer focus:outline-none focus:border-accent focus:ring-2 focus:ring-accent/20 transition-colors"
+            >
+              {Object.entries(sortLabels).map(([value, label]) => (
+                <option key={value} value={value}>
+                  {label}
+                </option>
+              ))}
+            </select>
+            <ArrowUpDown
+              size={14}
+              className="absolute left-4 top-1/2 -translate-y-1/2 text-text-tertiary pointer-events-none"
             />
           </div>
 
