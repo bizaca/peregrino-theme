@@ -94,7 +94,8 @@ export default function Footer() {
           </motion.div>
 
           {/* Links columns */}
-          <motion.div
+          <motion.nav
+            aria-label="Tienda"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -115,9 +116,10 @@ export default function Footer() {
                 </li>
               ))}
             </ul>
-          </motion.div>
+          </motion.nav>
 
-          <motion.div
+          <motion.nav
+            aria-label="Empresa"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -138,9 +140,10 @@ export default function Footer() {
                 </li>
               ))}
             </ul>
-          </motion.div>
+          </motion.nav>
 
-          <motion.div
+          <motion.nav
+            aria-label="Ayuda"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -177,7 +180,7 @@ export default function Footer() {
                 <span>{siteConfig.contact.location}</span>
               </div>
             </div>
-          </motion.div>
+          </motion.nav>
         </div>
 
         {/* Bottom bar */}
