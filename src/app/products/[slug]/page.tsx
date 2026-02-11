@@ -41,6 +41,16 @@ export default async function ProductPage({ params }: ProductPageProps) {
   const lowestPrice = Math.min(...product.variants.map((v) => v.price));
   const highestPrice = Math.max(...product.variants.map((v) => v.price));
 
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Inicio", item: siteConfig.url },
+      { "@type": "ListItem", position: 2, name: "Productos", item: `${siteConfig.url}/products` },
+      { "@type": "ListItem", position: 3, name: product.name, item: `${siteConfig.url}/products/${product.slug}` },
+    ],
+  };
+
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Product",
@@ -69,6 +79,10 @@ export default async function ProductPage({ params }: ProductPageProps) {
 
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

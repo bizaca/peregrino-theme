@@ -16,8 +16,25 @@ export default function Header() {
   const { totalItems, toggleCart } = useCart();
   const mobileNavRef = useRef<HTMLDivElement>(null);
   const menuButtonRef = useRef<HTMLButtonElement>(null);
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
 
   useEffect(() => setMounted(true), []);
+
+  // Lock body scroll when mobile menu is open
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => { document.body.style.overflow = ""; };
+  }, [isMobileMenuOpen]);
+
+  // Close mobile menu on route changes
+  useEffect(() => {
+    setIsMobileMenuOpen(false);
+  }, [pathname]);
 
   // Focus trap for mobile menu
   const handleMobileMenuKeyDown = useCallback(
@@ -46,8 +63,6 @@ export default function Header() {
     },
     [isMobileMenuOpen]
   );
-  const pathname = usePathname();
-  const searchParams = useSearchParams();
 
   const isNavActive = (href: string) => {
     const [itemPath, itemQuery] = href.split("?");

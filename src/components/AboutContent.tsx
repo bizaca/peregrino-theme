@@ -262,26 +262,43 @@ export default function AboutContent() {
           </div>
 
           <div className="relative">
-            {/* Timeline line */}
+            {/* Timeline line — static background */}
             <div className="absolute left-8 md:left-1/2 top-0 bottom-0 w-px bg-border-light md:-translate-x-px" />
+            {/* Animated progress line */}
+            <motion.div
+              initial={{ scaleY: 0 }}
+              whileInView={{ scaleY: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 1.5, ease: "easeOut" }}
+              className="absolute left-8 md:left-1/2 top-0 bottom-0 w-px bg-accent/30 md:-translate-x-px origin-top"
+            />
 
             {timeline.map((event, index) => (
               <motion.div
                 key={event.year}
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-                className={`relative flex items-start gap-6 mb-10 last:mb-0 ${
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ delay: index * 0.15, duration: 0.5 }}
+                className={`relative flex items-start gap-6 mb-12 last:mb-0 ${
                   index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
                 }`}
               >
-                {/* Dot */}
-                <div className="absolute left-8 md:left-1/2 w-4 h-4 rounded-full bg-accent border-4 border-base -translate-x-1/2 mt-1.5 z-10" />
+                {/* Dot with pulse ring */}
+                <motion.div
+                  initial={{ scale: 0 }}
+                  whileInView={{ scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.15 + 0.2, type: "spring", stiffness: 300 }}
+                  className="absolute left-8 md:left-1/2 -translate-x-1/2 mt-1.5 z-10"
+                >
+                  <div className="w-4 h-4 rounded-full bg-accent border-4 border-base" />
+                  <div className="absolute inset-0 w-4 h-4 rounded-full bg-accent/20 animate-ping" />
+                </motion.div>
 
                 {/* Content card */}
-                <div className={`ml-16 md:ml-0 md:w-[calc(50%-2rem)] ${
-                  index % 2 === 0 ? "md:pr-8 md:text-right" : "md:pl-8"
+                <div className={`ml-16 md:ml-0 md:w-[calc(50%-2rem)] bg-surface border border-border-light rounded-xl p-5 shadow-sm ${
+                  index % 2 === 0 ? "md:mr-auto md:text-right" : "md:ml-auto"
                 }`}>
                   <span className="text-accent font-heading text-2xl font-bold">
                     {event.year}
