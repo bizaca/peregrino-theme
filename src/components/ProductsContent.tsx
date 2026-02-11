@@ -134,7 +134,8 @@ export default function ProductsContent() {
               className="absolute left-4 top-1/2 -translate-y-1/2 text-text-tertiary"
             />
             <input
-              type="text"
+              type="search"
+              autoComplete="off"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder="Buscar por nombre, origen o notas..."

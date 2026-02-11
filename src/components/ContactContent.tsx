@@ -173,6 +173,7 @@ export default function ContactContent() {
                           name="name"
                           type="text"
                           required
+                          autoComplete="name"
                           placeholder="Tu nombre"
                           className="w-full bg-base border border-border rounded-xl px-4 py-3 text-dark placeholder:text-text-tertiary focus:outline-none input-focus text-sm"
                         />
@@ -186,6 +187,7 @@ export default function ContactContent() {
                           name="email"
                           type="email"
                           required
+                          autoComplete="email"
                           placeholder="tu@email.com"
                           className="w-full bg-base border border-border rounded-xl px-4 py-3 text-dark placeholder:text-text-tertiary focus:outline-none input-focus text-sm"
                         />
