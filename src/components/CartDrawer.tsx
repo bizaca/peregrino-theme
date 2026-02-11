@@ -112,7 +112,7 @@ export default function CartDrawer() {
               </div>
               <button
                 onClick={closeCart}
-                className="p-2 text-text-tertiary hover:text-dark rounded-full hover:bg-base-warm transition-colors"
+                className="p-3 text-text-tertiary hover:text-dark rounded-full hover:bg-base-warm transition-colors"
                 aria-label="Cerrar carrito"
               >
                 <X size={20} />
@@ -180,12 +180,12 @@ export default function CartDrawer() {
                                 )
                               }
                               disabled={item.quantity <= 1}
-                              className={`p-1 transition-colors ${item.quantity <= 1 ? "text-text-tertiary/40 cursor-not-allowed" : "text-text-tertiary hover:text-dark"}`}
-                              aria-label="Reducir cantidad"
+                              className={`p-2 transition-colors ${item.quantity <= 1 ? "text-text-tertiary/40 cursor-not-allowed" : "text-text-tertiary hover:text-dark"}`}
+                              aria-label={`Reducir cantidad de ${item.name}`}
                             >
                               <Minus size={14} />
                             </button>
-                            <span className="text-sm font-medium text-dark w-6 text-center">
+                            <span className="text-sm font-medium text-dark w-6 text-center" aria-live="polite" aria-atomic="true">
                               {item.quantity}
                             </span>
                             <button
@@ -198,8 +198,8 @@ export default function CartDrawer() {
                                 )
                               }
                               disabled={item.quantity >= 20}
-                              className={`p-1 transition-colors ${item.quantity >= 20 ? "text-text-tertiary/40 cursor-not-allowed" : "text-text-tertiary hover:text-dark"}`}
-                              aria-label="Aumentar cantidad"
+                              className={`p-2 transition-colors ${item.quantity >= 20 ? "text-text-tertiary/40 cursor-not-allowed" : "text-text-tertiary hover:text-dark"}`}
+                              aria-label={`Aumentar cantidad de ${item.name}`}
                             >
                               <Plus size={14} />
                             </button>
@@ -212,8 +212,8 @@ export default function CartDrawer() {
                               onClick={() =>
                                 removeItem(item.productId, item.size, item.grind)
                               }
-                              className="p-1 text-text-tertiary hover:text-accent-red transition-colors"
-                              aria-label="Eliminar"
+                              className="p-2 text-text-tertiary hover:text-accent-red transition-colors"
+                              aria-label={`Eliminar ${item.name}`}
                             >
                               <Trash2 size={14} />
                             </button>

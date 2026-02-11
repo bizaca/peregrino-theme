@@ -190,6 +190,11 @@ export default function HeroCarousel() {
         <ChevronRight size={20} />
       </button>
 
+      {/* Live region for screen readers */}
+      <div className="sr-only" aria-live="polite" aria-atomic="true">
+        Slide {current + 1} de {heroSlides.length}: {slide.title}
+      </div>
+
       {/* Progress dots — padded for 44px touch targets */}
       <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex items-center z-10" role="tablist" aria-label="Slides del carrusel">
         {heroSlides.map((_, index) => (
