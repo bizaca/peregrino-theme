@@ -1,10 +1,12 @@
-import ComingSoon from "@/components/ComingSoon";
+import type { Metadata } from "next";
+import SubscriptionsContent from "@/components/SubscriptionsContent";
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "Suscripciones",
-  description: "Suscríbete a Peregrino Coffee y recibe café de especialidad fresco cada mes en tu hogar.",
+  description:
+    "Suscríbete a Peregrino Coffee y recibe café de especialidad fresco cada semana, quincenal o mensualmente. 10% de descuento permanente.",
 };
 
 export default function SubscriptionsPage() {
-  return <ComingSoon title="Suscripciones" description="Pronto podrás suscribirte y recibir café fresco de especialidad cada mes directamente en tu casa." />;
+  return <SubscriptionsContent />;
 }
