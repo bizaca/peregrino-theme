@@ -137,9 +137,12 @@ export default function CartDrawer() {
                 </div>
               ) : (
                 <div className="space-y-4">
-                  {items.map((item) => (
-                    <div
+                  {items.map((item, index) => (
+                    <motion.div
                       key={`${item.productId}-${item.size}-${item.grind}`}
+                      initial={{ opacity: 0, x: 20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: index * 0.05, duration: 0.3 }}
                       className="flex gap-4 p-3 bg-base-warm rounded-xl"
                     >
                       {/* Image */}
@@ -211,7 +214,7 @@ export default function CartDrawer() {
                           </div>
                         </div>
                       </div>
-                    </div>
+                    </motion.div>
                   ))}
                 </div>
               )}
