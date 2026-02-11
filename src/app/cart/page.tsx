@@ -29,7 +29,7 @@ export default function CartPage() {
           </p>
           <Link
             href="/products"
-            className="group inline-flex items-center gap-2 bg-accent hover:bg-accent-dark text-white font-medium px-7 py-3.5 rounded-full transition-all duration-300"
+            className="group inline-flex items-center gap-2 bg-accent hover:bg-accent-dark text-white font-medium px-7 py-3.5 rounded-full transition-all duration-300 btn-press"
           >
             Explorar Productos
             <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
@@ -181,23 +181,33 @@ export default function CartPage() {
               </h2>
 
               {/* Shipping progress */}
-              <div className="mb-6">
-                <div className="flex items-center justify-between text-sm mb-2">
-                  <span className="text-text-secondary">
-                    {freeShipping
-                      ? "Envío gratis (RM)"
-                      : `Faltan ${formatPrice(shippingThreshold - totalPrice)} para envío gratis`}
-                  </span>
-                </div>
-                <div className="w-full bg-base-dark rounded-full h-1.5">
-                  <div
-                    className="bg-accent rounded-full h-1.5 transition-all duration-500"
-                    style={{
-                      width: `${Math.min(100, (totalPrice / shippingThreshold) * 100)}%`,
-                    }}
-                  />
-                </div>
-              </div>
+              {(() => {
+                const percentage = Math.min((totalPrice / shippingThreshold) * 100, 100);
+                return (
+                  <div className="mb-6 bg-sage-bg rounded-lg px-4 py-3">
+                    <div className="flex items-center justify-between mb-2">
+                      <span className="text-sage text-sm font-medium">
+                        {freeShipping
+                          ? "¡Envío gratis! (RM)"
+                          : `Faltan ${formatPrice(shippingThreshold - totalPrice)} para envío gratis`}
+                      </span>
+                      <span className="text-sage text-xs font-semibold">
+                        {Math.round(percentage)}%
+                      </span>
+                    </div>
+                    <div className="w-full h-1.5 bg-sage/10 rounded-full overflow-hidden">
+                      <motion.div
+                        initial={{ width: 0 }}
+                        animate={{ width: `${percentage}%` }}
+                        transition={{ duration: 0.5, ease: "easeOut" }}
+                        className={`h-full rounded-full ${
+                          freeShipping ? "bg-emerald-500" : "bg-accent"
+                        }`}
+                      />
+                    </div>
+                  </div>
+                );
+              })()}
 
               {/* Totals */}
               <div className="space-y-3 mb-6">
@@ -226,7 +236,7 @@ export default function CartPage() {
                 href={`https://wa.me/${siteConfig.contact.whatsapp}?text=${whatsappMessage}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full flex items-center justify-center gap-2 bg-accent hover:bg-accent-dark text-white font-medium py-3.5 rounded-full transition-all duration-300 hover:shadow-lg mb-3"
+                className="w-full flex items-center justify-center gap-2 bg-accent hover:bg-accent-dark text-white font-medium py-3.5 rounded-full transition-all duration-300 hover:shadow-lg mb-3 btn-press"
               >
                 Finalizar Pedido por WhatsApp
               </a>

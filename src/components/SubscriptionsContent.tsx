@@ -271,7 +271,7 @@ export default function SubscriptionsContent() {
                 href={`https://wa.me/${siteConfig.contact.whatsapp}?text=${encodeURIComponent("Hola, tengo preguntas sobre las suscripciones de café")}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 bg-accent hover:bg-accent-dark text-white font-medium px-7 py-3.5 rounded-full transition-all duration-300"
+                className="inline-flex items-center justify-center gap-2 bg-accent hover:bg-accent-dark text-white font-medium px-7 py-3.5 rounded-full transition-all duration-300 btn-press"
               >
                 Consultar por WhatsApp
               </a>

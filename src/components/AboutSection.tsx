@@ -2,7 +2,7 @@
 
 import { useRef, useEffect, useState } from "react";
 import Image from "next/image";
-import { motion, useInView } from "framer-motion";
+import { motion, useInView, useScroll, useTransform } from "framer-motion";
 import { generatedImages } from "@/data/generated-images";
 
 function AnimatedStat({ value, suffix = "" }: { value: number; suffix?: string }) {
@@ -32,11 +32,18 @@ function AnimatedStat({ value, suffix = "" }: { value: number; suffix?: string }
 }
 
 export default function AboutSection() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start end", "end start"],
+  });
+  const imageY = useTransform(scrollYProgress, [0, 1], ["-5%", "5%"]);
+
   return (
-    <section className="py-16 md:py-24 bg-base">
+    <section ref={sectionRef} className="py-16 md:py-24 bg-base">
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-          {/* Image */}
+          {/* Image with parallax */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -45,13 +52,15 @@ export default function AboutSection() {
             className="relative"
           >
             <div className="relative h-[400px] md:h-[500px] rounded-2xl overflow-hidden">
-              <Image
-                src={generatedImages.about}
-                alt="Peregrino Coffee Roastery"
-                fill
-                className="object-cover"
-                sizes="(max-width: 1024px) 100vw, 50vw"
-              />
+              <motion.div className="absolute inset-0 -top-[5%] -bottom-[5%]" style={{ y: imageY }}>
+                <Image
+                  src={generatedImages.about}
+                  alt="Peregrino Coffee Roastery"
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                />
+              </motion.div>
             </div>
             {/* Decorative elements — hidden on mobile to prevent overflow */}
             <div className="hidden md:block absolute -bottom-4 -right-4 w-32 h-32 border-2 border-accent/20 rounded-2xl" />

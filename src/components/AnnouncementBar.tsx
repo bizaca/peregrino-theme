@@ -29,7 +29,7 @@ export default function AnnouncementBar() {
           transition={{ duration: 0.3, ease: "easeInOut" }}
           className="overflow-hidden"
         >
-          <div className="relative bg-dark text-base text-center py-2.5 px-8 text-sm font-medium tracking-wider">
+          <div className="relative animate-gradient-shift text-base text-center py-2.5 px-8 text-sm font-medium tracking-wider">
             <p className="text-base-warm">
               Todos los retiros en tienda reciben{" "}
               <span className="text-accent-light font-semibold">15% de descuento</span>{" "}

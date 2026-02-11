@@ -172,7 +172,7 @@ export default function ContactContent() {
                           type="text"
                           required
                           placeholder="Tu nombre"
-                          className="w-full bg-base border border-border rounded-xl px-4 py-3 text-dark placeholder:text-text-tertiary focus:outline-none focus:border-accent focus:ring-2 focus:ring-accent/20 transition-colors text-sm"
+                          className="w-full bg-base border border-border rounded-xl px-4 py-3 text-dark placeholder:text-text-tertiary focus:outline-none input-focus text-sm"
                         />
                       </div>
                       <div>
@@ -185,7 +185,7 @@ export default function ContactContent() {
                           type="email"
                           required
                           placeholder="tu@email.com"
-                          className="w-full bg-base border border-border rounded-xl px-4 py-3 text-dark placeholder:text-text-tertiary focus:outline-none focus:border-accent focus:ring-2 focus:ring-accent/20 transition-colors text-sm"
+                          className="w-full bg-base border border-border rounded-xl px-4 py-3 text-dark placeholder:text-text-tertiary focus:outline-none input-focus text-sm"
                         />
                       </div>
                     </div>
@@ -198,7 +198,7 @@ export default function ContactContent() {
                         id="subject"
                         name="subject"
                         required
-                        className="w-full bg-base border border-border rounded-xl px-4 py-3 text-dark text-sm focus:outline-none focus:border-accent focus:ring-2 focus:ring-accent/20 transition-colors"
+                        className="w-full bg-base border border-border rounded-xl px-4 py-3 text-dark text-sm focus:outline-none input-focus"
                       >
                         <option value="">Selecciona un asunto</option>
                         <option value="Consulta sobre productos">Consulta sobre productos</option>
@@ -220,13 +220,13 @@ export default function ContactContent() {
                         required
                         rows={5}
                         placeholder="¿En qué podemos ayudarte?"
-                        className="w-full bg-base border border-border rounded-xl px-4 py-3 text-dark placeholder:text-text-tertiary focus:outline-none focus:border-accent focus:ring-2 focus:ring-accent/20 transition-colors text-sm resize-none"
+                        className="w-full bg-base border border-border rounded-xl px-4 py-3 text-dark placeholder:text-text-tertiary focus:outline-none input-focus text-sm resize-none"
                       />
                     </div>
 
                     <button
                       type="submit"
-                      className="w-full sm:w-auto flex items-center justify-center gap-2 bg-accent hover:bg-accent-dark text-white font-medium px-8 py-3.5 rounded-full transition-all duration-300"
+                      className="w-full sm:w-auto flex items-center justify-center gap-2 bg-accent hover:bg-accent-dark text-white font-medium px-8 py-3.5 rounded-full transition-all duration-300 btn-press"
                     >
                       <Send size={16} />
                       Enviar Mensaje

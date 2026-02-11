@@ -158,6 +158,17 @@ body {
   transform: scale(0.97);
 }
 
+/* Announcement bar gradient shimmer */
+@keyframes gradient-shift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+.animate-gradient-shift {
+  background: linear-gradient(90deg, var(--color-dark), #3D3530, var(--color-dark), #3D3530);
+  background-size: 300% 100%;
+  animation: gradient-shift 8s ease infinite;
+}
+
 /* Infinite marquee animation */
 @keyframes marquee {
   0% { transform: translateX(0); }
@@ -195,6 +206,16 @@ body {
 .card-shine:hover::before {
   left: 100%;
   transition: left 0.6s ease;
+}
+
+/* Enhanced form input focus */
+.input-focus {
+  transition: border-color 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+}
+.input-focus:focus {
+  background-color: var(--color-surface);
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 3px rgba(184, 115, 74, 0.1);
 }
 
 /* Selection color */

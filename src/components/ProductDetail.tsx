@@ -225,7 +225,7 @@ export default function ProductDetail({ product }: ProductDetailProps) {
               <button
                 onClick={handleAddToCart}
                 className={cn(
-                  "flex-1 flex items-center justify-center gap-2 text-white font-medium py-3.5 rounded-full transition-all duration-300",
+                  "flex-1 flex items-center justify-center gap-2 text-white font-medium py-3.5 rounded-full transition-all duration-300 btn-press",
                   addedToCart
                     ? "bg-sage"
                     : "bg-accent hover:bg-accent-dark hover:shadow-lg"
