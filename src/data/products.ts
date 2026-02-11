@@ -18,10 +18,13 @@ export interface ProductVariant {
   originalPrice?: number;
 }
 
+export type ProductCategory = "granos" | "packs" | "accesorios" | "infusiones" | "capsulas";
+
 export interface Product {
   id: string;
   name: string;
   slug: string;
+  category: ProductCategory;
   origin: string;
   region: string;
   process: string;
@@ -58,6 +61,7 @@ export const products: Product[] = [
     id: "peru-el-bambu",
     name: "Perú El Bambú",
     slug: "peru-el-bambu",
+    category: "granos",
     origin: "Perú",
     region: "Cajamarca, Chirinos",
     process: "Lavado",
@@ -84,6 +88,7 @@ export const products: Product[] = [
     id: "colombia-ciudad-bolivar",
     name: "Colombia Ciudad Bolívar",
     slug: "colombia-ciudad-bolivar",
+    category: "granos",
     origin: "Colombia",
     region: "Antioquia, Ciudad Bolívar",
     process: "Natural",
@@ -110,6 +115,7 @@ export const products: Product[] = [
     id: "capsulas-pasadena-blend",
     name: "Cápsulas Pasadena Blend",
     slug: "capsulas-pasadena-blend",
+    category: "capsulas",
     origin: "Blend",
     region: "Sudamérica",
     process: "Mixto",
@@ -130,6 +136,7 @@ export const products: Product[] = [
     id: "bolivia-caranavi",
     name: "Bolivia Caranavi",
     slug: "bolivia-caranavi",
+    category: "granos",
     origin: "Bolivia",
     region: "Caranavi, La Paz",
     process: "Lavado",
@@ -156,6 +163,7 @@ export const products: Product[] = [
     id: "costa-rica-colibri",
     name: "Costa Rica Colibrí",
     slug: "costa-rica-colibri",
+    category: "granos",
     origin: "Costa Rica",
     region: "Tarrazú",
     process: "Honey",
@@ -181,6 +189,7 @@ export const products: Product[] = [
     id: "pack-blend-500",
     name: "Pack Blend 500g",
     slug: "pack-blend-500",
+    category: "packs",
     origin: "Blend",
     region: "Sudamérica",
     process: "Mixto",
@@ -202,6 +211,7 @@ export const products: Product[] = [
     id: "mega-blend-pasadena",
     name: "Mega Blend Pasadena",
     slug: "mega-blend-pasadena",
+    category: "granos",
     origin: "Blend",
     region: "Sudamérica",
     process: "Mixto",
@@ -223,6 +233,7 @@ export const products: Product[] = [
     id: "mega-blend-italian",
     name: "Mega Blend Italian",
     slug: "mega-blend-italian",
+    category: "granos",
     origin: "Blend",
     region: "Sudamérica",
     process: "Mixto",
@@ -244,6 +255,7 @@ export const products: Product[] = [
     id: "brasil-finca-furnas",
     name: "Brasil Finca Furnas",
     slug: "brasil-finca-furnas",
+    category: "granos",
     origin: "Brasil",
     region: "Minas Gerais, Furnas",
     process: "Natural",
@@ -269,6 +281,7 @@ export const products: Product[] = [
     id: "pasadena-blend",
     name: "Pasadena Blend",
     slug: "pasadena-blend",
+    category: "granos",
     origin: "Blend",
     region: "Sudamérica",
     process: "Mixto",
@@ -293,6 +306,7 @@ export const products: Product[] = [
     id: "colombia-yipao",
     name: "Colombia Yipao",
     slug: "colombia-yipao",
+    category: "granos",
     origin: "Colombia",
     region: "Quindío",
     process: "Lavado",

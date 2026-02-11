@@ -1,16 +1,29 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { Suspense, useState, useMemo } from "react";
+import { useSearchParams } from "next/navigation";
 import { motion } from "framer-motion";
-import { Search, SlidersHorizontal } from "lucide-react";
-import { products } from "@/data/products";
+import { Search, SlidersHorizontal, Tag } from "lucide-react";
+import { products, type ProductCategory } from "@/data/products";
 import ProductCard from "@/components/ProductCard";
 import { cn } from "@/lib/utils";
 
 const origins = ["Todos", ...new Set(products.map((p) => p.origin))];
 const processes = ["Todos", ...new Set(products.map((p) => p.process))];
 
-export default function ProductsPage() {
+const categoryLabels: Record<ProductCategory, string> = {
+  granos: "Granos",
+  packs: "Packs",
+  accesorios: "Accesorios",
+  infusiones: "Infusiones",
+  capsulas: "Cápsulas",
+};
+
+function ProductsContent() {
+  const searchParams = useSearchParams();
+  const urlCategory = searchParams.get("category") as ProductCategory | null;
+  const urlFilter = searchParams.get("filter");
+
   const [search, setSearch] = useState("");
   const [selectedOrigin, setSelectedOrigin] = useState("Todos");
   const [selectedProcess, setSelectedProcess] = useState("Todos");
@@ -26,9 +39,14 @@ export default function ProductsPage() {
         selectedOrigin === "Todos" || p.origin === selectedOrigin;
       const matchesProcess =
         selectedProcess === "Todos" || p.process === selectedProcess;
-      return matchesSearch && matchesOrigin && matchesProcess;
+      const matchesCategory = !urlCategory || p.category === urlCategory;
+      const matchesFilter =
+        !urlFilter ||
+        (urlFilter === "offers" &&
+          p.variants.some((v) => v.originalPrice && v.originalPrice > v.price));
+      return matchesSearch && matchesOrigin && matchesProcess && matchesCategory && matchesFilter;
     });
-  }, [search, selectedOrigin, selectedProcess]);
+  }, [search, selectedOrigin, selectedProcess, urlCategory, urlFilter]);
 
   return (
     <div className="min-h-screen bg-base">
@@ -40,7 +58,11 @@ export default function ProductsPage() {
             animate={{ opacity: 1, y: 0 }}
             className="font-heading text-4xl md:text-6xl font-bold text-white mb-4"
           >
-            Nuestra Selección
+            {urlFilter === "offers"
+              ? "Ofertas"
+              : urlCategory
+                ? categoryLabels[urlCategory]
+                : "Nuestra Selección"}
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 15 }}
@@ -48,13 +70,35 @@ export default function ProductsPage() {
             transition={{ delay: 0.1 }}
             className="text-white/60 text-lg max-w-lg mx-auto"
           >
-            Cafés de especialidad tostados semanalmente con granos de los mejores
-            orígenes de Latinoamérica
+            {urlFilter === "offers"
+              ? "Aprovecha nuestras promociones y descuentos especiales en café de especialidad"
+              : urlCategory
+                ? `Explora nuestra selección de ${categoryLabels[urlCategory].toLowerCase()}`
+                : "Cafés de especialidad tostados semanalmente con granos de los mejores orígenes de Latinoamérica"}
           </motion.p>
         </div>
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 py-10">
+        {/* Active URL filter indicator */}
+        {(urlCategory || urlFilter) && (
+          <div className="flex items-center gap-2 mb-6">
+            <Tag size={14} className="text-accent" />
+            <span className="text-sm text-text-secondary">
+              Filtrando por:{" "}
+              <span className="font-medium text-accent">
+                {urlFilter === "offers" ? "Ofertas" : categoryLabels[urlCategory!]}
+              </span>
+            </span>
+            <a
+              href="/products"
+              className="text-sm text-text-tertiary hover:text-accent-red transition-colors ml-1"
+            >
+              × Limpiar
+            </a>
+          </div>
+        )}
+
         {/* Search and filters */}
         <div className="flex flex-col sm:flex-row gap-4 mb-8">
           {/* Search bar */}
@@ -170,5 +214,13 @@ export default function ProductsPage() {
         )}
       </div>
     </div>
+  );
+}
+
+export default function ProductsPage() {
+  return (
+    <Suspense>
+      <ProductsContent />
+    </Suspense>
   );
 }
