@@ -19,7 +19,16 @@ export default function Header() {
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
+  const [scrolled, setScrolled] = useState(false);
+
   useEffect(() => setMounted(true), []);
+
+  // Track scroll position for header shadow
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 20);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   // Lock body scroll when mobile menu is open
   useEffect(() => {
@@ -78,7 +87,10 @@ export default function Header() {
   };
 
   return (
-    <header className="sticky top-0 z-50 bg-surface/95 backdrop-blur-md border-b border-border-light">
+    <header className={cn(
+      "sticky top-0 z-50 bg-surface/95 backdrop-blur-md border-b transition-shadow duration-300",
+      scrolled ? "border-border shadow-md shadow-dark/5" : "border-border-light"
+    )}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
         <div className="flex items-center justify-between h-16 md:h-20">
           {/* Mobile menu button */}

@@ -8,6 +8,7 @@ import CartDrawer from "@/components/CartDrawer";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import BackToTop from "@/components/BackToTop";
 import ScrollToTop from "@/components/ScrollToTop";
+import ScrollProgress from "@/components/ScrollProgress";
 import Footer from "@/components/Footer";
 import "./globals.css";
 
@@ -68,6 +69,7 @@ export default function RootLayout({
           >
             Saltar al contenido
           </a>
+          <ScrollProgress />
           <AnnouncementBar />
           <Suspense>
             <Header />

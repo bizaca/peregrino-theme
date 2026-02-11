@@ -111,7 +111,7 @@ export default function ProductCard({ product, index = 0 }: ProductCardProps) {
         </div>
 
         {/* Content */}
-        <div className="p-4">
+        <div className="p-4 group-hover:bg-accent-bg/50 transition-colors duration-300">
           {/* Rating + SCA */}
           <div className="flex items-center gap-2 mb-2">
             {product.rating > 0 && (

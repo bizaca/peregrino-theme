@@ -1,4 +1,7 @@
+"use client";
+
 import Link from "next/link";
+import { motion } from "framer-motion";
 import { Instagram, Facebook, Youtube, MapPin, Mail, Phone } from "lucide-react";
 import { siteConfig } from "@/data/site-config";
 import NewsletterForm from "./NewsletterForm";
@@ -36,7 +39,13 @@ export default function Footer() {
         {/* Main footer content */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 py-16">
           {/* Brand */}
-          <div className="lg:col-span-2">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="lg:col-span-2"
+          >
             <Link href="/" className="inline-block mb-4">
               <span className="font-heading text-2xl font-bold text-white tracking-wider">
                 PEREGRINO
@@ -82,10 +91,15 @@ export default function Footer() {
 
             {/* Newsletter */}
             <NewsletterForm />
-          </div>
+          </motion.div>
 
           {/* Links columns */}
-          <div>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+          >
             <h3 className="text-white font-semibold text-sm uppercase tracking-wider mb-4 after:content-[''] after:block after:w-6 after:h-0.5 after:bg-accent/40 after:mt-2">
               Tienda
             </h3>
@@ -101,9 +115,14 @@ export default function Footer() {
                 </li>
               ))}
             </ul>
-          </div>
+          </motion.div>
 
-          <div>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+          >
             <h3 className="text-white font-semibold text-sm uppercase tracking-wider mb-4 after:content-[''] after:block after:w-6 after:h-0.5 after:bg-accent/40 after:mt-2">
               Empresa
             </h3>
@@ -119,9 +138,14 @@ export default function Footer() {
                 </li>
               ))}
             </ul>
-          </div>
+          </motion.div>
 
-          <div>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.3 }}
+          >
             <h3 className="text-white font-semibold text-sm uppercase tracking-wider mb-4 after:content-[''] after:block after:w-6 after:h-0.5 after:bg-accent/40 after:mt-2">
               Ayuda
             </h3>
@@ -153,7 +177,7 @@ export default function Footer() {
                 <span>{siteConfig.contact.location}</span>
               </div>
             </div>
-          </div>
+          </motion.div>
         </div>
 
         {/* Bottom bar */}
