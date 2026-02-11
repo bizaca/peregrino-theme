@@ -112,8 +112,8 @@ export default function CartPage() {
                       onClick={() =>
                         removeItem(item.productId, item.size, item.grind)
                       }
-                      className="p-1.5 text-text-tertiary hover:text-accent-red rounded-full hover:bg-accent-red/5 transition-colors shrink-0"
-                      aria-label="Eliminar"
+                      className="p-2.5 text-text-tertiary hover:text-accent-red rounded-full hover:bg-accent-red/5 transition-colors shrink-0"
+                      aria-label={`Eliminar ${item.name}`}
                     >
                       <Trash2 size={16} />
                     </button>
@@ -132,8 +132,8 @@ export default function CartPage() {
                           )
                         }
                         disabled={item.quantity <= 1}
-                        className={`p-1.5 transition-colors ${item.quantity <= 1 ? "text-text-tertiary/40 cursor-not-allowed" : "text-text-secondary hover:text-dark"}`}
-                        aria-label="Reducir"
+                        className={`p-2.5 transition-colors ${item.quantity <= 1 ? "text-text-tertiary/40 cursor-not-allowed" : "text-text-secondary hover:text-dark"}`}
+                        aria-label={`Reducir cantidad de ${item.name}`}
                       >
                         <Minus size={14} />
                       </button>
@@ -150,8 +150,8 @@ export default function CartPage() {
                           )
                         }
                         disabled={item.quantity >= 20}
-                        className={`p-1.5 transition-colors ${item.quantity >= 20 ? "text-text-tertiary/40 cursor-not-allowed" : "text-text-secondary hover:text-dark"}`}
-                        aria-label="Aumentar"
+                        className={`p-2.5 transition-colors ${item.quantity >= 20 ? "text-text-tertiary/40 cursor-not-allowed" : "text-text-secondary hover:text-dark"}`}
+                        aria-label={`Aumentar cantidad de ${item.name}`}
                       >
                         <Plus size={14} />
                       </button>

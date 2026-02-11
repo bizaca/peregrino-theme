@@ -46,7 +46,7 @@ export default function ProductDetail({ product }: ProductDetailProps) {
       {/* Breadcrumb */}
       <div className="bg-base-warm border-b border-border-light">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 py-3">
-          <nav className="flex items-center gap-2 text-sm text-text-tertiary">
+          <nav aria-label="Migas de pan" className="flex items-center gap-2 text-sm text-text-tertiary">
             <Link href="/" className="hover:text-accent transition-colors">
               Inicio
             </Link>
@@ -206,19 +206,19 @@ export default function ProductDetail({ product }: ProductDetailProps) {
               <div className="flex items-center gap-1 bg-base-warm rounded-full border border-border px-1">
                 <button
                   onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                  className="p-2 text-text-secondary hover:text-dark transition-colors"
-                  aria-label="Reducir"
+                  className="p-3 text-text-secondary hover:text-dark transition-colors"
+                  aria-label="Reducir cantidad"
                 >
                   <Minus size={16} />
                 </button>
-                <span className="w-8 text-center font-medium text-dark">
+                <span className="w-8 text-center font-medium text-dark" aria-live="polite" aria-atomic="true">
                   {quantity}
                 </span>
                 <button
                   onClick={() => setQuantity(Math.min(quantity + 1, 20))}
                   disabled={quantity >= 20}
-                  className={`p-2 transition-colors ${quantity >= 20 ? "text-text-tertiary/40 cursor-not-allowed" : "text-text-secondary hover:text-dark"}`}
-                  aria-label="Aumentar"
+                  className={`p-3 transition-colors ${quantity >= 20 ? "text-text-tertiary/40 cursor-not-allowed" : "text-text-secondary hover:text-dark"}`}
+                  aria-label="Aumentar cantidad"
                 >
                   <Plus size={16} />
                 </button>
@@ -259,6 +259,9 @@ export default function ProductDetail({ product }: ProductDetailProps) {
                   )}
                 </AnimatePresence>
               </button>
+              <span role="status" aria-live="polite" className="sr-only">
+                {addedToCart ? "Producto agregado al carrito" : ""}
+              </span>
             </div>
 
             {/* Description */}
