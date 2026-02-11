@@ -110,37 +110,34 @@ export default function Header() {
         </nav>
       </div>
 
-      {/* Mobile navigation */}
-      <div
-        className={cn(
-          "md:hidden overflow-hidden transition-all duration-300 ease-in-out bg-surface border-t border-border-light",
-          isMobileMenuOpen ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0"
-        )}
-      >
-        <nav className="px-4 py-4 space-y-1">
-          {mainNavItems.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              onClick={() => setIsMobileMenuOpen(false)}
-              className="block px-3 py-2.5 text-text-secondary hover:text-accent hover:bg-base-warm rounded-lg transition-colors text-sm tracking-wide"
-            >
-              {item.label}
-            </Link>
-          ))}
-          <div className="flex items-center gap-4 px-3 pt-3 border-t border-border-light mt-3">
-            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="text-text-tertiary hover:text-accent transition-colors">
-              <Instagram size={20} />
-            </a>
-            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="text-text-tertiary hover:text-accent transition-colors">
-              <Facebook size={20} />
-            </a>
-            <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" className="text-text-tertiary hover:text-accent transition-colors">
-              <Youtube size={20} />
-            </a>
-          </div>
-        </nav>
-      </div>
+      {/* Mobile navigation — extends below sticky header to cover viewport */}
+      {isMobileMenuOpen && (
+        <div className="md:hidden bg-surface border-t border-border-light min-h-[calc(100vh-4rem)]">
+          <nav className="px-4 py-4 space-y-1">
+            {mainNavItems.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="block px-3 py-3 text-text-secondary hover:text-accent hover:bg-base-warm rounded-lg transition-colors text-sm tracking-wide"
+              >
+                {item.label}
+              </Link>
+            ))}
+            <div className="flex items-center gap-4 px-3 pt-4 border-t border-border-light mt-4">
+              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="text-text-tertiary hover:text-accent transition-colors">
+                <Instagram size={20} />
+              </a>
+              <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="text-text-tertiary hover:text-accent transition-colors">
+                <Facebook size={20} />
+              </a>
+              <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" className="text-text-tertiary hover:text-accent transition-colors">
+                <Youtube size={20} />
+              </a>
+            </div>
+          </nav>
+        </div>
+      )}
     </header>
   );
 }

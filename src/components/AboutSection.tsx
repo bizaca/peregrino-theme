@@ -26,9 +26,9 @@ export default function AboutSection() {
                 sizes="(max-width: 1024px) 100vw, 50vw"
               />
             </div>
-            {/* Decorative elements */}
-            <div className="absolute -bottom-4 -right-4 w-32 h-32 border-2 border-accent/20 rounded-2xl" />
-            <div className="absolute -top-4 -left-4 w-24 h-24 border-2 border-sage/20 rounded-2xl" />
+            {/* Decorative elements — hidden on mobile to prevent overflow */}
+            <div className="hidden md:block absolute -bottom-4 -right-4 w-32 h-32 border-2 border-accent/20 rounded-2xl" />
+            <div className="hidden md:block absolute -top-4 -left-4 w-24 h-24 border-2 border-sage/20 rounded-2xl" />
           </motion.div>
 
           {/* Content */}
@@ -64,18 +64,18 @@ export default function AboutSection() {
             </div>
 
             {/* Stats */}
-            <div className="grid grid-cols-3 gap-6 mt-8 pt-8 border-t border-border">
+            <div className="grid grid-cols-3 gap-4 md:gap-6 mt-8 pt-8 border-t border-border">
               <div>
-                <div className="font-heading text-3xl font-bold text-accent">8+</div>
-                <div className="text-text-tertiary text-sm mt-1">Años de experiencia</div>
+                <div className="font-heading text-2xl md:text-3xl font-bold text-accent">8+</div>
+                <div className="text-text-tertiary text-xs md:text-sm mt-1">Años de experiencia</div>
               </div>
               <div>
-                <div className="font-heading text-3xl font-bold text-accent">5</div>
-                <div className="text-text-tertiary text-sm mt-1">Países de origen</div>
+                <div className="font-heading text-2xl md:text-3xl font-bold text-accent">5</div>
+                <div className="text-text-tertiary text-xs md:text-sm mt-1">Países de origen</div>
               </div>
               <div>
-                <div className="font-heading text-3xl font-bold text-accent">100%</div>
-                <div className="text-text-tertiary text-sm mt-1">Especialidad</div>
+                <div className="font-heading text-2xl md:text-3xl font-bold text-accent">100%</div>
+                <div className="text-text-tertiary text-xs md:text-sm mt-1">Especialidad</div>
               </div>
             </div>
           </motion.div>
