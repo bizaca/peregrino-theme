@@ -1,9 +1,10 @@
 "use client";
 
+import { useState, useCallback } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { motion } from "framer-motion";
-import { ShoppingBag, Star, Award } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { ShoppingBag, Star, Award, Check } from "lucide-react";
 import { type Product, formatPrice, getDiscountPercentage } from "@/data/products";
 import { useCart } from "@/context/CartContext";
 
@@ -14,10 +15,11 @@ interface ProductCardProps {
 
 export default function ProductCard({ product, index = 0 }: ProductCardProps) {
   const { addItem } = useCart();
+  const [added, setAdded] = useState(false);
   const mainVariant = product.variants[0];
   const hasDiscount = mainVariant.originalPrice && mainVariant.originalPrice > mainVariant.price;
 
-  const handleQuickAdd = (e: React.MouseEvent) => {
+  const handleQuickAdd = useCallback((e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
     addItem({
@@ -28,7 +30,9 @@ export default function ProductCard({ product, index = 0 }: ProductCardProps) {
       price: mainVariant.price,
       image: product.image,
     });
-  };
+    setAdded(true);
+    setTimeout(() => setAdded(false), 1500);
+  }, [addItem, product, mainVariant]);
 
   return (
     <motion.div
@@ -69,10 +73,38 @@ export default function ProductCard({ product, index = 0 }: ProductCardProps) {
           {/* Quick add button */}
           <button
             onClick={handleQuickAdd}
-            className="absolute bottom-3 right-3 p-2.5 bg-dark-soft text-white rounded-full opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-300 hover:bg-accent hover:scale-110 shadow-lg"
-            aria-label="Agregar al carrito"
+            className={`absolute bottom-3 right-3 p-2.5 rounded-full shadow-lg transition-all duration-300 ${
+              added
+                ? "bg-green-600 text-white scale-110 opacity-100 translate-y-0"
+                : "bg-dark-soft text-white opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 hover:bg-accent hover:scale-110"
+            }`}
+            aria-label={added ? "Agregado al carrito" : "Agregar al carrito"}
           >
-            <ShoppingBag size={18} />
+            <AnimatePresence mode="wait" initial={false}>
+              {added ? (
+                <motion.span
+                  key="check"
+                  initial={{ scale: 0, rotate: -90 }}
+                  animate={{ scale: 1, rotate: 0 }}
+                  exit={{ scale: 0 }}
+                  transition={{ duration: 0.2 }}
+                  className="block"
+                >
+                  <Check size={18} strokeWidth={3} />
+                </motion.span>
+              ) : (
+                <motion.span
+                  key="bag"
+                  initial={{ scale: 0 }}
+                  animate={{ scale: 1 }}
+                  exit={{ scale: 0 }}
+                  transition={{ duration: 0.15 }}
+                  className="block"
+                >
+                  <ShoppingBag size={18} />
+                </motion.span>
+              )}
+            </AnimatePresence>
           </button>
         </div>
 

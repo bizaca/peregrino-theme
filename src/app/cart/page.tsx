@@ -41,6 +41,15 @@ export default function CartPage() {
   const shippingThreshold = 35000;
   const freeShipping = totalPrice >= shippingThreshold;
 
+  const whatsappMessage = encodeURIComponent(
+    `Hola, me gustaría hacer un pedido:\n\n${items
+      .map(
+        (item) =>
+          `• ${item.name} (${item.size}, ${item.grind}) x${item.quantity} — ${formatPrice(item.price * item.quantity)}`
+      )
+      .join("\n")}\n\nTotal: ${formatPrice(totalPrice)}\n\n¡Gracias!`
+  );
+
   return (
     <div className="min-h-screen bg-base">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 py-10 md:py-16">
@@ -213,7 +222,7 @@ export default function CartPage() {
 
               {/* Checkout button */}
               <a
-                href="https://wa.me/56912345678?text=Hola%2C%20me%20gustaría%20hacer%20un%20pedido"
+                href={`https://wa.me/56912345678?text=${whatsappMessage}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-full flex items-center justify-center gap-2 bg-accent hover:bg-accent-dark text-white font-medium py-3.5 rounded-full transition-all duration-300 hover:shadow-lg mb-3"
