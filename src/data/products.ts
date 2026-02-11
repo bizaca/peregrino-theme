@@ -1,15 +1,18 @@
 import { generatedImages } from "./generated-images";
 
-// Use generated images as product placeholders, cycling through available images
+// Each product has a unique AI-generated image
 const productImages = [
-  ...generatedImages.hero,
-  generatedImages.categories.beans,
-  generatedImages.categories.packs,
-  generatedImages.about,
-  generatedImages.categories.accessories,
-  generatedImages.categories.tea,
-  generatedImages.newsletter,
-  generatedImages.hero[0],
+  generatedImages.products.peruElBambu,
+  generatedImages.products.colombiaCiudadBolivar,
+  generatedImages.products.capsulasPasadenaBlend,
+  generatedImages.products.boliviaCaranavi,
+  generatedImages.products.costaRicaColibri,
+  generatedImages.products.packBlend500,
+  generatedImages.products.megaBlendPasadena,
+  generatedImages.products.megaBlendItalian,
+  generatedImages.products.brasilFincaFurnas,
+  generatedImages.products.pasadenaBlend,
+  generatedImages.products.colombiaYipao,
 ];
 
 export interface ProductVariant {

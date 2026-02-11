@@ -17,4 +17,17 @@ export const generatedImages = {
     providencia: "https://v3b.fal.media/files/b/0a8e079a/nATCcJxt1GZ_26hjYdfN3.jpg",
     lastarria: "https://v3b.fal.media/files/b/0a8e079b/tdGgxV_n1kiP8W0tkj9m0.jpg",
   },
+  products: {
+    peruElBambu: "https://v3b.fal.media/files/b/0a8e0823/KFxX-vXTjDHmSRWDkfq_L.jpg",
+    colombiaCiudadBolivar: "https://v3b.fal.media/files/b/0a8e0824/vzrxVvYy4MXH-ULKrruo1.jpg",
+    capsulasPasadenaBlend: "https://v3b.fal.media/files/b/0a8e0824/1FxJJFcYb62cxcg6IKthd.jpg",
+    boliviaCaranavi: "https://v3b.fal.media/files/b/0a8e0824/97LvJNOBBVBXI6BT8kfTP.jpg",
+    costaRicaColibri: "https://v3b.fal.media/files/b/0a8e0825/-IGu573WFUzLyJBIsG3tk.jpg",
+    packBlend500: "https://v3b.fal.media/files/b/0a8e0825/tQDkvle9zZIggdrDF762Z.jpg",
+    megaBlendPasadena: "https://v3b.fal.media/files/b/0a8e0825/FONFhgEpudjVPkr6xODjr.jpg",
+    megaBlendItalian: "https://v3b.fal.media/files/b/0a8e0825/U8sE4RYOEHWoEZaj7l9bu.jpg",
+    brasilFincaFurnas: "https://v3b.fal.media/files/b/0a8e0826/yLUImbgHCaEgxmIq07G6w.jpg",
+    pasadenaBlend: "https://v3b.fal.media/files/b/0a8e0826/1TOTmo_02wNrFsMF_vL0G.jpg",
+    colombiaYipao: "https://v3b.fal.media/files/b/0a8e0827/MjI-4jy513t-n6Y887QXz.jpg",
+  },
 };
