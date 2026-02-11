@@ -5,7 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import { motion } from "framer-motion";
-import { Star, ShoppingBag, ChevronRight, Minus, Plus, MapPin, Mountain, Droplets, Leaf } from "lucide-react";
+import { Star, ShoppingBag, ChevronRight, Minus, Plus, MapPin, Mountain, Droplets, Leaf, Award } from "lucide-react";
 import { getProductBySlug, formatPrice, getDiscountPercentage } from "@/data/products";
 import { useCart } from "@/context/CartContext";
 import { cn } from "@/lib/utils";
@@ -105,24 +105,32 @@ export default function ProductDetailPage() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
           >
-            {/* Rating */}
-            <div className="flex items-center gap-2 mb-3">
-              <div className="flex items-center gap-0.5">
-                {Array.from({ length: 5 }).map((_, i) => (
-                  <Star
-                    key={i}
-                    size={16}
-                    className={
-                      i < Math.round(product.rating)
-                        ? "fill-accent text-accent"
-                        : "text-border"
-                    }
-                  />
-                ))}
+            {/* Rating + SCA Score */}
+            <div className="flex items-center gap-3 mb-3 flex-wrap">
+              <div className="flex items-center gap-2">
+                <div className="flex items-center gap-0.5">
+                  {Array.from({ length: 5 }).map((_, i) => (
+                    <Star
+                      key={i}
+                      size={16}
+                      className={
+                        i < Math.round(product.rating)
+                          ? "fill-accent text-accent"
+                          : "text-border"
+                      }
+                    />
+                  ))}
+                </div>
+                <span className="text-text-secondary text-sm">
+                  {product.rating} ({product.reviewCount} reseñas)
+                </span>
               </div>
-              <span className="text-text-secondary text-sm">
-                {product.rating} ({product.reviewCount} reseñas)
-              </span>
+              {product.cupScore && (
+                <div className="flex items-center gap-1.5 bg-sage-bg text-sage px-3 py-1 rounded-full">
+                  <Award size={14} />
+                  <span className="text-sm font-semibold">SCA {product.cupScore}</span>
+                </div>
+              )}
             </div>
 
             {/* Name */}
@@ -287,6 +295,26 @@ export default function ProductDetailPage() {
           </motion.div>
         </div>
       </div>
+
+      {/* Sticky mobile add-to-cart bar */}
+      <div className="fixed bottom-0 left-0 right-0 bg-surface/95 backdrop-blur-md border-t border-border-light px-4 py-3 z-40 lg:hidden">
+        <div className="flex items-center gap-3">
+          <div className="flex-1 min-w-0">
+            <p className="text-dark font-semibold text-sm truncate">{product.name}</p>
+            <p className="text-accent-dark font-bold font-heading text-lg">{formatPrice(variant.price)}</p>
+          </div>
+          <button
+            onClick={handleAddToCart}
+            className="flex items-center gap-2 bg-accent hover:bg-accent-dark text-white font-medium px-5 py-3 rounded-full transition-all duration-300 shrink-0"
+          >
+            <ShoppingBag size={16} />
+            <span className="text-sm">Agregar</span>
+          </button>
+        </div>
+      </div>
+
+      {/* Bottom spacer for sticky bar on mobile */}
+      <div className="h-20 lg:hidden" />
     </div>
   );
 }

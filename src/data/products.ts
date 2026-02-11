@@ -37,6 +37,7 @@ export interface Product {
   image: string;
   inStock: boolean;
   featured: boolean;
+  cupScore?: number;
 }
 
 export const grindOptions = [
@@ -77,6 +78,7 @@ export const products: Product[] = [
     image: productImages[0],
     inStock: true,
     featured: true,
+    cupScore: 86,
   },
   {
     id: "colombia-ciudad-bolivar",
@@ -102,6 +104,7 @@ export const products: Product[] = [
     image: productImages[1],
     inStock: true,
     featured: true,
+    cupScore: 88,
   },
   {
     id: "capsulas-pasadena-blend",
@@ -147,6 +150,7 @@ export const products: Product[] = [
     image: productImages[3],
     inStock: true,
     featured: true,
+    cupScore: 85,
   },
   {
     id: "costa-rica-colibri",
@@ -171,6 +175,7 @@ export const products: Product[] = [
     image: productImages[4],
     inStock: true,
     featured: true,
+    cupScore: 87,
   },
   {
     id: "pack-blend-500",
@@ -258,6 +263,7 @@ export const products: Product[] = [
     image: productImages[8],
     inStock: true,
     featured: true,
+    cupScore: 84,
   },
   {
     id: "pasadena-blend",
@@ -307,6 +313,7 @@ export const products: Product[] = [
     image: productImages[10],
     inStock: true,
     featured: true,
+    cupScore: 86,
   },
 ];
 
