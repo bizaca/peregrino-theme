@@ -144,10 +144,11 @@ export default function HeroCarousel() {
       </button>
 
       {/* Dots */}
-      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex items-center gap-2.5 z-10">
+      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex items-center gap-2.5 z-10" role="tablist" aria-label="Slides del carrusel">
         {heroSlides.map((_, index) => (
           <button
             key={index}
+            role="tab"
             onClick={() => goTo(index)}
             className={cn(
               "transition-all duration-300 rounded-full",
@@ -156,6 +157,7 @@ export default function HeroCarousel() {
                 : "w-2 h-2 bg-white/30 hover:bg-white/60"
             )}
             aria-label={`Ir a slide ${index + 1}`}
+            aria-selected={index === current}
           />
         ))}
       </div>

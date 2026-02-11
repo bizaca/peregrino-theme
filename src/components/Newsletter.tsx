@@ -79,6 +79,7 @@ export default function Newsletter() {
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="tu@email.com"
                 required
+                aria-label="Correo electrónico"
                 className="flex-1 bg-white/10 border border-white/20 text-white placeholder:text-white/40 rounded-full px-5 py-3.5 focus:outline-none focus:border-accent-light transition-colors"
               />
               <button

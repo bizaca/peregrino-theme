@@ -24,6 +24,15 @@ export default function CartDrawer() {
     };
   }, [isOpen]);
 
+  // Close on Escape key
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape" && isOpen) closeCart();
+    };
+    document.addEventListener("keydown", handleKeyDown);
+    return () => document.removeEventListener("keydown", handleKeyDown);
+  }, [isOpen, closeCart]);
+
   return (
     <AnimatePresence>
       {isOpen && (
@@ -39,6 +48,9 @@ export default function CartDrawer() {
 
           {/* Drawer */}
           <motion.div
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="cart-drawer-title"
             initial={{ x: "100%" }}
             animate={{ x: 0 }}
             exit={{ x: "100%" }}
@@ -49,7 +61,7 @@ export default function CartDrawer() {
             <div className="flex items-center justify-between px-6 py-4 border-b border-border-light">
               <div className="flex items-center gap-2">
                 <ShoppingBag size={20} className="text-accent" />
-                <h2 className="font-heading text-lg font-semibold text-dark">
+                <h2 id="cart-drawer-title" className="font-heading text-lg font-semibold text-dark">
                   Carrito ({totalItems})
                 </h2>
               </div>
