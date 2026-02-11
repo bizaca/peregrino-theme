@@ -212,11 +212,16 @@ export default function CartPage() {
               </div>
 
               {/* Checkout button */}
-              <button className="w-full bg-accent hover:bg-accent-dark text-white font-medium py-3.5 rounded-full transition-all duration-300 hover:shadow-lg mb-3">
-                Proceder al Pago
-              </button>
+              <a
+                href="https://wa.me/56912345678?text=Hola%2C%20me%20gustaría%20hacer%20un%20pedido"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full flex items-center justify-center gap-2 bg-accent hover:bg-accent-dark text-white font-medium py-3.5 rounded-full transition-all duration-300 hover:shadow-lg mb-3"
+              >
+                Finalizar Pedido por WhatsApp
+              </a>
               <p className="text-text-tertiary text-xs text-center">
-                Impuestos incluidos · Envío calculado al checkout
+                Impuestos incluidos · Coordinaremos envío y pago por WhatsApp
               </p>
             </div>
           </div>
