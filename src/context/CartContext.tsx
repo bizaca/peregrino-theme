@@ -33,6 +33,7 @@ function getItemKey(item: { productId: string; size: string; grind: string }) {
 }
 
 const CART_STORAGE_KEY = "peregrino-cart";
+const MAX_ITEM_QUANTITY = 20;
 
 function loadCart(): CartItem[] {
   if (typeof window === "undefined") return [];
@@ -69,11 +70,11 @@ export function CartProvider({ children }: { children: ReactNode }) {
       if (existing) {
         return prev.map((item) =>
           getItemKey(item) === key
-            ? { ...item, quantity: item.quantity + quantity }
+            ? { ...item, quantity: Math.min(item.quantity + quantity, MAX_ITEM_QUANTITY) }
             : item
         );
       }
-      return [...prev, { ...newItem, quantity }];
+      return [...prev, { ...newItem, quantity: Math.min(quantity, MAX_ITEM_QUANTITY) }];
     });
     setIsOpen(true);
   }, []);
@@ -93,10 +94,11 @@ export function CartProvider({ children }: { children: ReactNode }) {
         removeItem(productId, size, grind);
         return;
       }
+      const clamped = Math.min(quantity, MAX_ITEM_QUANTITY);
       setItems((prev) =>
         prev.map((item) =>
           getItemKey(item) === `${productId}-${size}-${grind}`
-            ? { ...item, quantity }
+            ? { ...item, quantity: clamped }
             : item
         )
       );

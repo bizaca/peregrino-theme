@@ -215,8 +215,9 @@ export default function ProductDetail({ product }: ProductDetailProps) {
                   {quantity}
                 </span>
                 <button
-                  onClick={() => setQuantity(quantity + 1)}
-                  className="p-2 text-text-secondary hover:text-dark transition-colors"
+                  onClick={() => setQuantity(Math.min(quantity + 1, 20))}
+                  disabled={quantity >= 20}
+                  className={`p-2 transition-colors ${quantity >= 20 ? "text-text-tertiary/40 cursor-not-allowed" : "text-text-secondary hover:text-dark"}`}
                   aria-label="Aumentar"
                 >
                   <Plus size={16} />

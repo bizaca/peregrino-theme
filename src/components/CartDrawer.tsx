@@ -38,7 +38,9 @@ export default function CartDrawer() {
       }, 100);
       return () => clearTimeout(timer);
     } else if (previousFocusRef.current) {
-      previousFocusRef.current.focus();
+      if (document.contains(previousFocusRef.current)) {
+        previousFocusRef.current.focus();
+      }
       previousFocusRef.current = null;
     }
   }, [isOpen]);
@@ -195,7 +197,8 @@ export default function CartDrawer() {
                                   item.quantity + 1
                                 )
                               }
-                              className="p-1 text-text-tertiary hover:text-dark transition-colors"
+                              disabled={item.quantity >= 20}
+                              className={`p-1 transition-colors ${item.quantity >= 20 ? "text-text-tertiary/40 cursor-not-allowed" : "text-text-tertiary hover:text-dark"}`}
                               aria-label="Aumentar cantidad"
                             >
                               <Plus size={14} />
