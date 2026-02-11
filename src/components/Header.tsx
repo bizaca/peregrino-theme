@@ -181,7 +181,7 @@ export default function Header() {
         </div>
 
         {/* Desktop navigation */}
-        <nav className="hidden md:flex items-center justify-center gap-1 pb-3 -mt-1">
+        <nav className="hidden md:flex items-center justify-center gap-1 pb-3 -mt-1" aria-label="Navegación principal">
           {mainNavItems.map((item) => {
             const isActive = isNavActive(item.href);
             return (
@@ -240,13 +240,13 @@ export default function Header() {
                 );
               })}
               <div className="flex items-center gap-4 px-3 pt-4 border-t border-border-light mt-4">
-                <a href={siteConfig.social.instagram} target="_blank" rel="noopener noreferrer" className="text-text-tertiary hover:text-accent hover:scale-110 transition-all">
+                <a href={siteConfig.social.instagram} target="_blank" rel="noopener noreferrer" className="text-text-tertiary hover:text-accent hover:scale-110 transition-all" aria-label="Instagram">
                   <Instagram size={20} />
                 </a>
-                <a href={siteConfig.social.facebook} target="_blank" rel="noopener noreferrer" className="text-text-tertiary hover:text-accent hover:scale-110 transition-all">
+                <a href={siteConfig.social.facebook} target="_blank" rel="noopener noreferrer" className="text-text-tertiary hover:text-accent hover:scale-110 transition-all" aria-label="Facebook">
                   <Facebook size={20} />
                 </a>
-                <a href={siteConfig.social.youtube} target="_blank" rel="noopener noreferrer" className="text-text-tertiary hover:text-accent hover:scale-110 transition-all">
+                <a href={siteConfig.social.youtube} target="_blank" rel="noopener noreferrer" className="text-text-tertiary hover:text-accent hover:scale-110 transition-all" aria-label="YouTube">
                   <Youtube size={20} />
                 </a>
               </div>
