@@ -140,6 +140,8 @@ export default function ContactContent() {
                   initial={{ opacity: 0, scale: 0.95 }}
                   animate={{ opacity: 1, scale: 1 }}
                   className="text-center py-12"
+                  role="status"
+                  aria-live="polite"
                 >
                   <CheckCircle size={48} className="text-green-600 mx-auto mb-4" />
                   <h3 className="font-heading text-2xl font-semibold text-dark mb-2">

@@ -1,6 +1,6 @@
 export default function ProductDetailLoading() {
   return (
-    <div className="min-h-screen bg-base animate-pulse">
+    <div className="min-h-screen bg-base animate-pulse" role="status" aria-label="Cargando producto">
       {/* Breadcrumb skeleton */}
       <div className="bg-base-warm border-b border-border-light">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 py-3">

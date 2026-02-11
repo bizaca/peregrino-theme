@@ -1,6 +1,6 @@
 export default function SubscriptionsLoading() {
   return (
-    <div className="min-h-screen bg-base">
+    <div className="min-h-screen bg-base" role="status" aria-label="Cargando">
       {/* Hero skeleton */}
       <div className="bg-dark-soft py-16 md:py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 text-center">

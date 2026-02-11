@@ -213,7 +213,7 @@ export default function WholesaleContent() {
           >
             Contactar por WhatsApp
           </a>
-          <p className="text-white/40 text-sm mt-4">
+          <p className="text-white/50 text-sm mt-4">
             O escríbenos a{" "}
             <a href={`mailto:${siteConfig.contact.email}`} className="text-accent-light hover:underline">
               {siteConfig.contact.email}

@@ -38,7 +38,7 @@ export default function ProductsPage() {
       />
       <Suspense
       fallback={
-        <div className="min-h-screen bg-base">
+        <div className="min-h-screen bg-base" role="status" aria-label="Cargando productos">
           <div className="bg-dark-soft py-16 md:py-24">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 text-center">
               <div className="h-12 w-80 mx-auto bg-white/10 rounded-lg animate-shimmer mb-4" />

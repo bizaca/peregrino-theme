@@ -120,7 +120,7 @@ export default function Newsletter() {
                     aria-label="Correo electrónico"
                     aria-describedby="newsletter-home-status"
                     aria-invalid={status === "error"}
-                    className={`w-full bg-white/10 border text-white placeholder:text-white/40 rounded-full px-5 py-3.5 focus:outline-none transition-colors disabled:opacity-50 ${
+                    className={`w-full bg-white/10 border text-white placeholder:text-white/50 rounded-full px-5 py-3.5 focus:outline-none transition-colors disabled:opacity-50 ${
                       status === "error"
                         ? "border-red-400/50 focus:border-red-400"
                         : "border-white/20 focus:border-accent-light"

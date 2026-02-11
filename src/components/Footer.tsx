@@ -51,7 +51,7 @@ export default function Footer() {
                 PEREGRINO
               </span>
               <br />
-              <span className="text-xs text-white/40 tracking-[0.3em] uppercase">
+              <span className="text-xs text-white/50 tracking-[0.3em] uppercase">
                 Coffee Roasters
               </span>
             </Link>
@@ -185,10 +185,10 @@ export default function Footer() {
 
         {/* Bottom bar */}
         <div className="border-t border-white/10 py-6 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-white/30 text-sm">
+          <p className="text-white/50 text-sm">
             &copy; {new Date().getFullYear()} Peregrino Coffee Roasters. Todos los derechos reservados.
           </p>
-          <div className="flex items-center gap-4 text-white/30 text-sm">
+          <div className="flex items-center gap-4 text-white/50 text-sm">
             <Link href="/terms" className="hover:text-white/60 transition-colors">
               Términos
             </Link>

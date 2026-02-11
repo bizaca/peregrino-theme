@@ -1,6 +1,6 @@
 export default function CartLoading() {
   return (
-    <div className="min-h-screen bg-base animate-pulse">
+    <div className="min-h-screen bg-base animate-pulse" role="status" aria-label="Cargando carrito">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 py-10 md:py-16">
         <div className="flex items-center justify-between mb-10">
           <div>

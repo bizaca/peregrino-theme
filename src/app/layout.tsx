@@ -87,7 +87,7 @@ export default function RootLayout({
           <AnnouncementBar />
           <Suspense
             fallback={
-              <header className="sticky top-0 z-50 bg-surface/95 backdrop-blur-md border-b border-border-light">
+              <header className="sticky top-0 z-50 bg-surface/95 backdrop-blur-md border-b border-border-light" role="status" aria-label="Cargando navegación">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6">
                   <div className="flex items-center justify-between h-16 md:h-20">
                     <div className="w-6 h-6 md:hidden" />
