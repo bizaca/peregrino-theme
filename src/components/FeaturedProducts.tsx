@@ -82,25 +82,31 @@ export default function FeaturedProducts() {
         </div>
 
         {/* Product carousel */}
-        <div
-          ref={scrollRef}
-          role="region"
-          aria-label="Productos destacados"
-          tabIndex={0}
-          onKeyDown={(e) => {
-            if (e.key === "ArrowLeft") scroll("left");
-            if (e.key === "ArrowRight") scroll("right");
-          }}
-          className="flex gap-4 md:gap-6 overflow-x-auto scrollbar-hide pb-4 -mx-4 px-4 snap-x snap-mandatory focus:outline-none focus-visible:ring-2 focus-visible:ring-accent/30 rounded-xl"
-        >
-          {featuredProducts.map((product, index) => (
-            <div
-              key={product.id}
-              className="flex-shrink-0 w-[260px] md:w-[290px] snap-start"
-            >
-              <ProductCard product={product} index={index} />
-            </div>
-          ))}
+        <div className="relative">
+          {/* Scroll fade indicators */}
+          <div className="hidden md:block absolute left-0 top-0 bottom-4 w-8 bg-gradient-to-r from-base-warm to-transparent z-10 pointer-events-none" />
+          <div className="hidden md:block absolute right-0 top-0 bottom-4 w-8 bg-gradient-to-l from-base-warm to-transparent z-10 pointer-events-none" />
+
+          <div
+            ref={scrollRef}
+            role="region"
+            aria-label="Productos destacados"
+            tabIndex={0}
+            onKeyDown={(e) => {
+              if (e.key === "ArrowLeft") scroll("left");
+              if (e.key === "ArrowRight") scroll("right");
+            }}
+            className="flex gap-4 md:gap-6 overflow-x-auto scrollbar-hide pb-4 -mx-4 px-4 snap-x snap-mandatory focus:outline-none focus-visible:ring-2 focus-visible:ring-accent/30 rounded-xl"
+          >
+            {featuredProducts.map((product, index) => (
+              <div
+                key={product.id}
+                className="flex-shrink-0 w-[260px] md:w-[290px] snap-start"
+              >
+                <ProductCard product={product} index={index} />
+              </div>
+            ))}
+          </div>
         </div>
 
         {/* Mobile: view all link */}

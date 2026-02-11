@@ -1,4 +1,7 @@
+"use client";
+
 import Link from "next/link";
+import { motion } from "framer-motion";
 import { ArrowLeft, Coffee } from "lucide-react";
 
 interface ComingSoonProps {
@@ -9,8 +12,19 @@ interface ComingSoonProps {
 export default function ComingSoon({ title, description }: ComingSoonProps) {
   return (
     <div className="min-h-screen bg-base flex items-center justify-center">
-      <div className="text-center px-4">
-        <Coffee size={48} className="text-accent mx-auto mb-6" />
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+        className="text-center px-4"
+      >
+        <motion.div
+          initial={{ scale: 0.8, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          transition={{ delay: 0.2, type: "spring", stiffness: 200 }}
+        >
+          <Coffee size={48} className="text-accent mx-auto mb-6" />
+        </motion.div>
         <h1 className="font-heading text-3xl md:text-4xl font-bold text-dark mb-3">
           {title}
         </h1>
@@ -24,7 +38,7 @@ export default function ComingSoon({ title, description }: ComingSoonProps) {
           <ArrowLeft size={16} className="group-hover:-translate-x-1 transition-transform" />
           Volver al inicio
         </Link>
-      </div>
+      </motion.div>
     </div>
   );
 }

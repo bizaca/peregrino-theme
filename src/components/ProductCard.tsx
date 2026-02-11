@@ -76,7 +76,7 @@ export default function ProductCard({ product, index = 0 }: ProductCardProps) {
             className={`absolute bottom-3 right-3 p-2.5 rounded-full shadow-lg transition-all duration-300 ${
               added
                 ? "bg-green-600 text-white scale-110 opacity-100 translate-y-0"
-                : "bg-dark-soft text-white opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 hover:bg-accent hover:scale-110"
+                : "bg-dark-soft text-white opacity-100 md:opacity-0 md:group-hover:opacity-100 translate-y-0 md:translate-y-2 md:group-hover:translate-y-0 hover:bg-accent hover:scale-110"
             }`}
             aria-label={added ? "Agregado al carrito" : "Agregar al carrito"}
           >
