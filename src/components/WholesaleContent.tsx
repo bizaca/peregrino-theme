@@ -172,7 +172,7 @@ export default function WholesaleContent() {
                     <span className="sm:hidden text-text-tertiary text-xs">Volumen: </span>
                     <span className="font-medium text-dark">{tier.volume}</span>
                     {tier.highlight && (
-                      <span className="text-[10px] font-bold bg-accent text-white px-2 py-0.5 rounded-full uppercase tracking-wider">
+                      <span className="text-xs font-bold bg-accent text-white px-2 py-0.5 rounded-full uppercase tracking-wider">
                         Popular
                       </span>
                     )}

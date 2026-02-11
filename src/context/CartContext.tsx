@@ -1,6 +1,7 @@
 "use client";
 
 import { createContext, useContext, useState, useCallback, useSyncExternalStore, type ReactNode } from "react";
+import { MotionConfig } from "motion/react";
 
 export interface CartItem {
   productId: string;
@@ -171,7 +172,9 @@ export function CartProvider({ children }: { children: ReactNode }) {
         totalPrice,
       }}
     >
-      {children}
+      <MotionConfig reducedMotion="user">
+        {children}
+      </MotionConfig>
     </CartContext.Provider>
   );
 }

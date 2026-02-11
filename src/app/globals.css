@@ -12,13 +12,13 @@
   --color-dark: #1A1A1A;
   --color-dark-soft: #2D2926;
   --color-dark-muted: #4A4543;
-  --color-text-secondary: #7A7570;
-  --color-text-tertiary: #A8A29E;
+  --color-text-secondary: #6B6560;
+  --color-text-tertiary: #756F6A;
 
   /* Accent — terracotta/copper (hipster coffee) */
-  --color-accent: #B8734A;
-  --color-accent-light: #D4956B;
-  --color-accent-dark: #96582F;
+  --color-accent: #A0643B;
+  --color-accent-light: #C8855A;
+  --color-accent-dark: #7D4A20;
   --color-accent-bg: #FDF6F0;
 
   /* Secondary — sage green (earthy modern) */
