@@ -1,13 +1,36 @@
 "use client";
 
+import { useMemo } from "react";
+import { usePathname } from "next/navigation";
 import { motion } from "framer-motion";
 import { MessageCircle } from "lucide-react";
 import { siteConfig } from "@/data/site-config";
 
 export default function WhatsAppButton() {
+  const pathname = usePathname();
+
+  const whatsappUrl = useMemo(() => {
+    let message = "Hola, me interesa saber más sobre sus cafés";
+
+    if (pathname.startsWith("/products/")) {
+      const slug = pathname.replace("/products/", "");
+      const productName = slug
+        .split("-")
+        .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
+        .join(" ");
+      message = `Hola, me interesa el producto "${productName}". ¿Me pueden dar más información?`;
+    } else if (pathname === "/subscriptions") {
+      message = "Hola, me gustaría saber más sobre sus suscripciones de café";
+    } else if (pathname === "/wholesale") {
+      message = "Hola, me interesa información sobre venta mayorista";
+    }
+
+    return `https://wa.me/${siteConfig.contact.whatsapp}?text=${encodeURIComponent(message)}`;
+  }, [pathname]);
+
   return (
     <motion.a
-      href={`https://wa.me/${siteConfig.contact.whatsapp}?text=Hola%2C%20me%20interesa%20saber%20más%20sobre%20sus%20cafés`}
+      href={whatsappUrl}
       target="_blank"
       rel="noopener noreferrer"
       initial={{ scale: 0, opacity: 0 }}
