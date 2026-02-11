@@ -39,6 +39,7 @@ export default function ProductCard({ product, index = 0 }: ProductCardProps) {
     >
       <Link
         href={`/products/${product.slug}`}
+        aria-label={`Ver ${product.name}`}
         className="group block bg-surface rounded-2xl overflow-hidden border border-border-light hover:border-accent/30 transition-all duration-300 hover:shadow-xl hover:shadow-accent/5"
       >
         {/* Image container */}

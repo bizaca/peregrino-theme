@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { usePathname, useSearchParams } from "next/navigation";
+import { motion, AnimatePresence } from "framer-motion";
 import { ShoppingBag, Menu, X, Instagram, Facebook, Youtube, User } from "lucide-react";
 import { mainNavItems } from "@/data/navigation";
 import { useCart } from "@/context/CartContext";
@@ -134,41 +135,55 @@ export default function Header() {
       </div>
 
       {/* Mobile navigation — extends below sticky header to cover viewport */}
-      {isMobileMenuOpen && (
-        <div className="md:hidden bg-surface border-t border-border-light min-h-[calc(100vh-4rem)]">
-          <nav className="px-4 py-4 space-y-1">
-            {mainNavItems.map((item) => {
-              const isActive = isNavActive(item.href);
-              return (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className={cn(
-                    "block px-3 py-3 rounded-lg transition-colors text-sm tracking-wide",
-                    isActive
-                      ? "text-accent bg-accent-bg font-medium"
-                      : "text-text-secondary hover:text-accent hover:bg-base-warm"
-                  )}
-                >
-                  {item.label}
-                </Link>
-              );
-            })}
-            <div className="flex items-center gap-4 px-3 pt-4 border-t border-border-light mt-4">
-              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="text-text-tertiary hover:text-accent transition-colors">
-                <Instagram size={20} />
-              </a>
-              <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="text-text-tertiary hover:text-accent transition-colors">
-                <Facebook size={20} />
-              </a>
-              <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" className="text-text-tertiary hover:text-accent transition-colors">
-                <Youtube size={20} />
-              </a>
-            </div>
-          </nav>
-        </div>
-      )}
+      <AnimatePresence>
+        {isMobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.25, ease: "easeInOut" }}
+            className="md:hidden bg-surface border-t border-border-light overflow-hidden"
+          >
+            <nav className="px-4 py-4 space-y-1">
+              {mainNavItems.map((item, i) => {
+                const isActive = isNavActive(item.href);
+                return (
+                  <motion.div
+                    key={item.href}
+                    initial={{ opacity: 0, x: -12 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: i * 0.03 }}
+                  >
+                    <Link
+                      href={item.href}
+                      onClick={() => setIsMobileMenuOpen(false)}
+                      className={cn(
+                        "block px-3 py-3 rounded-lg transition-colors text-sm tracking-wide",
+                        isActive
+                          ? "text-accent bg-accent-bg font-medium"
+                          : "text-text-secondary hover:text-accent hover:bg-base-warm"
+                      )}
+                    >
+                      {item.label}
+                    </Link>
+                  </motion.div>
+                );
+              })}
+              <div className="flex items-center gap-4 px-3 pt-4 border-t border-border-light mt-4">
+                <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="text-text-tertiary hover:text-accent transition-colors">
+                  <Instagram size={20} />
+                </a>
+                <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="text-text-tertiary hover:text-accent transition-colors">
+                  <Facebook size={20} />
+                </a>
+                <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" className="text-text-tertiary hover:text-accent transition-colors">
+                  <Youtube size={20} />
+                </a>
+              </div>
+            </nav>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </header>
   );
 }

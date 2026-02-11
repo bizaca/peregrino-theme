@@ -1,10 +1,22 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { X } from "lucide-react";
 
+const DISMISSED_KEY = "peregrino-announcement-dismissed";
+
 export default function AnnouncementBar() {
-  const [isVisible, setIsVisible] = useState(true);
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const dismissed = sessionStorage.getItem(DISMISSED_KEY);
+    if (!dismissed) setIsVisible(true);
+  }, []);
+
+  const handleDismiss = () => {
+    setIsVisible(false);
+    sessionStorage.setItem(DISMISSED_KEY, "1");
+  };
 
   if (!isVisible) return null;
 
@@ -16,7 +28,7 @@ export default function AnnouncementBar() {
         en consumo de café
       </p>
       <button
-        onClick={() => setIsVisible(false)}
+        onClick={handleDismiss}
         className="absolute right-3 top-1/2 -translate-y-1/2 p-1 text-text-tertiary hover:text-base-warm transition-colors"
         aria-label="Cerrar anuncio"
       >

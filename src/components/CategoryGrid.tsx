@@ -50,6 +50,7 @@ export default function CategoryGrid() {
             >
               <Link
                 href={category.href}
+                aria-label={`Ver categoría ${category.name}`}
                 className="group block relative h-72 md:h-80 rounded-2xl overflow-hidden"
               >
                 {/* Background image */}
