@@ -71,6 +71,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es" className={`${playfair.variable} ${inter.variable}`}>
+      <head>
+        <link rel="preconnect" href="https://v3b.fal.media" />
+        <link rel="dns-prefetch" href="https://v3b.fal.media" />
+      </head>
       <body className="antialiased">
         <CartProvider>
           <a

@@ -144,43 +144,48 @@ export default function WholesaleContent() {
           <h2 className="font-heading text-2xl md:text-3xl font-bold text-dark mb-8 text-center">
             Precios por Volumen
           </h2>
-          <div className="bg-surface border border-border-light rounded-2xl overflow-hidden">
-            <div className="hidden sm:grid grid-cols-3 gap-4 px-6 py-4 bg-dark-soft text-sm font-medium text-white">
-              <span>Volumen mensual</span>
-              <span>Descuento</span>
-              <span>Incluye</span>
-            </div>
-            {[
-              { volume: "5 - 10 kg", discount: "15%", includes: "Envío gratis RM", highlight: false },
-              { volume: "10 - 25 kg", discount: "20%", includes: "Envío gratis Chile + capacitación", highlight: false },
-              { volume: "25 - 50 kg", discount: "25%", includes: "Todo lo anterior + asesoría de menú", highlight: false },
-              { volume: "50+ kg", discount: "Personalizado", includes: "Programa completo a medida", highlight: true },
-            ].map((tier, index) => (
-              <div
-                key={tier.volume}
-                className={`grid grid-cols-1 sm:grid-cols-3 gap-2 sm:gap-4 px-6 py-5 ${
-                  index !== 3 ? "border-b border-border-light" : ""
-                } ${index % 2 === 1 ? "bg-base-warm/50" : ""} ${
-                  tier.highlight ? "bg-accent-bg border-l-4 border-l-accent" : ""
-                }`}
-              >
-                <div className="flex items-center gap-2">
-                  <span className="sm:hidden text-text-tertiary text-xs">Volumen: </span>
-                  <span className="font-medium text-dark">{tier.volume}</span>
-                  {tier.highlight && (
-                    <span className="text-[10px] font-bold bg-accent text-white px-2 py-0.5 rounded-full uppercase tracking-wider">
-                      Popular
-                    </span>
-                  )}
-                </div>
-                <div>
-                  <span className={`font-semibold ${tier.highlight ? "text-accent text-lg" : "text-accent-dark"}`}>{tier.discount}</span>
-                </div>
-                <div>
-                  <span className="text-text-secondary text-sm">{tier.includes}</span>
-                </div>
+          <div role="table" aria-label="Precios por volumen" className="bg-surface border border-border-light rounded-2xl overflow-hidden">
+            <div role="rowgroup" className="hidden sm:block">
+              <div role="row" className="grid grid-cols-3 gap-4 px-6 py-4 bg-dark-soft text-sm font-medium text-white">
+                <span role="columnheader">Volumen mensual</span>
+                <span role="columnheader">Descuento</span>
+                <span role="columnheader">Incluye</span>
               </div>
-            ))}
+            </div>
+            <div role="rowgroup">
+              {[
+                { volume: "5 - 10 kg", discount: "15%", includes: "Envío gratis RM", highlight: false },
+                { volume: "10 - 25 kg", discount: "20%", includes: "Envío gratis Chile + capacitación", highlight: false },
+                { volume: "25 - 50 kg", discount: "25%", includes: "Todo lo anterior + asesoría de menú", highlight: false },
+                { volume: "50+ kg", discount: "Personalizado", includes: "Programa completo a medida", highlight: true },
+              ].map((tier, index) => (
+                <div
+                  key={tier.volume}
+                  role="row"
+                  className={`grid grid-cols-1 sm:grid-cols-3 gap-2 sm:gap-4 px-6 py-5 ${
+                    index !== 3 ? "border-b border-border-light" : ""
+                  } ${index % 2 === 1 ? "bg-base-warm/50" : ""} ${
+                    tier.highlight ? "bg-accent-bg border-l-4 border-l-accent" : ""
+                  }`}
+                >
+                  <div role="cell" className="flex items-center gap-2">
+                    <span className="sm:hidden text-text-tertiary text-xs">Volumen: </span>
+                    <span className="font-medium text-dark">{tier.volume}</span>
+                    {tier.highlight && (
+                      <span className="text-[10px] font-bold bg-accent text-white px-2 py-0.5 rounded-full uppercase tracking-wider">
+                        Popular
+                      </span>
+                    )}
+                  </div>
+                  <div role="cell">
+                    <span className={`font-semibold ${tier.highlight ? "text-accent text-lg" : "text-accent-dark"}`}>{tier.discount}</span>
+                  </div>
+                  <div role="cell">
+                    <span className="text-text-secondary text-sm">{tier.includes}</span>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </motion.div>
 
