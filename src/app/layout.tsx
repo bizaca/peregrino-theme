@@ -52,7 +52,6 @@ export const metadata: Metadata = {
     type: "website",
     locale: "es_CL",
     siteName: "Peregrino Coffee Roasters",
-    title: "Peregrino Coffee Roasters | Café de Especialidad",
     description:
       "Tostadores de café de especialidad desde 2016. Granos frescos de Perú, Colombia, Bolivia, Costa Rica y Brasil.",
   },

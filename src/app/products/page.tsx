@@ -10,7 +10,6 @@ export const metadata: Metadata = {
     "Explora nuestra selección de cafés de especialidad: granos de origen, packs de degustación, cápsulas e infusiones. Envíos a todo Chile.",
   alternates: { canonical: "/products" },
   openGraph: {
-    title: "Productos | Peregrino Coffee",
     description:
       "Granos frescos de Perú, Colombia, Bolivia, Costa Rica y Brasil. Tostados semanalmente.",
   },
