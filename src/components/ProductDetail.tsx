@@ -69,7 +69,7 @@ export default function ProductDetail({ product }: ProductDetailProps) {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <div className="relative aspect-square rounded-2xl overflow-hidden bg-base-warm sticky top-28">
+            <div className="relative aspect-square rounded-2xl overflow-hidden bg-base-warm sticky top-28 shadow-lg shadow-dark/5">
               <Image
                 src={product.image}
                 alt={product.name}
@@ -267,11 +267,11 @@ export default function ProductDetail({ product }: ProductDetailProps) {
             </div>
 
             {/* Tasting notes */}
-            <div className="bg-accent-bg rounded-2xl p-6 mb-6">
+            <div className="bg-accent-bg rounded-2xl p-6 mb-6 border-l-4 border-accent">
               <h3 className="font-heading text-lg font-semibold text-dark mb-3">
                 Notas de Cata
               </h3>
-              <p className="text-accent-dark font-medium text-lg">
+              <p className="text-accent-dark font-medium text-lg italic">
                 {product.tastingNotes}
               </p>
             </div>
@@ -312,11 +312,15 @@ export default function ProductDetail({ product }: ProductDetailProps) {
       </div>
 
       {/* Related products */}
-      <section className="bg-base-warm py-12 md:py-16">
+      <section className="bg-base-warm py-12 md:py-16 border-t border-border-light">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <h2 className="font-heading text-2xl md:text-3xl font-bold text-dark mb-8">
-            También te puede gustar
-          </h2>
+          <div className="flex items-center gap-4 mb-8">
+            <div className="h-px flex-1 bg-border" />
+            <h2 className="font-heading text-2xl md:text-3xl font-bold text-dark shrink-0">
+              También te puede gustar
+            </h2>
+            <div className="h-px flex-1 bg-border" />
+          </div>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
             {getRelatedProducts(product.id, 4).map((related, index) => (
               <ProductCard key={related.id} product={related} index={index} />
@@ -326,7 +330,7 @@ export default function ProductDetail({ product }: ProductDetailProps) {
       </section>
 
       {/* Sticky mobile add-to-cart bar */}
-      <div className="fixed bottom-0 left-0 right-0 bg-surface/95 backdrop-blur-md border-t border-border-light px-4 py-3 z-40 lg:hidden">
+      <div className="fixed bottom-0 left-0 right-0 bg-surface/98 backdrop-blur-md border-t border-border-light px-4 py-3 z-40 lg:hidden shadow-[0_-4px_12px_rgba(0,0,0,0.05)]">
         <div className="flex items-center gap-3">
           <div className="flex-1 min-w-0">
             <p className="text-dark font-semibold text-sm truncate">{product.name}</p>

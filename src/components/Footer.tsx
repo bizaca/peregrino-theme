@@ -29,7 +29,9 @@ const footerLinks = {
 
 export default function Footer() {
   return (
-    <footer className="bg-dark text-white/70">
+    <footer className="bg-gradient-to-b from-dark-soft to-dark text-white/70 relative">
+      {/* Subtle top border accent */}
+      <div className="h-px bg-gradient-to-r from-transparent via-accent/30 to-transparent" />
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
         {/* Main footer content */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 py-16">
@@ -84,7 +86,7 @@ export default function Footer() {
 
           {/* Links columns */}
           <div>
-            <h3 className="text-white font-semibold text-sm uppercase tracking-wider mb-4">
+            <h3 className="text-white font-semibold text-sm uppercase tracking-wider mb-4 after:content-[''] after:block after:w-6 after:h-0.5 after:bg-accent/40 after:mt-2">
               Tienda
             </h3>
             <ul className="space-y-2.5">
@@ -92,7 +94,7 @@ export default function Footer() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-sm text-white/50 hover:text-accent-light transition-colors"
+                    className="text-sm text-white/50 hover:text-accent-light hover:translate-x-0.5 transition-all duration-200"
                   >
                     {link.label}
                   </Link>
@@ -102,7 +104,7 @@ export default function Footer() {
           </div>
 
           <div>
-            <h3 className="text-white font-semibold text-sm uppercase tracking-wider mb-4">
+            <h3 className="text-white font-semibold text-sm uppercase tracking-wider mb-4 after:content-[''] after:block after:w-6 after:h-0.5 after:bg-accent/40 after:mt-2">
               Empresa
             </h3>
             <ul className="space-y-2.5">
@@ -110,7 +112,7 @@ export default function Footer() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-sm text-white/50 hover:text-accent-light transition-colors"
+                    className="text-sm text-white/50 hover:text-accent-light hover:translate-x-0.5 transition-all duration-200"
                   >
                     {link.label}
                   </Link>
@@ -120,7 +122,7 @@ export default function Footer() {
           </div>
 
           <div>
-            <h3 className="text-white font-semibold text-sm uppercase tracking-wider mb-4">
+            <h3 className="text-white font-semibold text-sm uppercase tracking-wider mb-4 after:content-[''] after:block after:w-6 after:h-0.5 after:bg-accent/40 after:mt-2">
               Ayuda
             </h3>
             <ul className="space-y-2.5">
@@ -128,7 +130,7 @@ export default function Footer() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-sm text-white/50 hover:text-accent-light transition-colors"
+                    className="text-sm text-white/50 hover:text-accent-light hover:translate-x-0.5 transition-all duration-200"
                   >
                     {link.label}
                   </Link>
@@ -138,15 +140,15 @@ export default function Footer() {
 
             {/* Contact info */}
             <div className="mt-6 space-y-2">
-              <div className="flex items-center gap-2 text-white/40 text-sm">
+              <div className="flex items-center gap-2 text-white/60 text-sm">
                 <Mail size={14} />
                 <span>{siteConfig.contact.email}</span>
               </div>
-              <div className="flex items-center gap-2 text-white/40 text-sm">
+              <div className="flex items-center gap-2 text-white/60 text-sm">
                 <Phone size={14} />
                 <span>{siteConfig.contact.phone}</span>
               </div>
-              <div className="flex items-center gap-2 text-white/40 text-sm">
+              <div className="flex items-center gap-2 text-white/60 text-sm">
                 <MapPin size={14} />
                 <span>{siteConfig.contact.location}</span>
               </div>
