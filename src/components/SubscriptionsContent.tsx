@@ -121,7 +121,7 @@ export default function SubscriptionsContent() {
               transition={{ delay: 0.2 + index * 0.1 }}
               className={`relative bg-surface rounded-2xl border-2 p-6 md:p-8 transition-all duration-300 ${
                 plan.popular
-                  ? "border-accent shadow-xl shadow-accent/10 md:scale-105 hover:shadow-2xl hover:shadow-accent/15"
+                  ? "border-accent shadow-xl shadow-accent/10 md:scale-105 hover:shadow-2xl hover:shadow-accent/15 card-shine"
                   : "border-border-light hover:border-accent/30 hover:shadow-lg hover:shadow-accent/5 hover:-translate-y-1"
               }`}
             >
@@ -159,7 +159,7 @@ export default function SubscriptionsContent() {
                 )}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`block w-full text-center font-medium py-3.5 rounded-full transition-all duration-300 ${
+                className={`block w-full text-center font-medium py-3.5 rounded-full transition-all duration-300 btn-press ${
                   plan.popular
                     ? "bg-accent hover:bg-accent-dark text-white"
                     : "bg-base-warm hover:bg-accent hover:text-white text-dark border border-border"

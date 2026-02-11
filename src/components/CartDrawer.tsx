@@ -223,14 +223,36 @@ export default function CartDrawer() {
             {/* Footer */}
             {items.length > 0 && (
               <div className="border-t border-border-light px-6 py-4 space-y-4">
-                {/* Shipping notice */}
-                <div className="bg-sage-bg rounded-lg px-4 py-2.5 text-center">
-                  <p className="text-sage text-sm">
-                    {totalPrice >= siteConfig.commerce.freeShippingThreshold
-                      ? siteConfig.commerce.freeShippingLabel
-                      : `Faltan ${formatPrice(siteConfig.commerce.freeShippingThreshold - totalPrice)} para envío gratis (RM)`}
-                  </p>
-                </div>
+                {/* Free shipping progress */}
+                {(() => {
+                  const threshold = siteConfig.commerce.freeShippingThreshold;
+                  const percentage = Math.min((totalPrice / threshold) * 100, 100);
+                  const isFree = totalPrice >= threshold;
+                  return (
+                    <div className="bg-sage-bg rounded-lg px-4 py-3">
+                      <div className="flex items-center justify-between mb-2">
+                        <p className="text-sage text-sm font-medium">
+                          {isFree
+                            ? siteConfig.commerce.freeShippingLabel
+                            : `Faltan ${formatPrice(threshold - totalPrice)} para envío gratis`}
+                        </p>
+                        <span className="text-sage text-xs font-semibold">
+                          {Math.round(percentage)}%
+                        </span>
+                      </div>
+                      <div className="w-full h-1.5 bg-sage/10 rounded-full overflow-hidden">
+                        <motion.div
+                          initial={{ width: 0 }}
+                          animate={{ width: `${percentage}%` }}
+                          transition={{ duration: 0.5, ease: "easeOut" }}
+                          className={`h-full rounded-full ${
+                            isFree ? "bg-emerald-500" : "bg-accent"
+                          }`}
+                        />
+                      </div>
+                    </div>
+                  );
+                })()}
 
                 {/* Total */}
                 <div className="flex items-center justify-between">
@@ -245,7 +267,7 @@ export default function CartDrawer() {
                   <Link
                     href="/cart"
                     onClick={closeCart}
-                    className="block w-full bg-accent hover:bg-accent-dark text-white font-medium py-3.5 rounded-full text-center transition-colors"
+                    className="block w-full bg-accent hover:bg-accent-dark text-white font-medium py-3.5 rounded-full text-center transition-colors btn-press"
                   >
                     Ir al Carrito
                   </Link>

@@ -204,7 +204,7 @@ export default function WholesaleContent() {
             )}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 bg-accent hover:bg-accent-dark text-white font-medium px-8 py-4 rounded-full transition-all duration-300"
+            className="inline-flex items-center gap-2 bg-accent hover:bg-accent-dark text-white font-medium px-8 py-4 rounded-full transition-all duration-300 btn-press"
           >
             Contactar por WhatsApp
           </a>

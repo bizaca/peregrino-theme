@@ -128,7 +128,7 @@ export default function Newsletter() {
                 <button
                   type="submit"
                   disabled={status === "loading" || !email.trim()}
-                  className="group inline-flex items-center justify-center gap-2 bg-accent hover:bg-accent-dark disabled:opacity-50 text-white font-medium px-7 py-3.5 rounded-full transition-all duration-300"
+                  className="group inline-flex items-center justify-center gap-2 bg-accent hover:bg-accent-dark disabled:opacity-50 text-white font-medium px-7 py-3.5 rounded-full transition-all duration-300 btn-press"
                 >
                   {status === "loading" ? (
                     <Loader2 size={16} className="animate-spin" />

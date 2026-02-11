@@ -3,7 +3,7 @@
 import { useState, useEffect, useCallback, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
 import { ChevronLeft, ChevronRight, ArrowRight } from "lucide-react";
 import { heroSlides } from "@/data/navigation";
 import { cn } from "@/lib/utils";
@@ -13,6 +13,14 @@ export default function HeroCarousel() {
   const [direction, setDirection] = useState(1);
   const touchStartX = useRef(0);
   const touchEndX = useRef(0);
+  const sectionRef = useRef<HTMLElement>(null);
+
+  // Parallax: image moves slower than scroll
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start start", "end start"],
+  });
+  const parallaxY = useTransform(scrollYProgress, [0, 1], ["0%", "20%"]);
 
   const goTo = useCallback(
     (index: number) => {
@@ -68,6 +76,7 @@ export default function HeroCarousel() {
 
   return (
     <section
+      ref={sectionRef}
       className="grain-overlay relative w-full h-[55vh] md:h-[70vh] lg:h-[80vh] overflow-hidden bg-dark-soft focus-visible:outline-none"
       onTouchStart={handleTouchStart}
       onTouchEnd={handleTouchEnd}
@@ -91,8 +100,8 @@ export default function HeroCarousel() {
           transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
           className="absolute inset-0"
         >
-          {/* Background image */}
-          <div className="absolute inset-0">
+          {/* Background image with parallax */}
+          <motion.div className="absolute inset-0 -top-[10%] -bottom-[10%]" style={{ y: parallaxY }}>
             <Image
               src={slide.image}
               alt={slide.title}
@@ -106,7 +115,7 @@ export default function HeroCarousel() {
             {/* Light editorial overlay */}
             <div className="absolute inset-0 bg-gradient-to-r from-dark/80 via-dark/50 to-dark/20" />
             <div className="absolute inset-0 bg-gradient-to-t from-dark/60 via-transparent to-transparent" />
-          </div>
+          </motion.div>
 
           {/* Content */}
           <div className="relative h-full flex items-center">
@@ -143,7 +152,7 @@ export default function HeroCarousel() {
                 >
                   <Link
                     href={slide.href}
-                    className="group inline-flex items-center gap-3 bg-accent hover:bg-accent-dark text-white font-medium px-7 py-3.5 rounded-full tracking-wide transition-all duration-300 hover:shadow-lg"
+                    className="group inline-flex items-center gap-3 bg-accent hover:bg-accent-dark text-white font-medium px-7 py-3.5 rounded-full tracking-wide transition-all duration-300 hover:shadow-lg btn-press"
                   >
                     {slide.cta}
                     <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />

@@ -13,6 +13,17 @@ const iconMap: Record<string, React.ElementType> = {
   gift: Gift,
 };
 
+function BadgeItem({ badge, showDivider }: { badge: (typeof trustBadges)[number]; showDivider: boolean }) {
+  const Icon = iconMap[badge.icon];
+  return (
+    <div className="flex items-center gap-2.5 px-6 py-4 text-dark-muted group cursor-default shrink-0">
+      <Icon size={17} className="text-accent shrink-0 group-hover:scale-110 transition-transform duration-200" />
+      <span className="text-sm whitespace-nowrap">{badge.text}</span>
+      {showDivider && <div className="w-px h-4 bg-border ml-6" />}
+    </div>
+  );
+}
+
 export default function TrustBadges() {
   const [current, setCurrent] = useState(0);
 
@@ -25,23 +36,18 @@ export default function TrustBadges() {
 
   return (
     <section className="bg-base-warm border-y border-border-light">
-      {/* Desktop: show all badges */}
-      <div className="hidden md:flex items-center justify-center max-w-7xl mx-auto px-6">
-        {trustBadges.map((badge, index) => {
-          const Icon = iconMap[badge.icon];
-          return (
-            <div
+      {/* Desktop: infinite marquee */}
+      <div className="hidden md:block overflow-hidden">
+        <div className="animate-marquee flex w-max">
+          {/* Render badges twice for seamless loop */}
+          {[...trustBadges, ...trustBadges].map((badge, index) => (
+            <BadgeItem
               key={index}
-              className="flex items-center gap-2.5 px-6 py-4 text-dark-muted hover:text-dark transition-colors duration-200 group cursor-default"
-            >
-              <Icon size={17} className="text-accent shrink-0 group-hover:scale-110 transition-transform duration-200" />
-              <span className="text-sm whitespace-nowrap">{badge.text}</span>
-              {index < trustBadges.length - 1 && (
-                <div className="w-px h-4 bg-border ml-6" />
-              )}
-            </div>
-          );
-        })}
+              badge={badge}
+              showDivider={true}
+            />
+          ))}
+        </div>
       </div>
 
       {/* Mobile: rotating single badge */}
