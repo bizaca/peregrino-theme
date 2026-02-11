@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import { Star, Quote } from "lucide-react";
 
 const avatarColors = [

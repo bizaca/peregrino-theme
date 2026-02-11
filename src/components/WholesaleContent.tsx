@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import { Building2, Coffee, Truck, BarChart3, Users, Wrench, MessageCircle } from "lucide-react";
 import { siteConfig } from "@/data/site-config";
 

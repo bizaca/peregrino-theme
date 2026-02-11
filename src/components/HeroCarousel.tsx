@@ -3,7 +3,7 @@
 import { useState, useEffect, useCallback, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
+import { motion, AnimatePresence, useScroll, useTransform } from "motion/react";
 import { ChevronLeft, ChevronRight, ArrowRight } from "lucide-react";
 import { heroSlides } from "@/data/navigation";
 import { cn } from "@/lib/utils";

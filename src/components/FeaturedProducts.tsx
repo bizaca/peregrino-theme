@@ -2,7 +2,7 @@
 
 import { useRef } from "react";
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import { ChevronLeft, ChevronRight, ArrowRight } from "lucide-react";
 import { products } from "@/data/products";
 import ProductCard from "./ProductCard";

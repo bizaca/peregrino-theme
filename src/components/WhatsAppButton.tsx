@@ -2,7 +2,7 @@
 
 import { useMemo } from "react";
 import { usePathname } from "next/navigation";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import { MessageCircle } from "lucide-react";
 import { siteConfig } from "@/data/site-config";
 

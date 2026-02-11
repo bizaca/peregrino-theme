@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef, useCallback, useSyncExternalStore } from "react";
 import Link from "next/link";
 import { usePathname, useSearchParams } from "next/navigation";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence } from "motion/react";
 import { ShoppingBag, Menu, X, Instagram, Facebook, Youtube, User } from "lucide-react";
 import { mainNavItems } from "@/data/navigation";
 import { useCart } from "@/context/CartContext";

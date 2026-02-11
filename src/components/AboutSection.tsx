@@ -2,7 +2,7 @@
 
 import { useRef, useEffect, useState } from "react";
 import Image from "next/image";
-import { motion, useInView, useScroll, useTransform } from "framer-motion";
+import { motion, useInView, useScroll, useTransform } from "motion/react";
 import { generatedImages } from "@/data/generated-images";
 
 function AnimatedStat({ value, suffix = "" }: { value: number; suffix?: string }) {

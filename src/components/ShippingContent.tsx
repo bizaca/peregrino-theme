@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import { Truck, Store, Clock, MapPin, Package, ShieldCheck, ArrowRight } from "lucide-react";
 import { siteConfig } from "@/data/site-config";
 import { formatPrice } from "@/data/products";

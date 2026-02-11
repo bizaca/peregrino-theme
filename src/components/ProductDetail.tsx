@@ -3,7 +3,7 @@
 import { useState, useCallback } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence } from "motion/react";
 import { Star, ShoppingBag, ChevronRight, Minus, Plus, MapPin, Mountain, Droplets, Leaf, Award, Check, Share2, Link as LinkIcon } from "lucide-react";
 import { type Product, getRelatedProducts, formatPrice, getDiscountPercentage } from "@/data/products";
 import { siteConfig } from "@/data/site-config";
@@ -263,9 +263,9 @@ export default function ProductDetail({ product }: ProductDetailProps) {
 
             {/* Description */}
             <div className="mb-8">
-              <h3 className="font-heading text-lg font-semibold text-dark mb-3">
+              <h2 className="font-heading text-lg font-semibold text-dark mb-3">
                 Descripción
-              </h3>
+              </h2>
               <p className="text-text-secondary leading-relaxed">
                 {product.description}
               </p>
@@ -273,9 +273,9 @@ export default function ProductDetail({ product }: ProductDetailProps) {
 
             {/* Tasting notes */}
             <div className="bg-accent-bg rounded-2xl p-6 mb-6 border-l-4 border-accent">
-              <h3 className="font-heading text-lg font-semibold text-dark mb-3">
+              <h2 className="font-heading text-lg font-semibold text-dark mb-3">
                 Notas de Cata
-              </h3>
+              </h2>
               <p className="text-accent-dark font-medium text-lg italic">
                 {product.tastingNotes}
               </p>

@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence } from "motion/react";
 import { Coffee, CalendarDays, ShieldCheck, Truck, Gift } from "lucide-react";
 import { trustBadges } from "@/data/navigation";
 

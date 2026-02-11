@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import { User, Package, Heart, Bell, ArrowLeft, Coffee } from "lucide-react";
 
 const upcomingFeatures = [

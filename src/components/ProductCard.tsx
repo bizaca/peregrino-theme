@@ -3,7 +3,7 @@
 import { useState, useCallback } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence } from "motion/react";
 import { ShoppingBag, Star, Award, Check } from "lucide-react";
 import { type Product, formatPrice, getDiscountPercentage } from "@/data/products";
 import { useCart } from "@/context/CartContext";
@@ -11,9 +11,10 @@ import { useCart } from "@/context/CartContext";
 interface ProductCardProps {
   product: Product;
   index?: number;
+  headingLevel?: "h2" | "h3";
 }
 
-export default function ProductCard({ product, index = 0 }: ProductCardProps) {
+export default function ProductCard({ product, index = 0, headingLevel: Heading = "h3" }: ProductCardProps) {
   const { addItem } = useCart();
   const [added, setAdded] = useState(false);
   const mainVariant = product.variants[0];
@@ -144,9 +145,9 @@ export default function ProductCard({ product, index = 0 }: ProductCardProps) {
           </div>
 
           {/* Name */}
-          <h3 className="font-heading text-lg font-semibold text-dark group-hover:text-accent transition-colors duration-300 mb-1 line-clamp-1">
+          <Heading className="font-heading text-lg font-semibold text-dark group-hover:text-accent transition-colors duration-300 mb-1 line-clamp-1">
             {product.name}
-          </h3>
+          </Heading>
 
           {/* Origin */}
           <p className="text-text-tertiary text-xs mb-3 tracking-wide">

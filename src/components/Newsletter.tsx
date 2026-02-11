@@ -2,7 +2,7 @@
 
 import { useState, useCallback } from "react";
 import Image from "next/image";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence } from "motion/react";
 import { ArrowRight, Check, AlertCircle, Loader2 } from "lucide-react";
 import { generatedImages } from "@/data/generated-images";
 

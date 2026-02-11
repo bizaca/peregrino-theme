@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import { Instagram, Facebook, Youtube, MapPin, Mail, Phone } from "lucide-react";
 import { siteConfig } from "@/data/site-config";
 import NewsletterForm from "./NewsletterForm";

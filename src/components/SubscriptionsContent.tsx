@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import { Coffee, Repeat, Gift, Star, Check, ArrowRight, MessageCircle } from "lucide-react";
 import { siteConfig } from "@/data/site-config";
 import { formatPrice } from "@/data/products";

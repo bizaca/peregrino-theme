@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import { MapPin, Clock, Phone, Navigation, Coffee } from "lucide-react";
 import { siteConfig } from "@/data/site-config";
 import { generatedImages } from "@/data/generated-images";

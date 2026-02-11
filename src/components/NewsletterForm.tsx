@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useCallback } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence } from "motion/react";
 import { Send, CheckCircle, AlertCircle, Loader2 } from "lucide-react";
 
 type FormStatus = "idle" | "loading" | "success" | "error";
