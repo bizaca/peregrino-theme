@@ -1,10 +1,12 @@
-import ComingSoon from "@/components/ComingSoon";
+import type { Metadata } from "next";
+import WholesaleContent from "@/components/WholesaleContent";
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "Mayoristas",
-  description: "Programa de venta mayorista de café de especialidad Peregrino Coffee.",
+  description:
+    "Programa mayorista de café de especialidad Peregrino Coffee. Soluciones para cafeterías, restaurantes y oficinas.",
 };
 
 export default function WholesalePage() {
-  return <ComingSoon title="Mayoristas" description="¿Tienes un café o restaurante? Estamos preparando nuestro programa mayorista. Contáctanos por WhatsApp." />;
+  return <WholesaleContent />;
 }

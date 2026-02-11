@@ -1,10 +1,12 @@
-import ComingSoon from "@/components/ComingSoon";
+import type { Metadata } from "next";
+import ReturnsContent from "@/components/ReturnsContent";
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "Cambios y Devoluciones",
-  description: "Política de cambios y devoluciones de Peregrino Coffee Roasters.",
+  description:
+    "Política de cambios y devoluciones de Peregrino Coffee Roasters. Tu satisfacción es nuestra prioridad.",
 };
 
 export default function ReturnsPage() {
-  return <ComingSoon title="Cambios y Devoluciones" description="Estamos preparando nuestra política de cambios y devoluciones. Contáctanos para cualquier inconveniente." />;
+  return <ReturnsContent />;
 }
