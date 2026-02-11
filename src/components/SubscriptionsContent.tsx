@@ -220,7 +220,10 @@ export default function SubscriptionsContent() {
             ¿Cómo funciona?
           </motion.h2>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 relative">
+            {/* Connecting lines between steps (desktop only) */}
+            <div className="hidden md:block absolute top-6 left-1/6 right-1/6 h-px border-t-2 border-dashed border-accent/30" />
+
             {[
               { step: "1", title: "Elige tu plan", desc: "Selecciona el plan que más se ajuste a tu consumo de café." },
               { step: "2", title: "Personaliza", desc: "Elige tu café favorito, molienda y frecuencia de envío." },
@@ -232,9 +235,9 @@ export default function SubscriptionsContent() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
-                className="text-center"
+                className="text-center relative z-10"
               >
-                <div className="w-12 h-12 rounded-full bg-accent text-white font-heading text-xl font-bold flex items-center justify-center mx-auto mb-4">
+                <div className="w-12 h-12 rounded-full bg-accent text-white font-heading text-xl font-bold flex items-center justify-center mx-auto mb-4 ring-4 ring-base-warm">
                   {item.step}
                 </div>
                 <h3 className="font-heading text-lg font-semibold text-dark mb-2">
