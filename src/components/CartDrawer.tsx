@@ -175,7 +175,8 @@ export default function CartDrawer() {
                                   item.quantity - 1
                                 )
                               }
-                              className="p-1 text-text-tertiary hover:text-dark transition-colors"
+                              disabled={item.quantity <= 1}
+                              className={`p-1 transition-colors ${item.quantity <= 1 ? "text-text-tertiary/40 cursor-not-allowed" : "text-text-tertiary hover:text-dark"}`}
                               aria-label="Reducir cantidad"
                             >
                               <Minus size={14} />

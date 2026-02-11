@@ -129,7 +129,8 @@ export default function CartPage() {
                             item.quantity - 1
                           )
                         }
-                        className="p-1.5 text-text-secondary hover:text-dark transition-colors"
+                        disabled={item.quantity <= 1}
+                        className={`p-1.5 transition-colors ${item.quantity <= 1 ? "text-text-tertiary/40 cursor-not-allowed" : "text-text-secondary hover:text-dark"}`}
                         aria-label="Reducir"
                       >
                         <Minus size={14} />
