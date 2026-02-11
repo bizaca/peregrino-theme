@@ -5,7 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import { motion } from "framer-motion";
-import { Star, ShoppingBag, ChevronRight, Minus, Plus, MapPin, Mountain, Droplets, Leaf, Award } from "lucide-react";
+import { Star, ShoppingBag, ChevronRight, Minus, Plus, MapPin, Mountain, Droplets, Leaf, Award, Check } from "lucide-react";
 import { getProductBySlug, getRelatedProducts, formatPrice, getDiscountPercentage } from "@/data/products";
 import { useCart } from "@/context/CartContext";
 import ProductCard from "@/components/ProductCard";
@@ -19,6 +19,7 @@ export default function ProductDetailPage() {
   const [selectedVariant, setSelectedVariant] = useState(0);
   const [selectedGrind, setSelectedGrind] = useState(0);
   const [quantity, setQuantity] = useState(1);
+  const [addedToCart, setAddedToCart] = useState(false);
 
   if (!product) {
     return (
@@ -51,6 +52,8 @@ export default function ProductDetailPage() {
       price: variant.price,
       image: product.image,
     }, quantity);
+    setAddedToCart(true);
+    setTimeout(() => setAddedToCart(false), 2000);
   };
 
   return (
@@ -235,10 +238,15 @@ export default function ProductDetailPage() {
 
               <button
                 onClick={handleAddToCart}
-                className="flex-1 flex items-center justify-center gap-2 bg-accent hover:bg-accent-dark text-white font-medium py-3.5 rounded-full transition-all duration-300 hover:shadow-lg"
+                className={cn(
+                  "flex-1 flex items-center justify-center gap-2 text-white font-medium py-3.5 rounded-full transition-all duration-300",
+                  addedToCart
+                    ? "bg-sage"
+                    : "bg-accent hover:bg-accent-dark hover:shadow-lg"
+                )}
               >
-                <ShoppingBag size={18} />
-                Agregar al Carrito
+                {addedToCart ? <Check size={18} /> : <ShoppingBag size={18} />}
+                {addedToCart ? "Agregado" : "Agregar al Carrito"}
               </button>
             </div>
 
