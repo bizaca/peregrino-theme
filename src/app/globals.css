@@ -15,11 +15,11 @@
   --color-text-secondary: #6B6560;
   --color-text-tertiary: #756F6A;
 
-  /* Accent — terracotta/copper (hipster coffee) */
-  --color-accent: #A0643B;
-  --color-accent-light: #C8855A;
-  --color-accent-dark: #7D4A20;
-  --color-accent-bg: #FDF6F0;
+  /* Accent — golden yellow (Peregrino brand) */
+  --color-accent: #FFCB0D;
+  --color-accent-light: #FFD94E;
+  --color-accent-dark: #CC9E00;
+  --color-accent-bg: #FFFBEB;
 
   /* Secondary — sage green (earthy modern) */
   --color-sage: #6B705C;
@@ -207,7 +207,7 @@ body {
 .input-focus:focus {
   background-color: var(--color-surface);
   border-color: var(--color-accent);
-  box-shadow: 0 0 0 3px rgba(160, 100, 59, 0.1);
+  box-shadow: 0 0 0 3px rgba(255, 203, 13, 0.15);
 }
 
 /* Selection color */

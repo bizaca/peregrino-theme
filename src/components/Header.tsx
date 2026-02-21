@@ -25,6 +25,8 @@ export default function Header() {
   const [prevPathname, setPrevPathname] = useState(pathname);
 
   const [scrolled, setScrolled] = useState(false);
+  const [hideLogoBar, setHideLogoBar] = useState(false);
+  const lastScrollY = useRef(0);
 
   // Close mobile menu on route changes (render-phase derived state)
   if (prevPathname !== pathname) {
@@ -32,9 +34,20 @@ export default function Header() {
     setIsMobileMenuOpen(false);
   }
 
-  // Track scroll position for header shadow
+  // Track scroll position for header shadow + logo bar hide/show
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 20);
+    const onScroll = () => {
+      const currentY = window.scrollY;
+      setScrolled(currentY > 20);
+
+      // Only hide logo bar after scrolling past its height
+      if (currentY > 150) {
+        setHideLogoBar(currentY > lastScrollY.current);
+      } else {
+        setHideLogoBar(false);
+      }
+      lastScrollY.current = currentY;
+    };
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
@@ -92,36 +105,37 @@ export default function Header() {
 
   return (
     <header className={cn(
-      "sticky top-0 z-50 bg-surface/95 backdrop-blur-md border-b transition-shadow duration-300",
-      scrolled ? "border-border shadow-md shadow-dark/5" : "border-border-light"
+      "sticky z-50 bg-white border-b transition-all duration-300",
+      scrolled ? "border-border shadow-md shadow-dark/5" : "border-border-light",
+      hideLogoBar ? "-top-32 md:-top-36" : "top-0"
     )}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6">
-        <div className="flex items-center justify-between h-16 md:h-20">
+      <div className="mx-auto px-0 sm:px-2">
+        <div className="flex items-center justify-between h-32 md:h-36">
           {/* Mobile menu button */}
           <button
             ref={menuButtonRef}
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="md:hidden p-2.5 -ml-2 text-dark-muted hover:text-accent hover:scale-110 active:scale-95 transition-all"
+            className="md:hidden p-2.5 ml-2 text-dark-muted hover:text-accent hover:scale-110 active:scale-95 transition-all"
             aria-label="Menú"
             aria-expanded={isMobileMenuOpen}
           >
             {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
 
-          {/* Logo */}
-          <Link href="/" className="flex items-center gap-3 group">
-            <div className="flex flex-col items-center">
-              <span className="font-heading text-xl md:text-2xl font-bold text-dark tracking-wider group-hover:text-accent transition-colors">
-                PEREGRINO
-              </span>
-              <span className="text-xs text-text-secondary tracking-[0.3em] uppercase">
-                Coffee Roasters
-              </span>
-            </div>
+          {/* Spacer for desktop to balance layout */}
+          <div className="hidden md:flex items-center w-32" />
+
+          {/* Logo — centered */}
+          <Link href="/" className="flex items-center justify-center group absolute left-1/2 -translate-x-1/2">
+            <img
+              src="/logo-peregrino.jpg"
+              alt="Peregrino Coffee Roasters"
+              className="h-32 md:h-36 w-auto"
+            />
           </Link>
 
           {/* Right side actions */}
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 mr-4 md:mr-6">
             {/* Social links - desktop only */}
             <div className="hidden lg:flex items-center gap-1 mr-3">
               <a
@@ -184,8 +198,11 @@ export default function Header() {
           </div>
         </div>
 
-        {/* Desktop navigation */}
-        <nav className="hidden md:flex items-center justify-center gap-1 pb-3 -mt-1" aria-label="Navegación principal">
+      </div>
+
+      {/* Desktop navigation — full width yellow bar */}
+      <div className="hidden md:block bg-accent">
+        <nav className="flex items-center justify-center gap-1 py-1.5" aria-label="Navegación principal">
           {mainNavItems.map((item) => {
             const isActive = isNavActive(item.href);
             return (
@@ -193,8 +210,8 @@ export default function Header() {
                 key={item.href}
                 href={item.href}
                 className={cn(
-                  "accent-underline px-3 py-1 text-sm transition-colors tracking-wide",
-                  isActive ? "accent-underline-active text-accent font-medium" : "text-text-secondary hover:text-dark"
+                  "px-4 py-1 text-sm font-medium transition-colors tracking-wide rounded",
+                  isActive ? "text-dark bg-white/20" : "text-dark-soft hover:text-dark hover:bg-white/10"
                 )}
               >
                 {item.label}

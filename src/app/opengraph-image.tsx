@@ -30,7 +30,7 @@ export default async function Image() {
             left: 0,
             right: 0,
             height: 6,
-            background: "linear-gradient(90deg, #A0643B, #C8855A, #A0643B)",
+            background: "linear-gradient(90deg, #FFCB0D, #FFD94E, #FFCB0D)",
           }}
         />
 
@@ -63,7 +63,7 @@ export default async function Image() {
           style={{
             width: 80,
             height: 2,
-            background: "#A0643B",
+            background: "#FFCB0D",
             marginBottom: 40,
           }}
         />
@@ -72,7 +72,7 @@ export default async function Image() {
         <div
           style={{
             fontSize: 24,
-            color: "#C8855A",
+            color: "#FFD94E",
             maxWidth: 600,
             textAlign: "center",
             lineHeight: 1.5,
