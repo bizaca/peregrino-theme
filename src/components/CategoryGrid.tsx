@@ -8,10 +8,10 @@ import { categories } from "@/data/categories";
 
 export default function CategoryGrid() {
   return (
-    <section className="py-16 md:py-24 bg-base">
+    <section className="py-12 md:py-16 bg-base">
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
         {/* Section header */}
-        <div className="text-center mb-12 md:mb-16">
+        <div className="text-center mb-8 md:mb-10">
           <motion.span
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -51,7 +51,7 @@ export default function CategoryGrid() {
               <Link
                 href={category.href}
                 aria-label={`Ver categoría ${category.name}`}
-                className="group block relative h-72 md:h-80 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl hover:shadow-accent/10 hover:-translate-y-1 ring-2 ring-transparent hover:ring-accent/20 transition-all duration-500 card-shine"
+                className="group block relative h-72 md:h-80 overflow-hidden shadow-sm hover:shadow-xl hover:shadow-accent/10 hover:-translate-y-1 ring-2 ring-transparent hover:ring-accent/20 transition-all duration-500 card-shine"
               >
                 {/* Background image */}
                 <Image

@@ -29,7 +29,7 @@ export default function Newsletter() {
   );
 
   return (
-    <section className="relative py-20 md:py-28 overflow-hidden">
+    <section className="relative py-14 md:py-20 overflow-hidden">
       {/* Background image */}
       <div className="absolute inset-0">
         <Image
@@ -100,7 +100,7 @@ export default function Newsletter() {
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0 }}
-                className="flex items-center justify-center gap-2 bg-emerald-500/20 border border-emerald-400/30 text-emerald-300 rounded-full px-6 py-3.5 w-full"
+                className="flex items-center justify-center gap-2 bg-emerald-500/20 border border-emerald-400/30 text-emerald-300 px-6 py-3.5 w-full"
               >
                 <Check size={18} />
                 <span className="font-medium">Te has suscrito correctamente</span>
@@ -121,7 +121,7 @@ export default function Newsletter() {
                     aria-label="Correo electrónico"
                     aria-describedby="newsletter-home-status"
                     aria-invalid={status === "error"}
-                    className={`w-full bg-white/10 border text-white placeholder:text-white/50 rounded-full px-5 py-3.5 focus:outline-none transition-colors disabled:opacity-50 ${
+                    className={`w-full bg-white/10 border text-white placeholder:text-white/50 px-5 py-3.5 focus:outline-none transition-colors disabled:opacity-50 ${
                       status === "error"
                         ? "border-red-400/50 focus:border-red-400"
                         : "border-white/20 focus:border-accent-light"
@@ -131,7 +131,7 @@ export default function Newsletter() {
                 <button
                   type="submit"
                   disabled={status === "loading" || !email.trim()}
-                  className="group inline-flex items-center justify-center gap-2 bg-accent hover:bg-accent-dark disabled:opacity-50 text-white font-medium px-7 py-3.5 rounded-full transition-all duration-300 btn-press"
+                  className="group inline-flex items-center justify-center gap-2 bg-accent hover:bg-accent-dark disabled:opacity-50 text-white font-medium px-7 py-3.5 transition-all duration-300 btn-press"
                 >
                   {status === "loading" ? (
                     <Loader2 size={16} className="animate-spin" />

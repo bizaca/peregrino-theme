@@ -94,12 +94,12 @@ export default function ShippingContent() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
-                className="relative bg-surface border border-border-light rounded-2xl p-6 text-center"
+                className="relative bg-surface border border-border-light p-6 text-center"
               >
                 <div className="absolute -top-3 left-1/2 -translate-x-1/2 w-7 h-7 rounded-full bg-accent text-white text-sm font-bold flex items-center justify-center">
                   {index + 1}
                 </div>
-                <div className="p-3 bg-accent-bg rounded-xl w-fit mx-auto mb-4 text-accent">
+                <div className="p-3 bg-accent-bg w-fit mx-auto mb-4 text-accent">
                   {step.icon}
                 </div>
                 <h3 className="font-heading text-lg font-semibold text-dark mb-2">
@@ -123,7 +123,7 @@ export default function ShippingContent() {
           <h2 className="font-heading text-2xl md:text-3xl font-bold text-dark mb-8 text-center">
             Zonas y Tarifas
           </h2>
-          <div role="table" aria-label="Tarifas de envío por zona" className="bg-surface border border-border-light rounded-2xl overflow-hidden">
+          <div role="table" aria-label="Tarifas de envío por zona" className="bg-surface border border-border-light overflow-hidden">
             <div role="rowgroup" className="hidden sm:block">
               <div role="row" className="grid grid-cols-4 gap-4 px-6 py-4 bg-base-warm border-b border-border-light text-sm font-medium text-dark">
                 <span role="columnheader">Zona</span>
@@ -168,8 +168,8 @@ export default function ShippingContent() {
           viewport={{ once: true }}
           className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-16"
         >
-          <div className="bg-accent-bg border border-accent/10 rounded-2xl p-6 md:p-8">
-            <div className="p-3 bg-accent/10 rounded-xl w-fit mb-4 text-accent">
+          <div className="bg-accent-bg border border-accent/10 p-6 md:p-8">
+            <div className="p-3 bg-accent/10 w-fit mb-4 text-accent">
               <Store size={24} />
             </div>
             <h2 className="font-heading text-xl font-semibold text-dark mb-3">
@@ -195,8 +195,8 @@ export default function ShippingContent() {
             </ul>
           </div>
 
-          <div className="bg-sage-bg border border-sage/10 rounded-2xl p-6 md:p-8">
-            <div className="p-3 bg-sage/10 rounded-xl w-fit mb-4 text-sage">
+          <div className="bg-sage-bg border border-sage/10 p-6 md:p-8">
+            <div className="p-3 bg-sage/10 w-fit mb-4 text-sage">
               <ShieldCheck size={24} />
             </div>
             <h2 className="font-heading text-xl font-semibold text-dark mb-3">
@@ -228,7 +228,7 @@ export default function ShippingContent() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center bg-base-warm rounded-2xl p-8 md:p-12 border border-border-light"
+          className="text-center bg-base-warm p-8 md:p-12 border border-border-light"
         >
           <h2 className="font-heading text-2xl font-semibold text-dark mb-3">
             ¿Listo para pedir?

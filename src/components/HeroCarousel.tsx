@@ -79,7 +79,7 @@ export default function HeroCarousel() {
   return (
     <section
       ref={sectionRef}
-      className="grain-overlay relative w-full h-[55vh] md:h-[70vh] lg:h-[80vh] overflow-hidden bg-dark-soft focus-visible:outline-none"
+      className="grain-overlay relative w-full h-[50vh] md:h-[60vh] lg:h-[70vh] overflow-hidden bg-dark-soft focus-visible:outline-none"
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
       onFocus={() => setIsPaused(true)}
@@ -162,7 +162,7 @@ export default function HeroCarousel() {
                 >
                   <Link
                     href={slide.href}
-                    className="group inline-flex items-center gap-3 bg-accent hover:bg-accent-dark text-white font-medium px-7 py-3.5 rounded-full tracking-wide transition-all duration-300 hover:shadow-lg btn-press"
+                    className="group inline-flex items-center gap-3 bg-accent hover:bg-accent-dark text-white font-medium px-7 py-3.5 tracking-wide transition-all duration-300 hover:shadow-lg btn-press"
                   >
                     {slide.cta}
                     <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
@@ -177,14 +177,14 @@ export default function HeroCarousel() {
       {/* Navigation arrows - hidden on small mobile, visible from sm up */}
       <button
         onClick={prev}
-        className="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 p-2.5 bg-white/10 hover:bg-white/20 active:scale-90 backdrop-blur-sm rounded-full text-white transition-all duration-300 z-10 hidden sm:flex items-center justify-center"
+        className="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 p-2.5 bg-white/10 hover:bg-white/20 active:scale-90 backdrop-blur-sm text-white transition-all duration-300 z-10 hidden sm:flex items-center justify-center"
         aria-label="Anterior"
       >
         <ChevronLeft size={20} />
       </button>
       <button
         onClick={next}
-        className="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 p-2.5 bg-white/10 hover:bg-white/20 active:scale-90 backdrop-blur-sm rounded-full text-white transition-all duration-300 z-10 hidden sm:flex items-center justify-center"
+        className="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 p-2.5 bg-white/10 hover:bg-white/20 active:scale-90 backdrop-blur-sm text-white transition-all duration-300 z-10 hidden sm:flex items-center justify-center"
         aria-label="Siguiente"
       >
         <ChevronRight size={20} />

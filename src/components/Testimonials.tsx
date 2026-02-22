@@ -43,10 +43,10 @@ const testimonials = [
 
 export default function Testimonials() {
   return (
-    <section className="py-16 md:py-24 bg-base">
+    <section className="py-12 md:py-16 bg-base">
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
         {/* Section header */}
-        <div className="text-center mb-12 md:mb-16">
+        <div className="text-center mb-8 md:mb-10">
           <motion.span
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -82,7 +82,7 @@ export default function Testimonials() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
-              className="relative bg-surface border border-border-light rounded-2xl p-6 md:p-8 hover:shadow-lg hover:shadow-accent/5 hover:-translate-y-0.5 transition-all duration-300"
+              className="relative bg-surface border border-border-light p-6 md:p-8 hover:shadow-lg hover:shadow-accent/5 hover:-translate-y-0.5 transition-all duration-300"
             >
               {/* Quote icon */}
               <Quote
@@ -121,7 +121,7 @@ export default function Testimonials() {
                     </p>
                   </div>
                 </div>
-                <span className="text-accent/60 text-xs font-medium bg-accent-bg px-2.5 py-1 rounded-full">
+                <span className="text-accent/60 text-xs font-medium bg-accent-bg px-2.5 py-1">
                   {testimonial.product}
                 </span>
               </figcaption>

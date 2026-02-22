@@ -39,11 +39,11 @@ export const heroSlides = [
   },
   {
     id: 3,
-    title: "Bolivia Caranavi",
-    subtitle: "Recién Llegado",
-    description: "Durazno, flores y acidez brillante. Una experiencia boliviana memorable.",
+    title: "Costa Rica Colibrí",
+    subtitle: "Honey Process",
+    description: "Miel, cítricos y almendra desde la legendaria región de Tarrazú.",
     cta: "Explorar",
-    href: "/products/bolivia-caranavi",
+    href: "/products/costa-rica-colibri",
     image: generatedImages.hero[2],
   },
   {

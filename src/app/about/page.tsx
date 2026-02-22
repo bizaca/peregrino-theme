@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "/about" },
   openGraph: {
     description:
-      "Tostadores de café de especialidad desde 2016. Trabajamos con productores de Perú, Colombia, Bolivia, Costa Rica y Brasil.",
+      "Tostadores de café de especialidad desde 2016. Trabajamos con productores de Perú, Colombia, Costa Rica y Brasil.",
   },
 };
 

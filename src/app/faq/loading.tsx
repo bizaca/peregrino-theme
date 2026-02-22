@@ -4,8 +4,8 @@ export default function FaqLoading() {
       {/* Hero skeleton */}
       <div className="bg-dark-soft py-16 md:py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 text-center">
-          <div className="h-10 w-72 mx-auto bg-white/10 rounded-lg animate-shimmer mb-4" />
-          <div className="h-5 w-80 mx-auto bg-white/10 rounded-lg animate-shimmer" />
+          <div className="h-10 w-72 mx-auto bg-white/10 animate-shimmer mb-4" />
+          <div className="h-5 w-80 mx-auto bg-white/10 animate-shimmer" />
         </div>
       </div>
 
@@ -20,7 +20,7 @@ export default function FaqLoading() {
         {/* FAQ items skeleton */}
         <div className="space-y-3">
           {Array.from({ length: 6 }).map((_, i) => (
-            <div key={i} className="bg-surface border border-border-light rounded-xl p-5">
+            <div key={i} className="bg-surface border border-border-light p-5">
               <div className="h-5 w-4/5 bg-base-warm rounded animate-shimmer" />
             </div>
           ))}

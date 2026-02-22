@@ -11,7 +11,7 @@ import Newsletter from "@/components/Newsletter";
 export const metadata: Metadata = {
   title: "Peregrino Coffee Roasters | Café de Especialidad",
   description:
-    "Tostadores de café de especialidad desde 2016. Granos frescos de Perú, Colombia, Bolivia, Costa Rica y Brasil. Envíos a todo Chile.",
+    "Tostadores de café de especialidad desde 2016. Granos frescos de Perú, Colombia, Costa Rica y Brasil. Envíos a todo Chile.",
   alternates: { canonical: "/" },
 };
 

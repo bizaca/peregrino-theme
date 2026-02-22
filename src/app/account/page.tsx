@@ -62,9 +62,9 @@ export default function AccountPage() {
                 initial={{ opacity: 0, y: 15 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.4 + index * 0.1 }}
-                className="flex gap-3 p-4 bg-surface border border-border-light rounded-xl"
+                className="flex gap-3 p-4 bg-surface border border-border-light"
               >
-                <div className="p-2 bg-accent-bg rounded-lg text-accent shrink-0 h-fit">
+                <div className="p-2 bg-accent-bg text-accent shrink-0 h-fit">
                   {feature.icon}
                 </div>
                 <div>
@@ -81,7 +81,7 @@ export default function AccountPage() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.7 }}
-          className="text-center bg-base-warm rounded-2xl p-8"
+          className="text-center bg-base-warm p-8"
         >
           <p className="text-text-secondary mb-4">
             Mientras tanto, explora nuestra selección de cafés de especialidad.

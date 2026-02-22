@@ -31,7 +31,7 @@ export default function AnnouncementBar() {
           transition={{ duration: 0.3, ease: "easeInOut" }}
           className="overflow-hidden"
         >
-          <div className="relative animate-gradient-shift text-base text-center py-2.5 px-8 text-sm font-medium tracking-wider">
+          <div className="relative animate-gradient-shift text-center py-px px-8 text-[11px] font-medium tracking-wider">
             <p className="text-base-warm">
               Todos los retiros en tienda reciben{" "}
               <span className="text-accent-light font-semibold">15% de descuento</span>{" "}
@@ -39,10 +39,10 @@ export default function AnnouncementBar() {
             </p>
             <button
               onClick={handleDismiss}
-              className="absolute right-1 top-1/2 -translate-y-1/2 p-3.5 text-text-tertiary hover:text-base-warm hover:bg-white/10 rounded-full transition-all"
+              className="absolute right-1 top-1/2 -translate-y-1/2 p-2 text-text-tertiary hover:text-base-warm hover:bg-white/10 transition-all"
               aria-label="Cerrar anuncio"
             >
-              <X size={16} />
+              <X size={14} />
             </button>
           </div>
         </motion.div>

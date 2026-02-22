@@ -86,9 +86,9 @@ export default function WholesaleContent() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
-                className="bg-surface border border-border-light rounded-2xl p-5 text-center hover:shadow-md hover:shadow-accent/5 hover:-translate-y-0.5 transition-all duration-300"
+                className="bg-surface border border-border-light p-5 text-center hover:shadow-md hover:shadow-accent/5 hover:-translate-y-0.5 transition-all duration-300"
               >
-                <div className="p-3 bg-accent-bg rounded-xl w-fit mx-auto mb-3 text-accent">
+                <div className="p-3 bg-accent-bg w-fit mx-auto mb-3 text-accent">
                   {aud.icon}
                 </div>
                 <h3 className="font-semibold text-dark mb-1">{aud.label}</h3>
@@ -116,9 +116,9 @@ export default function WholesaleContent() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
-                className="flex gap-4 bg-surface border border-border-light rounded-2xl p-6 hover:shadow-md hover:shadow-accent/5 hover:border-accent/20 hover:-translate-y-0.5 transition-all duration-300"
+                className="flex gap-4 bg-surface border border-border-light p-6 hover:shadow-md hover:shadow-accent/5 hover:border-accent/20 hover:-translate-y-0.5 transition-all duration-300"
               >
-                <div className="p-3 bg-accent-bg rounded-xl h-fit text-accent shrink-0">
+                <div className="p-3 bg-accent-bg h-fit text-accent shrink-0">
                   {benefit.icon}
                 </div>
                 <div>
@@ -144,7 +144,7 @@ export default function WholesaleContent() {
           <h2 className="font-heading text-2xl md:text-3xl font-bold text-dark mb-8 text-center">
             Precios por Volumen
           </h2>
-          <div role="table" aria-label="Precios por volumen" className="bg-surface border border-border-light rounded-2xl overflow-hidden">
+          <div role="table" aria-label="Precios por volumen" className="bg-surface border border-border-light overflow-hidden">
             <div role="rowgroup" className="hidden sm:block">
               <div role="row" className="grid grid-cols-3 gap-4 px-6 py-4 bg-dark-soft text-sm font-medium text-white">
                 <span role="columnheader">Volumen mensual</span>
@@ -194,7 +194,7 @@ export default function WholesaleContent() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center bg-dark-soft rounded-2xl p-8 md:p-12"
+          className="text-center bg-dark-soft p-8 md:p-12"
         >
           <MessageCircle size={32} className="text-accent-light mx-auto mb-4" />
           <h2 className="font-heading text-2xl font-semibold text-white mb-3">

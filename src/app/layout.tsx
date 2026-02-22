@@ -1,7 +1,7 @@
 import { Suspense } from "react";
 import dynamic from "next/dynamic";
 import type { Metadata, Viewport } from "next";
-import { Playfair_Display, Inter } from "next/font/google";
+import { Plus_Jakarta_Sans, Inter } from "next/font/google";
 import { CartProvider } from "@/context/CartContext";
 import AnnouncementBar from "@/components/AnnouncementBar";
 import Header from "@/components/Header";
@@ -14,7 +14,7 @@ const WhatsAppButton = dynamic(() => import("@/components/WhatsAppButton"));
 const BackToTop = dynamic(() => import("@/components/BackToTop"));
 const ScrollToTop = dynamic(() => import("@/components/ScrollToTop"));
 
-const playfair = Playfair_Display({
+const plusJakarta = Plus_Jakarta_Sans({
   variable: "--font-heading",
   subsets: ["latin"],
   display: "swap",
@@ -40,7 +40,7 @@ export const metadata: Metadata = {
     template: "%s | Peregrino Coffee",
   },
   description:
-    "Tostadores de café de especialidad desde 2016. Granos frescos de Perú, Colombia, Bolivia, Costa Rica y Brasil. Envíos a todo Chile.",
+    "Tostadores de café de especialidad desde 2016. Granos frescos de Perú, Colombia, Costa Rica y Brasil. Envíos a todo Chile.",
   keywords: [
     "café especialidad",
     "coffee roasters",
@@ -53,7 +53,7 @@ export const metadata: Metadata = {
     locale: "es_CL",
     siteName: "Peregrino Coffee Roasters",
     description:
-      "Tostadores de café de especialidad desde 2016. Granos frescos de Perú, Colombia, Bolivia, Costa Rica y Brasil.",
+      "Tostadores de café de especialidad desde 2016. Granos frescos de Perú, Colombia, Costa Rica y Brasil.",
   },
   twitter: {
     card: "summary_large_image",
@@ -68,7 +68,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="es" className={`${playfair.variable} ${inter.variable}`}>
+    <html lang="es" className={`${plusJakarta.variable} ${inter.variable}`}>
       <head>
         <link rel="preconnect" href="https://v3b.fal.media" />
         <link rel="dns-prefetch" href="https://v3b.fal.media" />
@@ -77,7 +77,7 @@ export default function RootLayout({
         <CartProvider>
           <a
             href="#main-content"
-            className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[100] focus:bg-accent focus:text-white focus:px-4 focus:py-2 focus:rounded-full focus:text-sm focus:font-medium"
+            className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[100] focus:bg-accent focus:text-white focus:px-4 focus:py-2 focus:text-sm focus:font-medium"
           >
             Saltar al contenido
           </a>

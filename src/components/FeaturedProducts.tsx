@@ -19,10 +19,13 @@ export default function FeaturedProducts() {
     });
   };
 
-  const featuredProducts = products.filter((p) => p.featured);
+  const categoryOrder: Record<string, number> = { granos: 0, capsulas: 1, infusiones: 2, packs: 3, accesorios: 4 };
+  const featuredProducts = products
+    .filter((p) => p.featured)
+    .sort((a, b) => (categoryOrder[a.category] ?? 9) - (categoryOrder[b.category] ?? 9));
 
   return (
-    <section className="py-16 md:py-24 bg-base-warm">
+    <section className="py-12 md:py-16 bg-base-warm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
         {/* Section header */}
         <div className="flex items-end justify-between mb-12">
@@ -65,14 +68,14 @@ export default function FeaturedProducts() {
             <div className="flex items-center gap-2">
               <button
                 onClick={() => scroll("left")}
-                className="p-2 border border-border hover:border-accent rounded-full text-dark-muted hover:text-accent active:scale-90 transition-all"
+                className="p-2 border border-border hover:border-accent text-dark-muted hover:text-accent active:scale-90 transition-all"
                 aria-label="Anterior"
               >
                 <ChevronLeft size={18} />
               </button>
               <button
                 onClick={() => scroll("right")}
-                className="p-2 border border-border hover:border-accent rounded-full text-dark-muted hover:text-accent active:scale-90 transition-all"
+                className="p-2 border border-border hover:border-accent text-dark-muted hover:text-accent active:scale-90 transition-all"
                 aria-label="Siguiente"
               >
                 <ChevronRight size={18} />
@@ -82,11 +85,7 @@ export default function FeaturedProducts() {
         </div>
 
         {/* Product carousel */}
-        <div className="relative">
-          {/* Scroll fade indicators */}
-          <div className="hidden md:block absolute left-0 top-0 bottom-4 w-8 bg-gradient-to-r from-base-warm to-transparent z-10 pointer-events-none" />
-          <div className="hidden md:block absolute right-0 top-0 bottom-4 w-8 bg-gradient-to-l from-base-warm to-transparent z-10 pointer-events-none" />
-
+        <div className="relative overflow-hidden">
           <div
             ref={scrollRef}
             role="region"
@@ -96,13 +95,10 @@ export default function FeaturedProducts() {
               if (e.key === "ArrowLeft") scroll("left");
               if (e.key === "ArrowRight") scroll("right");
             }}
-            className="flex gap-4 md:gap-6 overflow-x-auto scrollbar-hide pb-4 -mx-4 px-4 snap-x snap-mandatory focus:outline-none focus-visible:ring-2 focus-visible:ring-accent/30 rounded-xl"
+            className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 pb-4 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent/30"
           >
-            {featuredProducts.map((product, index) => (
-              <div
-                key={product.id}
-                className="flex-shrink-0 w-[260px] md:w-[290px] snap-start"
-              >
+            {featuredProducts.slice(0, 4).map((product, index) => (
+              <div key={product.id}>
                 <ProductCard product={product} index={index} />
               </div>
             ))}
@@ -113,7 +109,7 @@ export default function FeaturedProducts() {
         <div className="flex md:hidden justify-center mt-8">
           <Link
             href="/products"
-            className="group flex items-center gap-2 text-sm text-accent font-medium border border-accent rounded-full px-6 py-3 hover:bg-accent hover:text-white transition-all btn-press"
+            className="group flex items-center gap-2 text-sm text-accent font-medium border border-accent px-6 py-3 hover:bg-accent hover:text-white transition-all btn-press"
           >
             Ver todos los productos
             <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />

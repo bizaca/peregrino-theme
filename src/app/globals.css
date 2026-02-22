@@ -1,12 +1,12 @@
 @import "tailwindcss";
 
 @theme inline {
-  /* Hipster-modern palette with elegant undertones */
-  --color-base: #FAFAF8;
-  --color-base-warm: #F3F0EB;
-  --color-base-dark: #E8E4DE;
+  /* Clean white palette */
+  --color-base: #FFFFFF;
+  --color-base-warm: #F5F5F5;
+  --color-base-dark: #E5E5E5;
   --color-surface: #FFFFFF;
-  --color-surface-hover: #F7F5F2;
+  --color-surface-hover: #F5F5F5;
 
   /* Dark tones */
   --color-dark: #1A1A1A;
@@ -19,20 +19,20 @@
   --color-accent: #FFCB0D;
   --color-accent-light: #FFD94E;
   --color-accent-dark: #CC9E00;
-  --color-accent-bg: #FFFBEB;
+  --color-accent-bg: #FFFFFF;
 
   /* Secondary — sage green (earthy modern) */
   --color-sage: #6B705C;
   --color-sage-light: #8A8F7C;
-  --color-sage-bg: #F2F3EF;
+  --color-sage-bg: #F5F5F5;
 
   /* Functional */
   --color-accent-red: #C53030;
-  --color-border: #E2DDD6;
-  --color-border-light: #EDE9E3;
+  --color-border: #E0E0E0;
+  --color-border-light: #EBEBEB;
 
   /* Typography */
-  --font-heading: "Playfair Display", Georgia, serif;
+  --font-heading: "Plus Jakarta Sans", system-ui, sans-serif;
   --font-body: "Inter", system-ui, sans-serif;
 }
 
@@ -117,17 +117,7 @@ body {
   outline-offset: 2px;
 }
 
-/* Rounded focus ring for pill-shaped buttons */
-.rounded-full:focus-visible,
-[class*="rounded-full"]:focus-visible {
-  border-radius: 9999px;
-}
-
-/* Rounded focus ring for cards */
-.rounded-2xl:focus-visible,
-[class*="rounded-2xl"]:focus-visible {
-  border-radius: 1rem;
-}
+/* Focus ring for buttons and cards */
 
 /* Grain texture overlay — hipster/film effect */
 .grain-overlay::after {

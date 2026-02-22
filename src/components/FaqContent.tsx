@@ -66,7 +66,7 @@ const faqCategories: FaqCategory[] = [
       {
         question: "¿De dónde provienen sus cafés?",
         answer:
-          "Trabajamos directamente con productores en Perú, Colombia, Bolivia, Costa Rica y Brasil. Cada origen tiene características únicas: desde los cafés frutales de Colombia hasta los chocolatosos de Brasil y los florales de Bolivia.",
+          "Trabajamos directamente con productores en Perú, Colombia, Costa Rica y Brasil. Cada origen tiene características únicas: desde los cafés frutales de Colombia hasta los chocolatosos de Brasil y los cítricos de Costa Rica.",
       },
     ],
   },
@@ -130,7 +130,7 @@ function FaqAccordionItem({ item, isOpen, onToggle, id }: { item: FaqItem; isOpe
     <div className="border-b border-border-light last:border-b-0">
       <button
         onClick={onToggle}
-        className="w-full flex items-center justify-between gap-4 py-5 px-2 -mx-2 text-left group hover:bg-accent-bg/30 rounded-lg transition-colors"
+        className="w-full flex items-center justify-between gap-4 py-5 px-2 -mx-2 text-left group hover:bg-accent-bg/30 transition-colors"
         aria-expanded={isOpen}
         aria-controls={`faq-panel-${id}`}
         id={`faq-trigger-${id}`}
@@ -197,7 +197,7 @@ export default function FaqContent() {
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            className="inline-flex items-center gap-2 bg-white/10 rounded-full px-4 py-1.5 mb-6"
+            className="inline-flex items-center gap-2 bg-white/10 px-4 py-1.5 mb-6"
           >
             <HelpCircle size={14} className="text-accent-light" />
             <span className="text-white/60 text-sm">Centro de ayuda</span>
@@ -234,7 +234,7 @@ export default function FaqContent() {
             >
               {/* Category header */}
               <div className="flex items-center gap-3 mb-4">
-                <div className="p-2 bg-accent-bg rounded-lg text-accent">
+                <div className="p-2 bg-accent-bg text-accent">
                   {category.icon}
                 </div>
                 <h2 className="font-heading text-xl font-semibold text-dark">
@@ -243,7 +243,7 @@ export default function FaqContent() {
               </div>
 
               {/* Questions */}
-              <div className="bg-surface border border-border-light rounded-2xl px-6">
+              <div className="bg-surface border border-border-light px-6">
                 {category.items.map((item, itemIndex) => {
                   const key = `${catIndex}-${itemIndex}`;
                   return (
@@ -266,7 +266,7 @@ export default function FaqContent() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mt-16 text-center bg-base-warm rounded-2xl p-8 md:p-12 border border-border-light"
+          className="mt-16 text-center bg-base-warm p-8 md:p-12 border border-border-light"
         >
           <h3 className="font-heading text-2xl font-semibold text-dark mb-3">
             ¿No encontraste lo que buscabas?
@@ -278,7 +278,7 @@ export default function FaqContent() {
             href={`https://wa.me/${siteConfig.contact.whatsapp}?text=${encodeURIComponent("Hola, tengo una consulta sobre sus productos")}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 bg-accent hover:bg-accent-dark text-white font-medium px-7 py-3.5 rounded-full transition-all duration-300 btn-press"
+            className="inline-flex items-center gap-2 bg-accent hover:bg-accent-dark text-white font-medium px-7 py-3.5 transition-all duration-300 btn-press"
           >
             Contactar por WhatsApp
           </a>

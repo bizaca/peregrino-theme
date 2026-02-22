@@ -52,65 +52,6 @@ const brewGuides = [
   { method: "AeroPress", ratio: "1:15", grind: "Media", time: "1:30 - 2:00 min", temp: "85-92°C" },
 ];
 
-// ── AccordionSection subcomponent ──
-
-function AccordionSection({
-  title,
-  defaultOpen = false,
-  children,
-}: {
-  title: string;
-  defaultOpen?: boolean;
-  children: React.ReactNode;
-}) {
-  const [isOpen, setIsOpen] = useState(defaultOpen);
-
-  return (
-    <div className="border-b border-border-light last:border-b-0">
-      <button
-        onClick={() => setIsOpen(!isOpen)}
-        className="w-full flex items-center justify-between gap-4 py-4 text-left group"
-        aria-expanded={isOpen}
-      >
-        <span
-          className={cn(
-            "font-heading text-base font-semibold transition-colors",
-            isOpen ? "text-dark" : "text-dark group-hover:text-accent"
-          )}
-        >
-          {title}
-        </span>
-        <motion.div
-          animate={{ rotate: isOpen ? 180 : 0 }}
-          transition={{ duration: 0.2 }}
-          className="shrink-0"
-        >
-          <ChevronDown
-            size={18}
-            className={cn(
-              "transition-colors",
-              isOpen ? "text-accent" : "text-text-tertiary"
-            )}
-          />
-        </motion.div>
-      </button>
-      <AnimatePresence initial={false}>
-        {isOpen && (
-          <motion.div
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: "auto", opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.25, ease: "easeInOut" }}
-            className="overflow-hidden"
-          >
-            <div className="pb-5">{children}</div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </div>
-  );
-}
-
 // ── Main component ──
 
 interface ProductDetailProps {
@@ -192,7 +133,7 @@ export default function ProductDetail({ product }: ProductDetailProps) {
             transition={{ duration: 0.5 }}
             className="sticky top-28 self-start"
           >
-            <div className="relative aspect-[4/5] max-w-[500px] mx-auto rounded-2xl overflow-hidden bg-base-warm shadow-lg shadow-dark/5">
+            <div className="relative aspect-[4/5] max-w-[500px] mx-auto overflow-hidden bg-base-warm shadow-lg shadow-dark/5">
               <Image
                 src={product.image}
                 alt={product.name}
@@ -204,7 +145,7 @@ export default function ProductDetail({ product }: ProductDetailProps) {
                 blurDataURL="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAwIiBoZWlnaHQ9IjYwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjRjNGMEVCIi8+PC9zdmc+"
               />
               {product.badge && (
-                <div className="absolute top-4 left-4 bg-accent text-white text-sm font-semibold px-4 py-1.5 rounded-full">
+                <div className="absolute top-4 left-4 bg-accent text-white text-sm font-semibold px-4 py-1.5">
                   {product.badge}
                 </div>
               )}
@@ -220,7 +161,7 @@ export default function ProductDetail({ product }: ProductDetailProps) {
             {/* 1. Header — SCA badge + stars, name, origin */}
             <div className="flex items-center gap-3 mb-3 flex-wrap">
               {product.cupScore && (
-                <div className="flex items-center gap-1.5 bg-sage-bg text-sage px-3 py-1 rounded-full">
+                <div className="flex items-center gap-1.5 bg-sage-bg text-sage px-3 py-1">
                   <Award size={14} />
                   <span className="text-sm font-semibold">
                     SCA {product.cupScore}
@@ -264,7 +205,7 @@ export default function ProductDetail({ product }: ProductDetailProps) {
                 <p className="text-xs font-medium text-text-tertiary uppercase tracking-widest mb-3">
                   Origen
                 </p>
-                <div className="flex justify-center py-3 bg-base-warm rounded-2xl text-text-tertiary">
+                <div className="flex justify-center py-3 bg-base-warm text-text-tertiary">
                   <CountrySilhouette country={product.origin} />
                 </div>
               </div>
@@ -282,7 +223,7 @@ export default function ProductDetail({ product }: ProductDetailProps) {
                     return (
                       <span
                         key={note.label}
-                        className="inline-flex items-center gap-1.5 bg-accent-bg border border-accent/20 text-accent-dark text-sm font-medium px-3 py-1.5 rounded-full"
+                        className="inline-flex items-center gap-1.5 bg-accent-bg border border-accent/20 text-accent-dark text-sm font-medium px-3 py-1.5"
                       >
                         <Icon size={14} className="shrink-0" />
                         {note.label}
@@ -304,7 +245,7 @@ export default function ProductDetail({ product }: ProductDetailProps) {
                     <div
                       key={r.level}
                       className={cn(
-                        "flex-1 h-2.5 rounded-full transition-colors",
+                        "flex-1 h-2.5 transition-colors",
                         r.level <= product.roastLevel!
                           ? "bg-dark"
                           : "bg-border-light"
@@ -347,7 +288,7 @@ export default function ProductDetail({ product }: ProductDetailProps) {
                     id="size-select"
                     value={selectedVariant}
                     onChange={(e) => setSelectedVariant(Number(e.target.value))}
-                    className="w-full appearance-none bg-surface border border-border rounded-xl px-4 py-3 pr-10 text-dark font-medium text-sm focus:outline-none focus:ring-2 focus:ring-accent/30 focus:border-accent transition-colors cursor-pointer"
+                    className="w-full appearance-none bg-surface border border-border px-4 py-3 pr-10 text-dark font-medium text-sm focus:outline-none focus:ring-2 focus:ring-accent/30 focus:border-accent transition-colors cursor-pointer"
                   >
                     {product.variants.map((v, i) => (
                       <option key={v.size} value={i}>
@@ -377,7 +318,7 @@ export default function ProductDetail({ product }: ProductDetailProps) {
                     id="grind-select"
                     value={selectedGrind}
                     onChange={(e) => setSelectedGrind(Number(e.target.value))}
-                    className="w-full appearance-none bg-surface border border-border rounded-xl px-4 py-3 pr-10 text-dark font-medium text-sm focus:outline-none focus:ring-2 focus:ring-accent/30 focus:border-accent transition-colors cursor-pointer"
+                    className="w-full appearance-none bg-surface border border-border px-4 py-3 pr-10 text-dark font-medium text-sm focus:outline-none focus:ring-2 focus:ring-accent/30 focus:border-accent transition-colors cursor-pointer"
                   >
                     {product.grindOptions.map((g, i) => (
                       <option key={g} value={i}>
@@ -403,7 +344,7 @@ export default function ProductDetail({ product }: ProductDetailProps) {
                   <span className="text-text-tertiary text-xl line-through">
                     {formatPrice(variant.originalPrice!)}
                   </span>
-                  <span className="bg-accent-red/10 text-accent-red text-sm font-semibold px-2.5 py-0.5 rounded-full">
+                  <span className="bg-accent-red/10 text-accent-red text-sm font-semibold px-2.5 py-0.5">
                     -
                     {getDiscountPercentage(
                       variant.price,
@@ -416,9 +357,9 @@ export default function ProductDetail({ product }: ProductDetailProps) {
             </div>
 
             {/* 7. Quantity + Add to Cart */}
-            <div className="bg-base-warm rounded-2xl p-4 mb-8">
+            <div className="bg-base-warm p-4 mb-8">
               <div className="flex items-center gap-4">
-                <div className="flex items-center gap-1 bg-surface rounded-full border border-border px-1">
+                <div className="flex items-center gap-1 bg-surface border border-border px-1">
                   <button
                     onClick={() => setQuantity(Math.max(1, quantity - 1))}
                     className="p-3 text-text-secondary hover:text-dark transition-colors"
@@ -446,7 +387,7 @@ export default function ProductDetail({ product }: ProductDetailProps) {
                 <button
                   onClick={handleAddToCart}
                   className={cn(
-                    "flex-1 flex items-center justify-center gap-2 text-white font-medium py-3.5 rounded-full transition-all duration-300 btn-press",
+                    "flex-1 flex items-center justify-center gap-2 text-white font-medium py-3.5 transition-all duration-300 btn-press",
                     addedToCart
                       ? "bg-sage"
                       : "bg-accent hover:bg-accent-dark hover:shadow-lg"
@@ -503,7 +444,7 @@ export default function ProductDetail({ product }: ProductDetailProps) {
                     Detalles del Origen
                   </h2>
                   <div className="grid grid-cols-2 gap-3">
-                    <div className="flex items-start gap-3 p-3 bg-base-warm rounded-xl">
+                    <div className="flex items-start gap-3 p-3 bg-base-warm">
                       <MapPin
                         size={18}
                         className="text-accent mt-0.5 shrink-0"
@@ -517,7 +458,7 @@ export default function ProductDetail({ product }: ProductDetailProps) {
                         </div>
                       </div>
                     </div>
-                    <div className="flex items-start gap-3 p-3 bg-base-warm rounded-xl">
+                    <div className="flex items-start gap-3 p-3 bg-base-warm">
                       <Mountain
                         size={18}
                         className="text-accent mt-0.5 shrink-0"
@@ -531,7 +472,7 @@ export default function ProductDetail({ product }: ProductDetailProps) {
                         </div>
                       </div>
                     </div>
-                    <div className="flex items-start gap-3 p-3 bg-base-warm rounded-xl">
+                    <div className="flex items-start gap-3 p-3 bg-base-warm">
                       <Droplets
                         size={18}
                         className="text-accent mt-0.5 shrink-0"
@@ -545,7 +486,7 @@ export default function ProductDetail({ product }: ProductDetailProps) {
                         </div>
                       </div>
                     </div>
-                    <div className="flex items-start gap-3 p-3 bg-base-warm rounded-xl">
+                    <div className="flex items-start gap-3 p-3 bg-base-warm">
                       <Leaf
                         size={18}
                         className="text-accent mt-0.5 shrink-0"
@@ -560,7 +501,7 @@ export default function ProductDetail({ product }: ProductDetailProps) {
                       </div>
                     </div>
                     {product.acidity && (
-                      <div className="flex items-start gap-3 p-3 bg-base-warm rounded-xl">
+                      <div className="flex items-start gap-3 p-3 bg-base-warm">
                         <Sparkles
                           size={18}
                           className="text-accent mt-0.5 shrink-0"
@@ -589,7 +530,7 @@ export default function ProductDetail({ product }: ProductDetailProps) {
                     {brewGuides.map((guide) => (
                       <div
                         key={guide.method}
-                        className="p-3 bg-base-warm rounded-xl"
+                        className="p-3 bg-base-warm"
                       >
                         <div className="flex items-center gap-2 mb-2">
                           <Coffee size={14} className="text-accent" />
@@ -638,7 +579,7 @@ export default function ProductDetail({ product }: ProductDetailProps) {
                 href={`https://wa.me/?text=${encodeURIComponent(`${product.name} - Café de especialidad de ${product.origin} ☕ ${siteConfig.url}/products/${product.slug}`)}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-2 bg-base-warm hover:bg-accent-bg text-text-secondary hover:text-accent rounded-full transition-all"
+                className="p-2 bg-base-warm hover:bg-accent-bg text-text-secondary hover:text-accent transition-all"
                 aria-label="Compartir por WhatsApp"
               >
                 <svg viewBox="0 0 24 24" className="w-4 h-4 fill-current">
@@ -654,7 +595,7 @@ export default function ProductDetail({ product }: ProductDetailProps) {
                   setTimeout(() => setLinkCopied(false), 2000);
                 }}
                 className={cn(
-                  "p-2 rounded-full transition-all",
+                  "p-2 transition-all",
                   linkCopied
                     ? "bg-sage-bg text-sage"
                     : "bg-base-warm hover:bg-accent-bg text-text-secondary hover:text-accent"
@@ -700,7 +641,7 @@ export default function ProductDetail({ product }: ProductDetailProps) {
           <button
             onClick={handleAddToCart}
             className={cn(
-              "flex items-center gap-2 text-white font-medium px-5 py-3 rounded-full transition-all duration-300 shrink-0",
+              "flex items-center gap-2 text-white font-medium px-5 py-3 transition-all duration-300 shrink-0",
               addedToCart ? "bg-sage" : "bg-accent hover:bg-accent-dark"
             )}
           >

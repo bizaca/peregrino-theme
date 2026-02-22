@@ -5,12 +5,16 @@ import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { motion } from "motion/react";
 import { Search, SlidersHorizontal, Tag, ArrowUpDown } from "lucide-react";
-import { products, type ProductCategory } from "@/data/products";
+import { products, formatPrice, type ProductCategory } from "@/data/products";
 import ProductCard from "@/components/ProductCard";
 import { cn } from "@/lib/utils";
 
-const origins = ["Todos", ...new Set(products.map((p) => p.origin))];
-const processes = ["Todos", ...new Set(products.map((p) => p.process))];
+const origins = ["Todos", ...new Set(products.filter((p) => p.origin).map((p) => p.origin))];
+const processes = ["Todos", ...new Set(products.filter((p) => p.process).map((p) => p.process))];
+
+const allPrices = products.map((p) => p.variants[0].price);
+const globalMinPrice = Math.min(...allPrices);
+const globalMaxPrice = Math.max(...allPrices);
 
 const categoryLabels: Record<ProductCategory, string> = {
   granos: "Granos",
@@ -19,6 +23,8 @@ const categoryLabels: Record<ProductCategory, string> = {
   infusiones: "Infusiones",
   capsulas: "Cápsulas",
 };
+
+const categoryOrder: ProductCategory[] = ["granos", "packs", "infusiones", "accesorios"];
 
 type SortOption = "featured" | "price-asc" | "price-desc" | "name" | "rating";
 const sortLabels: Record<SortOption, string> = {
@@ -37,8 +43,13 @@ export default function ProductsContent() {
   const [search, setSearch] = useState("");
   const [selectedOrigin, setSelectedOrigin] = useState("Todos");
   const [selectedProcess, setSelectedProcess] = useState("Todos");
+  const [selectedCategory, setSelectedCategory] = useState<string>("Todos");
+  const [minPrice, setMinPrice] = useState(globalMinPrice);
+  const [maxPrice, setMaxPrice] = useState(globalMaxPrice);
   const [showFilters, setShowFilters] = useState(false);
   const [sortBy, setSortBy] = useState<SortOption>("featured");
+
+  const activeCategory = urlCategory || (selectedCategory !== "Todos" ? selectedCategory as ProductCategory : null);
 
   const filteredProducts = useMemo(() => {
     const filtered = products.filter((p) => {
@@ -50,12 +61,14 @@ export default function ProductsContent() {
         selectedOrigin === "Todos" || p.origin === selectedOrigin;
       const matchesProcess =
         selectedProcess === "Todos" || p.process === selectedProcess;
-      const matchesCategory = !urlCategory || p.category === urlCategory;
+      const matchesCategory = !activeCategory || p.category === activeCategory;
       const matchesFilter =
         !urlFilter ||
         (urlFilter === "offers" &&
           p.variants.some((v) => v.originalPrice && v.originalPrice > v.price));
-      return matchesSearch && matchesOrigin && matchesProcess && matchesCategory && matchesFilter;
+      const matchesPrice =
+        p.variants[0].price >= minPrice && p.variants[0].price <= maxPrice;
+      return matchesSearch && matchesOrigin && matchesProcess && matchesCategory && matchesFilter && matchesPrice;
     });
 
     return [...filtered].sort((a, b) => {
@@ -72,17 +85,17 @@ export default function ProductsContent() {
           return 0;
       }
     });
-  }, [search, selectedOrigin, selectedProcess, urlCategory, urlFilter, sortBy]);
+  }, [search, selectedOrigin, selectedProcess, activeCategory, urlFilter, sortBy, minPrice, maxPrice]);
 
   return (
     <div className="min-h-screen bg-base">
       {/* Hero banner */}
-      <div className="bg-dark-soft py-16 md:py-24">
+      <div className="bg-dark-soft py-8 md:py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 text-center">
           <motion.h1
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            className="font-heading text-4xl md:text-6xl font-bold text-white mb-4"
+            className="font-heading text-2xl md:text-3xl font-bold text-white mb-1"
           >
             {urlFilter === "offers"
               ? "Ofertas"
@@ -91,10 +104,10 @@ export default function ProductsContent() {
                 : "Nuestra Selección"}
           </motion.h1>
           <motion.p
-            initial={{ opacity: 0, y: 15 }}
+            initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className="text-white/60 text-lg max-w-lg mx-auto"
+            className="text-white/60 text-sm max-w-lg mx-auto"
           >
             {urlFilter === "offers"
               ? "Aprovecha nuestras promociones y descuentos especiales en café de especialidad"
@@ -140,7 +153,7 @@ export default function ProductsContent() {
               onChange={(e) => setSearch(e.target.value)}
               placeholder="Buscar por nombre, origen o notas..."
               aria-label="Buscar productos"
-              className="w-full bg-surface border border-border rounded-full pl-11 pr-4 py-3 text-dark placeholder:text-text-tertiary focus:outline-none input-focus text-sm"
+              className="w-full bg-surface border border-border pl-11 pr-4 py-3 text-dark placeholder:text-text-tertiary focus:outline-none input-focus text-sm"
             />
           </div>
 
@@ -150,7 +163,7 @@ export default function ProductsContent() {
               value={sortBy}
               onChange={(e) => setSortBy(e.target.value as SortOption)}
               aria-label="Ordenar productos"
-              className="appearance-none bg-surface border border-border rounded-full pl-10 pr-8 py-3 text-sm text-dark-muted font-medium cursor-pointer focus:outline-none input-focus"
+              className="appearance-none bg-surface border border-border pl-10 pr-8 py-3 text-sm text-dark-muted font-medium cursor-pointer focus:outline-none input-focus"
             >
               {Object.entries(sortLabels).map(([value, label]) => (
                 <option key={value} value={value}>
@@ -170,7 +183,7 @@ export default function ProductsContent() {
             aria-expanded={showFilters}
             aria-label="Mostrar filtros de producto"
             className={cn(
-              "flex items-center gap-2 px-5 py-3 rounded-full border text-sm font-medium transition-all",
+              "flex items-center gap-2 px-5 py-3 border text-sm font-medium transition-all",
               showFilters
                 ? "bg-accent text-white border-accent"
                 : "bg-surface text-dark-muted border-border hover:border-accent"
@@ -187,9 +200,47 @@ export default function ProductsContent() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="mb-8 p-6 bg-surface border border-border-light rounded-2xl"
+            className="mb-8 p-6 bg-surface border border-border-light"
           >
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+              {/* Category filter (only when no URL category) */}
+              {!urlCategory && (
+                <div>
+                  <label className="text-sm font-medium text-dark mb-2 block">
+                    Categoría
+                  </label>
+                  <div className="flex flex-wrap gap-2" role="group" aria-label="Filtrar por categoría">
+                    <button
+                      onClick={() => setSelectedCategory("Todos")}
+                      aria-pressed={selectedCategory === "Todos"}
+                      className={cn(
+                        "px-3 py-1.5 text-sm transition-all",
+                        selectedCategory === "Todos"
+                          ? "bg-accent text-white"
+                          : "bg-base-warm text-text-secondary hover:text-dark"
+                      )}
+                    >
+                      Todos
+                    </button>
+                    {categoryOrder.map((cat) => (
+                      <button
+                        key={cat}
+                        onClick={() => setSelectedCategory(cat)}
+                        aria-pressed={selectedCategory === cat}
+                        className={cn(
+                          "px-3 py-1.5 text-sm transition-all",
+                          selectedCategory === cat
+                            ? "bg-accent text-white"
+                            : "bg-base-warm text-text-secondary hover:text-dark"
+                        )}
+                      >
+                        {categoryLabels[cat]}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              )}
+
               <div>
                 <label className="text-sm font-medium text-dark mb-2 block">
                   Origen
@@ -201,7 +252,7 @@ export default function ProductsContent() {
                       onClick={() => setSelectedOrigin(origin)}
                       aria-pressed={selectedOrigin === origin}
                       className={cn(
-                        "px-3 py-1.5 rounded-full text-sm transition-all",
+                        "px-3 py-1.5 text-sm transition-all",
                         selectedOrigin === origin
                           ? "bg-accent text-white"
                           : "bg-base-warm text-text-secondary hover:text-dark"
@@ -223,7 +274,7 @@ export default function ProductsContent() {
                       onClick={() => setSelectedProcess(process)}
                       aria-pressed={selectedProcess === process}
                       className={cn(
-                        "px-3 py-1.5 rounded-full text-sm transition-all",
+                        "px-3 py-1.5 text-sm transition-all",
                         selectedProcess === process
                           ? "bg-accent text-white"
                           : "bg-base-warm text-text-secondary hover:text-dark"
@@ -234,6 +285,62 @@ export default function ProductsContent() {
                   ))}
                 </div>
               </div>
+
+              {/* Price range filter */}
+              <div>
+                <label className="text-sm font-medium text-dark mb-2 block">
+                  Rango de precio
+                </label>
+                <div className="space-y-3">
+                  <div className="flex items-center gap-2">
+                    <div className="relative flex-1">
+                      <span className="absolute left-3 top-1/2 -translate-y-1/2 text-text-tertiary text-xs">$</span>
+                      <input
+                        type="number"
+                        value={minPrice}
+                        onChange={(e) => setMinPrice(Number(e.target.value) || 0)}
+                        min={globalMinPrice}
+                        max={maxPrice}
+                        className="w-full bg-base-warm border border-border-light pl-7 pr-2 py-2 text-sm text-dark focus:outline-none input-focus"
+                        aria-label="Precio mínimo"
+                      />
+                    </div>
+                    <span className="text-text-tertiary text-sm">—</span>
+                    <div className="relative flex-1">
+                      <span className="absolute left-3 top-1/2 -translate-y-1/2 text-text-tertiary text-xs">$</span>
+                      <input
+                        type="number"
+                        value={maxPrice}
+                        onChange={(e) => setMaxPrice(Number(e.target.value) || globalMaxPrice)}
+                        min={minPrice}
+                        max={globalMaxPrice}
+                        className="w-full bg-base-warm border border-border-light pl-7 pr-2 py-2 text-sm text-dark focus:outline-none input-focus"
+                        aria-label="Precio máximo"
+                      />
+                    </div>
+                  </div>
+                  <p className="text-xs text-text-tertiary">
+                    {formatPrice(minPrice)} — {formatPrice(maxPrice)}
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Reset filters button */}
+            <div className="mt-4 pt-4 border-t border-border-light flex justify-end">
+              <button
+                onClick={() => {
+                  setSelectedCategory("Todos");
+                  setSelectedOrigin("Todos");
+                  setSelectedProcess("Todos");
+                  setMinPrice(globalMinPrice);
+                  setMaxPrice(globalMaxPrice);
+                  setSearch("");
+                }}
+                className="text-sm text-accent hover:text-accent-dark font-medium transition-colors"
+              >
+                Limpiar todos los filtros
+              </button>
             </div>
           </motion.div>
         )}
@@ -255,7 +362,7 @@ export default function ProductsContent() {
         {/* Empty state */}
         {filteredProducts.length === 0 && (
           <div className="text-center py-20">
-            <div className="w-16 h-16 rounded-full bg-base-warm flex items-center justify-center mx-auto mb-5">
+            <div className="w-16 h-16 bg-base-warm flex items-center justify-center mx-auto mb-5">
               <Search size={28} className="text-text-tertiary" />
             </div>
             <p className="font-heading text-xl font-semibold text-dark mb-2">

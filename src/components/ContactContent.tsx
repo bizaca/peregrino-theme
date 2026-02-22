@@ -70,7 +70,7 @@ export default function ContactContent() {
                   rel="noopener noreferrer"
                   className="flex items-start gap-4 group"
                 >
-                  <div className="p-2.5 bg-[#25D366]/10 rounded-xl text-[#25D366] shrink-0 group-hover:bg-[#25D366]/20 transition-colors">
+                  <div className="p-2.5 bg-[#25D366]/10 text-[#25D366] shrink-0 group-hover:bg-[#25D366]/20 transition-colors">
                     <MessageCircle size={20} />
                   </div>
                   <div>
@@ -81,7 +81,7 @@ export default function ContactContent() {
                 </a>
 
                 <a href={`mailto:${siteConfig.contact.email}`} className="flex items-start gap-4 group">
-                  <div className="p-2.5 bg-accent-bg rounded-xl text-accent shrink-0 group-hover:bg-accent/10 transition-colors">
+                  <div className="p-2.5 bg-accent-bg text-accent shrink-0 group-hover:bg-accent/10 transition-colors">
                     <Mail size={20} />
                   </div>
                   <div>
@@ -91,7 +91,7 @@ export default function ContactContent() {
                 </a>
 
                 <div className="flex items-start gap-4">
-                  <div className="p-2.5 bg-accent-bg rounded-xl text-accent shrink-0">
+                  <div className="p-2.5 bg-accent-bg text-accent shrink-0">
                     <Phone size={20} />
                   </div>
                   <div>
@@ -101,7 +101,7 @@ export default function ContactContent() {
                 </div>
 
                 <div className="flex items-start gap-4">
-                  <div className="p-2.5 bg-accent-bg rounded-xl text-accent shrink-0">
+                  <div className="p-2.5 bg-accent-bg text-accent shrink-0">
                     <MapPin size={20} />
                   </div>
                   <div>
@@ -111,7 +111,7 @@ export default function ContactContent() {
                 </div>
 
                 <div className="flex items-start gap-4">
-                  <div className="p-2.5 bg-accent-bg rounded-xl text-accent shrink-0">
+                  <div className="p-2.5 bg-accent-bg text-accent shrink-0">
                     <Clock size={20} />
                   </div>
                   <div>
@@ -134,7 +134,7 @@ export default function ContactContent() {
             transition={{ delay: 0.3 }}
             className="lg:col-span-3"
           >
-            <div className="bg-surface border border-border-light rounded-2xl p-6 md:p-8">
+            <div className="bg-surface border border-border-light p-6 md:p-8">
               {formState === "submitted" ? (
                 <motion.div
                   initial={{ opacity: 0, scale: 0.95 }}
@@ -175,7 +175,7 @@ export default function ContactContent() {
                           required
                           autoComplete="name"
                           placeholder="Tu nombre"
-                          className="w-full bg-base border border-border rounded-xl px-4 py-3 text-dark placeholder:text-text-tertiary focus:outline-none input-focus text-sm"
+                          className="w-full bg-base border border-border px-4 py-3 text-dark placeholder:text-text-tertiary focus:outline-none input-focus text-sm"
                         />
                       </div>
                       <div>
@@ -189,7 +189,7 @@ export default function ContactContent() {
                           required
                           autoComplete="email"
                           placeholder="tu@email.com"
-                          className="w-full bg-base border border-border rounded-xl px-4 py-3 text-dark placeholder:text-text-tertiary focus:outline-none input-focus text-sm"
+                          className="w-full bg-base border border-border px-4 py-3 text-dark placeholder:text-text-tertiary focus:outline-none input-focus text-sm"
                         />
                       </div>
                     </div>
@@ -202,7 +202,7 @@ export default function ContactContent() {
                         id="subject"
                         name="subject"
                         required
-                        className="w-full bg-base border border-border rounded-xl px-4 py-3 text-dark text-sm focus:outline-none input-focus"
+                        className="w-full bg-base border border-border px-4 py-3 text-dark text-sm focus:outline-none input-focus"
                       >
                         <option value="">Selecciona un asunto</option>
                         <option value="Consulta sobre productos">Consulta sobre productos</option>
@@ -224,7 +224,7 @@ export default function ContactContent() {
                         required
                         rows={5}
                         placeholder="¿En qué podemos ayudarte?"
-                        className="w-full bg-base border border-border rounded-xl px-4 py-3 text-dark placeholder:text-text-tertiary focus:outline-none input-focus text-sm resize-none"
+                        className="w-full bg-base border border-border px-4 py-3 text-dark placeholder:text-text-tertiary focus:outline-none input-focus text-sm resize-none"
                       />
                     </div>
 

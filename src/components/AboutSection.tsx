@@ -40,7 +40,7 @@ export default function AboutSection() {
   const imageY = useTransform(scrollYProgress, [0, 1], ["-5%", "5%"]);
 
   return (
-    <section ref={sectionRef} className="relative py-16 md:py-24 bg-base overflow-hidden">
+    <section ref={sectionRef} className="relative py-12 md:py-16 bg-base overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           {/* Image with parallax */}
@@ -51,7 +51,7 @@ export default function AboutSection() {
             transition={{ duration: 0.6 }}
             className="relative"
           >
-            <div className="relative h-[400px] md:h-[500px] rounded-2xl overflow-hidden">
+            <div className="relative h-[400px] md:h-[500px] overflow-hidden">
               <motion.div className="absolute inset-0 -top-[5%] -bottom-[5%]" style={{ y: imageY }}>
                 <Image
                   src={generatedImages.about}
@@ -65,8 +65,8 @@ export default function AboutSection() {
               </motion.div>
             </div>
             {/* Decorative elements — hidden on mobile to prevent overflow */}
-            <div className="hidden md:block absolute -bottom-4 -right-4 w-32 h-32 border-2 border-accent/20 rounded-2xl" />
-            <div className="hidden md:block absolute -top-4 -left-4 w-24 h-24 border-2 border-sage/20 rounded-2xl" />
+            <div className="hidden md:block absolute -bottom-4 -right-4 w-32 h-32 border-2 border-accent/20" />
+            <div className="hidden md:block absolute -top-4 -left-4 w-24 h-24 border-2 border-sage/20" />
           </motion.div>
 
           {/* Content */}
@@ -91,7 +91,7 @@ export default function AboutSection() {
                 de Latinoamérica, tostándolos con precisión para revelar su carácter único.
               </p>
               <p>
-                Trabajamos directamente con productores en Perú, Colombia, Bolivia, Costa Rica
+                Trabajamos directamente con productores en Perú, Colombia, Costa Rica
                 y Brasil, asegurando prácticas sostenibles y precios justos. Cada lote es
                 tostado semanalmente en pequeñas cantidades para garantizar la máxima frescura.
               </p>
@@ -102,7 +102,7 @@ export default function AboutSection() {
             </div>
 
             {/* Stats */}
-            <div className="grid grid-cols-3 gap-4 md:gap-6 mt-8 pt-8 border-t border-border">
+            <div className="grid grid-cols-3 gap-4 md:gap-6 mt-6 pt-6 border-t border-border">
               <div>
                 <AnimatedStat value={8} suffix="+" />
                 <div className="text-text-tertiary text-xs md:text-sm mt-1">Años de experiencia</div>

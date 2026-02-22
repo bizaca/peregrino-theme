@@ -11,7 +11,7 @@ export default function ProductDetailLoading() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 py-10 md:py-16">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16">
           {/* Image skeleton */}
-          <div className="aspect-square rounded-2xl bg-base-dark" />
+          <div className="aspect-square bg-base-dark" />
 
           {/* Info skeleton */}
           <div>
@@ -60,12 +60,12 @@ export default function ProductDetailLoading() {
             </div>
 
             {/* Tasting notes */}
-            <div className="bg-base-dark/50 rounded-2xl h-24 mb-6" />
+            <div className="bg-base-dark/50 h-24 mb-6" />
 
             {/* Details grid */}
             <div className="grid grid-cols-2 gap-4">
               {Array.from({ length: 4 }).map((_, i) => (
-                <div key={i} className="h-20 bg-base-dark rounded-xl" />
+                <div key={i} className="h-20 bg-base-dark" />
               ))}
             </div>
           </div>

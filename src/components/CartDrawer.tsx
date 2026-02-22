@@ -112,7 +112,7 @@ export default function CartDrawer() {
               </div>
               <button
                 onClick={closeCart}
-                className="p-3 text-text-tertiary hover:text-dark rounded-full hover:bg-base-warm transition-colors"
+                className="p-3 text-text-tertiary hover:text-dark hover:bg-base-warm transition-colors"
                 aria-label="Cerrar carrito"
               >
                 <X size={20} />
@@ -145,10 +145,10 @@ export default function CartDrawer() {
                       initial={{ opacity: 0, x: 20 }}
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ delay: index * 0.05, duration: 0.3 }}
-                      className="flex gap-4 p-3 bg-base-warm rounded-xl"
+                      className="flex gap-4 p-3 bg-base-warm"
                     >
                       {/* Image */}
-                      <div className="relative w-20 h-20 rounded-lg overflow-hidden bg-base-dark shrink-0">
+                      <div className="relative w-20 h-20 overflow-hidden bg-base-dark shrink-0">
                         <Image
                           src={item.image}
                           alt={item.name}
@@ -169,7 +169,7 @@ export default function CartDrawer() {
                           {item.size} · {item.grind}
                         </p>
                         <div className="flex items-center justify-between mt-2">
-                          <div className="flex items-center gap-1.5 bg-surface rounded-full border border-border-light">
+                          <div className="flex items-center gap-1.5 bg-surface border border-border-light">
                             <button
                               onClick={() =>
                                 updateQuantity(
@@ -235,7 +235,7 @@ export default function CartDrawer() {
                   const percentage = Math.min((totalPrice / threshold) * 100, 100);
                   const isFree = totalPrice >= threshold;
                   return (
-                    <div className="bg-sage-bg rounded-lg px-4 py-3">
+                    <div className="bg-sage-bg px-4 py-3">
                       <div className="flex items-center justify-between mb-2">
                         <p className="text-sage text-sm font-medium">
                           {isFree
@@ -246,12 +246,12 @@ export default function CartDrawer() {
                           {Math.round(percentage)}%
                         </span>
                       </div>
-                      <div className="w-full h-1.5 bg-sage/10 rounded-full overflow-hidden">
+                      <div className="w-full h-1.5 bg-sage/10 overflow-hidden">
                         <motion.div
                           initial={{ width: 0 }}
                           animate={{ width: `${percentage}%` }}
                           transition={{ duration: 0.5, ease: "easeOut" }}
-                          className={`h-full rounded-full ${
+                          className={`h-full ${
                             isFree ? "bg-emerald-500" : "bg-accent"
                           }`}
                         />
@@ -273,7 +273,7 @@ export default function CartDrawer() {
                   <Link
                     href="/cart"
                     onClick={closeCart}
-                    className="block w-full bg-accent hover:bg-accent-dark text-white font-medium py-3.5 rounded-full text-center transition-colors btn-press"
+                    className="block w-full bg-accent hover:bg-accent-dark text-white font-medium py-3.5 text-center transition-colors btn-press"
                   >
                     Ir al Carrito
                   </Link>

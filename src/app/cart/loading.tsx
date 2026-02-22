@@ -13,8 +13,8 @@ export default function CartLoading() {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
           <div className="lg:col-span-2 space-y-4">
             {Array.from({ length: 3 }).map((_, i) => (
-              <div key={i} className="flex gap-4 p-5 bg-surface border border-border-light rounded-2xl">
-                <div className="w-28 h-28 rounded-xl bg-base-dark shrink-0" />
+              <div key={i} className="flex gap-4 p-5 bg-surface border border-border-light">
+                <div className="w-28 h-28 bg-base-dark shrink-0" />
                 <div className="flex-1">
                   <div className="h-5 bg-base-dark rounded w-40 mb-2" />
                   <div className="h-3 bg-base-dark rounded w-24 mb-4" />
@@ -26,7 +26,7 @@ export default function CartLoading() {
               </div>
             ))}
           </div>
-          <div className="h-80 bg-surface border border-border-light rounded-2xl" />
+          <div className="h-80 bg-surface border border-border-light" />
         </div>
       </div>
     </div>

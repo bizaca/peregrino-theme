@@ -3,15 +3,15 @@ export const siteConfig = {
   shortName: "Peregrino",
   tagline: "Coffee Roasters",
   description:
-    "Tostadores de café de especialidad desde 2016. Granos frescos de Perú, Colombia, Bolivia, Costa Rica y Brasil. Envíos a todo Chile.",
+    "Tostadores de café de especialidad desde 2016. Granos frescos de Perú, Colombia, Costa Rica y Brasil. Envíos a todo Chile.",
   url: "https://peregrinocoffee.cl",
   locale: "es_CL",
   foundedYear: 2016,
 
   contact: {
     email: "hola@peregrinocoffee.cl",
-    phone: "+56 9 1234 5678",
-    whatsapp: "56912345678",
+    phone: "+56 9 4347 2182",
+    whatsapp: "56943472182",
     location: "Santiago, Chile",
   },
 

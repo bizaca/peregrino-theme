@@ -119,7 +119,7 @@ export default function SubscriptionsContent() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 + index * 0.1 }}
-              className={`relative bg-surface rounded-2xl border-2 p-6 md:p-8 transition-all duration-300 ${
+              className={`relative bg-surface border-2 p-6 md:p-8 transition-all duration-300 ${
                 plan.popular
                   ? "border-accent shadow-xl shadow-accent/10 md:scale-105 hover:shadow-2xl hover:shadow-accent/15 card-shine"
                   : "border-border-light hover:border-accent/30 hover:shadow-lg hover:shadow-accent/5 hover:-translate-y-1"
@@ -194,7 +194,7 @@ export default function SubscriptionsContent() {
               transition={{ delay: index * 0.1 }}
               className="text-center"
             >
-              <div className="p-3 bg-accent-bg rounded-xl w-fit mx-auto mb-4 text-accent">
+              <div className="p-3 bg-accent-bg w-fit mx-auto mb-4 text-accent">
                 {benefit.icon}
               </div>
               <h3 className="font-heading text-lg font-semibold text-dark mb-2">
@@ -257,7 +257,7 @@ export default function SubscriptionsContent() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="bg-surface border border-border-light rounded-2xl p-8 md:p-12"
+            className="bg-surface border border-border-light p-8 md:p-12"
           >
             <MessageCircle size={32} className="text-accent mx-auto mb-4" />
             <h2 className="font-heading text-2xl font-semibold text-dark mb-3">

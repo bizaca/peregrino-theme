@@ -68,7 +68,7 @@ export default function ReturnsContent() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="flex items-center gap-4 bg-sage-bg border border-sage/10 rounded-2xl p-6 mb-12"
+          className="flex items-center gap-4 bg-sage-bg border border-sage/10 p-6 mb-12"
         >
           <ShieldCheck size={32} className="text-sage shrink-0" />
           <div>
@@ -99,7 +99,7 @@ export default function ReturnsContent() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
-                className="relative bg-surface border border-border-light rounded-2xl p-6 text-center"
+                className="relative bg-surface border border-border-light p-6 text-center"
               >
                 <div className="absolute -top-3 left-1/2 -translate-x-1/2 w-7 h-7 rounded-full bg-accent text-white text-sm font-bold flex items-center justify-center">
                   {item.step}
@@ -121,7 +121,7 @@ export default function ReturnsContent() {
             initial={{ opacity: 0, x: -15 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="bg-surface border border-border-light rounded-2xl p-6"
+            className="bg-surface border border-border-light p-6"
           >
             <div className="flex items-center gap-2 mb-4">
               <CheckCircle size={20} className="text-green-600" />
@@ -143,7 +143,7 @@ export default function ReturnsContent() {
             initial={{ opacity: 0, x: 15 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="bg-surface border border-border-light rounded-2xl p-6"
+            className="bg-surface border border-border-light p-6"
           >
             <div className="flex items-center gap-2 mb-4">
               <XCircle size={20} className="text-accent-red" />
@@ -167,7 +167,7 @@ export default function ReturnsContent() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="bg-base-warm rounded-2xl p-6 md:p-8 mb-12 border border-border-light"
+          className="bg-base-warm p-6 md:p-8 mb-12 border border-border-light"
         >
           <div className="flex items-center gap-2 mb-4">
             <Clock size={20} className="text-accent" />

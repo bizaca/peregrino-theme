@@ -50,7 +50,7 @@ const timeline = [
     year: "2020",
     title: "Relación directa",
     description:
-      "Establecimos lazos directos con productores en Perú, Colombia y Bolivia, viajando a las fincas para seleccionar los mejores lotes.",
+      "Establecimos lazos directos con productores en Perú, Colombia y Costa Rica, viajando a las fincas para seleccionar los mejores lotes.",
   },
   {
     year: "2022",
@@ -123,7 +123,7 @@ export default function AboutContent() {
               transition={{ duration: 0.6 }}
               className="relative"
             >
-              <div className="relative h-[400px] md:h-[520px] rounded-2xl overflow-hidden">
+              <div className="relative h-[400px] md:h-[520px] overflow-hidden">
                 <Image
                   src={generatedImages.about}
                   alt="Tostando café en Peregrino"
@@ -134,7 +134,7 @@ export default function AboutContent() {
                   blurDataURL="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iODAwIiBoZWlnaHQ9IjYwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjMkQyOTI2Ii8+PC9zdmc+"
                 />
               </div>
-              <div className="hidden md:block absolute -bottom-4 -right-4 w-32 h-32 border-2 border-accent/20 rounded-2xl" />
+              <div className="hidden md:block absolute -bottom-4 -right-4 w-32 h-32 border-2 border-accent/20" />
             </motion.div>
 
             <motion.div
@@ -161,8 +161,8 @@ export default function AboutContent() {
                 <p>
                   Nuestro nombre evoca el viaje — el peregrinaje que hace cada grano desde
                   las tierras altas de los Andes hasta tu taza. Cada café cuenta la historia
-                  de su origen: el suelo volcánico de Colombia, las alturas de Perú, los
-                  valles de Bolivia.
+                  de su origen: el suelo volcánico de Colombia, las alturas de Perú, las
+                  montañas de Costa Rica.
                 </p>
                 <p>
                   Creemos que el café de especialidad no es un lujo, sino una experiencia
@@ -222,9 +222,9 @@ export default function AboutContent() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
-                className="bg-surface border border-border-light rounded-2xl p-6 hover:shadow-lg hover:shadow-accent/5 transition-shadow duration-300"
+                className="bg-surface border border-border-light p-6 hover:shadow-lg hover:shadow-accent/5 transition-shadow duration-300"
               >
-                <div className="p-3 bg-accent-bg rounded-xl w-fit mb-4 text-accent">
+                <div className="p-3 bg-accent-bg w-fit mb-4 text-accent">
                   {value.icon}
                 </div>
                 <h3 className="font-heading text-lg font-semibold text-dark mb-2">
@@ -298,7 +298,7 @@ export default function AboutContent() {
                 </motion.div>
 
                 {/* Content card */}
-                <div className={`ml-16 md:ml-0 md:w-[calc(50%-2rem)] bg-surface border border-border-light rounded-xl p-5 shadow-sm ${
+                <div className={`ml-16 md:ml-0 md:w-[calc(50%-2rem)] bg-surface border border-border-light p-5 shadow-sm ${
                   index % 2 === 0 ? "md:mr-auto md:text-right" : "md:ml-auto"
                 }`}>
                   <span className="text-accent font-heading text-2xl font-bold">

@@ -4,32 +4,61 @@ import Image from "next/image";
 import { motion } from "motion/react";
 import { MapPin, Clock, Phone, Navigation, Coffee } from "lucide-react";
 import { siteConfig } from "@/data/site-config";
-import { generatedImages } from "@/data/generated-images";
+const locationImages = {
+  providencia: "/images/locations/providencia.jpg",
+  bilbao: "/images/locations/bilbao.jpg",
+  apoquindo: "/images/locations/apoquindo.jpg",
+  loreley: "/images/locations/loreley.jpg",
+};
 
 const locations = [
   {
     name: "Peregrino Providencia",
-    address: "Av. Providencia 1234, Providencia",
-    phone: siteConfig.contact.phone,
-    hours: {
-      weekdays: "Lun - Vie: 8:00 - 19:00",
-      weekends: "Sáb - Dom: 9:00 - 18:00",
-    },
-    features: ["Espresso Bar", "Brew Bar", "Tueste en vivo", "Catas mensuales"],
-    image: generatedImages.locations.providencia,
-    mapUrl: "https://maps.google.com/?q=Providencia+Santiago+Chile",
-  },
-  {
-    name: "Peregrino Lastarria",
-    address: "José Victorino Lastarria 56, Santiago Centro",
-    phone: siteConfig.contact.phone,
+    address: "Ricardo Lyon 126, local 7, Providencia",
+    phone: "+56 9 4347 2182",
     hours: {
       weekdays: "Lun - Vie: 8:30 - 19:30",
-      weekends: "Sáb: 9:00 - 17:00 · Dom: Cerrado",
+      weekends: "Sáb: 10:00 - 19:00 · Dom: 9:30 - 15:30",
     },
-    features: ["Espresso Bar", "Punto de retiro", "Venta de granos"],
-    image: generatedImages.locations.lastarria,
-    mapUrl: "https://maps.google.com/?q=Lastarria+Santiago+Chile",
+    features: ["Espresso Bar", "Brew Bar", "Retiro en tienda", "Venta de granos"],
+    image: locationImages.providencia,
+    mapUrl: "https://maps.google.com/?q=Ricardo+Lyon+126+Providencia+Santiago+Chile",
+  },
+  {
+    name: "Peregrino Bilbao",
+    address: "Av. Francisco Bilbao 2841, Providencia",
+    phone: "+56 9 4347 2182",
+    hours: {
+      weekdays: "Lun - Vie: 8:30 - 19:30",
+      weekends: "Sáb - Dom: 10:00 - 19:00",
+    },
+    features: ["Espresso Bar", "Retiro en tienda", "Venta de granos"],
+    image: locationImages.bilbao,
+    mapUrl: "https://maps.google.com/?q=Av+Francisco+Bilbao+2841+Providencia+Santiago+Chile",
+  },
+  {
+    name: "Peregrino Apoquindo",
+    address: "Av. Apoquindo 7014, Las Condes",
+    phone: "+56 9 4347 2182",
+    hours: {
+      weekdays: "Lun - Vie: 8:30 - 19:30",
+      weekends: "Sáb - Dom: 10:00 - 19:00",
+    },
+    features: ["Espresso Bar", "Retiro en tienda", "Venta de granos"],
+    image: locationImages.apoquindo,
+    mapUrl: "https://maps.google.com/?q=Av+Apoquindo+7014+Las+Condes+Santiago+Chile",
+  },
+  {
+    name: "Peregrino Loreley",
+    address: "Loreley 114, La Reina",
+    phone: "+56 9 4347 2182",
+    hours: {
+      weekdays: "Lun - Vie: 9:30 - 19:30",
+      weekends: "Sáb: 10:00 - 19:00 · Dom: 9:30 - 15:30",
+    },
+    features: ["Espresso Bar", "Retiro en tienda", "Venta de granos"],
+    image: locationImages.loreley,
+    mapUrl: "https://maps.google.com/?q=Loreley+114+La+Reina+Santiago+Chile",
   },
 ];
 
@@ -67,7 +96,7 @@ export default function LocationsContent() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
-              className="grid grid-cols-1 md:grid-cols-5 gap-6 bg-surface border border-border-light rounded-2xl overflow-hidden hover:shadow-lg hover:shadow-accent/5 hover:border-accent/20 transition-all duration-300"
+              className="grid grid-cols-1 md:grid-cols-5 gap-6 bg-surface border border-border-light overflow-hidden hover:shadow-lg hover:shadow-accent/5 hover:border-accent/20 transition-all duration-300"
             >
               {/* Image */}
               <div className="relative h-64 md:h-auto md:col-span-2">
@@ -142,7 +171,7 @@ export default function LocationsContent() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mt-12 bg-accent-bg border border-accent/10 rounded-2xl p-8 md:p-10 text-center"
+          className="mt-12 bg-accent-bg border border-accent/10 p-8 md:p-10 text-center"
         >
           <h2 className="font-heading text-2xl font-semibold text-dark mb-3">
             15% de descuento en retiro en tienda

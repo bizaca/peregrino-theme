@@ -82,10 +82,10 @@ export default function CartPage() {
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.05 }}
-                className="flex gap-4 md:gap-6 p-4 md:p-5 bg-surface border border-border-light rounded-2xl"
+                className="flex gap-4 md:gap-6 p-4 md:p-5 bg-surface border border-border-light"
               >
                 {/* Image */}
-                <div className="relative w-24 h-24 md:w-28 md:h-28 rounded-xl overflow-hidden bg-base-warm shrink-0">
+                <div className="relative w-24 h-24 md:w-28 md:h-28 overflow-hidden bg-base-warm shrink-0">
                   <Image
                     src={item.image}
                     alt={item.name}
@@ -179,7 +179,7 @@ export default function CartPage() {
 
           {/* Order summary */}
           <div>
-            <div className="bg-surface border border-border-light rounded-2xl p-6 sticky top-28">
+            <div className="bg-surface border border-border-light p-6 sticky top-28">
               <h2 className="font-heading text-xl font-semibold text-dark mb-6">
                 Resumen del Pedido
               </h2>
@@ -188,7 +188,7 @@ export default function CartPage() {
               {(() => {
                 const percentage = Math.min((totalPrice / shippingThreshold) * 100, 100);
                 return (
-                  <div className="mb-6 bg-sage-bg rounded-lg px-4 py-3">
+                  <div className="mb-6 bg-sage-bgpx-4 py-3">
                     <div className="flex items-center justify-between mb-2">
                       <span className="text-sage text-sm font-medium">
                         {freeShipping
