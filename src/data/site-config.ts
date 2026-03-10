@@ -29,3 +29,14 @@ export const siteConfig = {
 } as const;
 
 export type SiteConfig = typeof siteConfig;
+
+export interface DiscountCode {
+  percentage: number;
+  description: string;
+}
+
+export const discountCodes: Record<string, DiscountCode> = {
+  PEREGRINO10: { percentage: 10, description: "10% de descuento" },
+  BIENVENIDO15: { percentage: 15, description: "15% de descuento" },
+  CAFE20: { percentage: 20, description: "20% de descuento" },
+};

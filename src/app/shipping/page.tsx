@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import ShippingContent from "@/components/ShippingContent";
 
 export const metadata: Metadata = {
-  title: "Envíos y Retiro",
+  title: "Políticas de Despacho y Retiro en Tienda",
   description:
-    "Información sobre envíos a todo Chile y retiro en tienda. Envío gratis en la RM para compras sobre $35.000.",
+    "Políticas de despacho a todo Chile y retiro en tienda. Envío gratis en la RM para compras sobre $35.000. Retiro gratis en Loreley, Apoquindo y Providencia.",
   alternates: { canonical: "/shipping" },
 };
 

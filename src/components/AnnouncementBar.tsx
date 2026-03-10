@@ -3,6 +3,7 @@
 import { useState, useSyncExternalStore } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { X } from "lucide-react";
+import Link from "next/link";
 
 const DISMISSED_KEY = "peregrino-announcement-dismissed";
 const noop = () => () => {};

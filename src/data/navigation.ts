@@ -15,6 +15,7 @@ export const mainNavItems: NavItem[] = [
   { label: "Suscripciones", href: "/subscriptions" },
   { label: "Mayoristas", href: "/wholesale" },
   { label: "Locales", href: "/locations" },
+  { label: "Retiro y despachos", href: "/shipping" },
   { label: "Contacto", href: "/contact" },
 ];
 
