@@ -51,12 +51,17 @@ export default async function ProductPage({ params }: ProductPageProps) {
     ],
   };
 
+  const priceValidUntil = new Date();
+  priceValidUntil.setFullYear(priceValidUntil.getFullYear() + 1);
+
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Product",
     name: product.name,
     description: product.description,
     image: product.image,
+    url: `${siteConfig.url}/products/${product.slug}`,
+    sku: product.slug,
     brand: { "@type": "Brand", name: siteConfig.name },
     offers: {
       "@type": "AggregateOffer",
@@ -67,6 +72,12 @@ export default async function ProductPage({ params }: ProductPageProps) {
       availability: product.inStock
         ? "https://schema.org/InStock"
         : "https://schema.org/OutOfStock",
+      priceValidUntil: priceValidUntil.toISOString().split("T")[0],
+      seller: {
+        "@type": "Organization",
+        name: siteConfig.name,
+        url: siteConfig.url,
+      },
     },
     aggregateRating: {
       "@type": "AggregateRating",

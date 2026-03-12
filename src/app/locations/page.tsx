@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { siteConfig } from "@/data/site-config";
+import { locations } from "@/data/locations";
 import LocationsContent from "@/components/LocationsContent";
 
 export const metadata: Metadata = {
@@ -9,45 +10,55 @@ export const metadata: Metadata = {
   alternates: { canonical: "/locations" },
 };
 
+function buildOpeningHours(location: (typeof locations)[number]) {
+  const specs = [
+    {
+      "@type": "OpeningHoursSpecification" as const,
+      dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+      opens: location.hours.weekdays,
+      closes: "19:30",
+    },
+    {
+      "@type": "OpeningHoursSpecification" as const,
+      dayOfWeek: ["Saturday"],
+      opens: location.hours.saturday,
+      closes: "19:00",
+    },
+    {
+      "@type": "OpeningHoursSpecification" as const,
+      dayOfWeek: ["Sunday"],
+      opens: location.hours.sunday,
+      closes: location.slug === "bilbao" || location.slug === "apoquindo" ? "19:00" : "15:30",
+    },
+  ];
+  return specs;
+}
+
 const locationsJsonLd = {
   "@context": "https://schema.org",
   "@type": "Organization",
   name: siteConfig.name,
   url: siteConfig.url,
-  location: [
-    {
-      "@type": "CoffeeShop",
-      name: "Peregrino Providencia",
-      address: {
-        "@type": "PostalAddress",
-        streetAddress: "Av. Providencia 1234",
-        addressLocality: "Providencia",
-        addressRegion: "Región Metropolitana",
-        addressCountry: "CL",
-      },
-      telephone: "+56912345678",
-      openingHoursSpecification: [
-        { "@type": "OpeningHoursSpecification", dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"], opens: "08:00", closes: "19:00" },
-        { "@type": "OpeningHoursSpecification", dayOfWeek: ["Saturday", "Sunday"], opens: "09:00", closes: "18:00" },
-      ],
+  location: locations.map((loc) => ({
+    "@type": "CoffeeShop",
+    name: loc.name,
+    image: `${siteConfig.url}${loc.image}`,
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: loc.address,
+      addressLocality: loc.commune,
+      addressRegion: loc.region,
+      addressCountry: "CL",
     },
-    {
-      "@type": "CoffeeShop",
-      name: "Peregrino Lastarria",
-      address: {
-        "@type": "PostalAddress",
-        streetAddress: "José Victorino Lastarria 56",
-        addressLocality: "Santiago Centro",
-        addressRegion: "Región Metropolitana",
-        addressCountry: "CL",
-      },
-      telephone: "+56912345678",
-      openingHoursSpecification: [
-        { "@type": "OpeningHoursSpecification", dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"], opens: "08:30", closes: "19:30" },
-        { "@type": "OpeningHoursSpecification", dayOfWeek: ["Saturday"], opens: "09:00", closes: "17:00" },
-      ],
+    telephone: loc.phone.replace(/\s/g, ""),
+    geo: {
+      "@type": "GeoCoordinates",
+      latitude: loc.coordinates.lat,
+      longitude: loc.coordinates.lng,
     },
-  ],
+    url: loc.googleMapsUrl,
+    openingHoursSpecification: buildOpeningHours(loc),
+  })),
 };
 
 export default function LocationsPage() {

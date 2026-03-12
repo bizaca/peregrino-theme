@@ -4,7 +4,7 @@ import WholesaleContent from "@/components/WholesaleContent";
 export const metadata: Metadata = {
   title: "Mayoristas",
   description:
-    "Programa mayorista de café de especialidad Peregrino Coffee. Soluciones para cafeterías, restaurantes y oficinas.",
+    "Café mayorista Chile — distribución de café de especialidad para cafeterías, restaurantes y oficinas. Programa mayorista Peregrino Coffee con precios preferenciales y soporte técnico.",
   alternates: { canonical: "/wholesale" },
 };
 

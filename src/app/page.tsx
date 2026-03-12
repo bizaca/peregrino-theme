@@ -27,6 +27,11 @@ const websiteJsonLd = {
     name: siteConfig.name,
     url: siteConfig.url,
   },
+  potentialAction: {
+    "@type": "SearchAction",
+    target: `${siteConfig.url}/products?search={search_term_string}`,
+    "query-input": "required name=search_term_string",
+  },
 };
 
 const organizationJsonLd = {
@@ -34,6 +39,7 @@ const organizationJsonLd = {
   "@type": "Organization",
   name: siteConfig.name,
   url: siteConfig.url,
+  logo: `${siteConfig.url}/logo-peregrino.jpg`,
   description: siteConfig.description,
   foundingDate: `${siteConfig.foundedYear}`,
   contactPoint: {
@@ -51,7 +57,9 @@ const organizationJsonLd = {
   ],
   address: {
     "@type": "PostalAddress",
-    addressLocality: "Santiago",
+    streetAddress: "Ricardo Lyon 126, local 7",
+    addressLocality: "Providencia",
+    addressRegion: "Región Metropolitana",
     addressCountry: "CL",
   },
 };

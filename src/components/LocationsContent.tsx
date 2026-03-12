@@ -4,63 +4,7 @@ import Image from "next/image";
 import { motion } from "motion/react";
 import { MapPin, Clock, Phone, Navigation, Coffee } from "lucide-react";
 import { siteConfig } from "@/data/site-config";
-const locationImages = {
-  providencia: "/images/locations/providencia.jpg",
-  bilbao: "/images/locations/bilbao.jpg",
-  apoquindo: "/images/locations/apoquindo.jpg",
-  loreley: "/images/locations/loreley.jpg",
-};
-
-const locations = [
-  {
-    name: "Peregrino Providencia",
-    address: "Ricardo Lyon 126, local 7, Providencia",
-    phone: "+56 9 4347 2182",
-    hours: {
-      weekdays: "Lun - Vie: 8:30 - 19:30",
-      weekends: "Sáb: 10:00 - 19:00 · Dom: 9:30 - 15:30",
-    },
-    features: ["Espresso Bar", "Brew Bar", "Retiro en tienda", "Venta de granos"],
-    image: locationImages.providencia,
-    mapUrl: "https://maps.google.com/?q=Ricardo+Lyon+126+Providencia+Santiago+Chile",
-  },
-  {
-    name: "Peregrino Bilbao",
-    address: "Av. Francisco Bilbao 2841, Providencia",
-    phone: "+56 9 4347 2182",
-    hours: {
-      weekdays: "Lun - Vie: 8:30 - 19:30",
-      weekends: "Sáb - Dom: 10:00 - 19:00",
-    },
-    features: ["Espresso Bar", "Retiro en tienda", "Venta de granos"],
-    image: locationImages.bilbao,
-    mapUrl: "https://maps.google.com/?q=Av+Francisco+Bilbao+2841+Providencia+Santiago+Chile",
-  },
-  {
-    name: "Peregrino Apoquindo",
-    address: "Av. Apoquindo 7014, Las Condes",
-    phone: "+56 9 4347 2182",
-    hours: {
-      weekdays: "Lun - Vie: 8:30 - 19:30",
-      weekends: "Sáb - Dom: 10:00 - 19:00",
-    },
-    features: ["Espresso Bar", "Retiro en tienda", "Venta de granos"],
-    image: locationImages.apoquindo,
-    mapUrl: "https://maps.google.com/?q=Av+Apoquindo+7014+Las+Condes+Santiago+Chile",
-  },
-  {
-    name: "Peregrino Loreley",
-    address: "Loreley 114, La Reina",
-    phone: "+56 9 4347 2182",
-    hours: {
-      weekdays: "Lun - Vie: 9:30 - 19:30",
-      weekends: "Sáb: 10:00 - 19:00 · Dom: 9:30 - 15:30",
-    },
-    features: ["Espresso Bar", "Retiro en tienda", "Venta de granos"],
-    image: locationImages.loreley,
-    mapUrl: "https://maps.google.com/?q=Loreley+114+La+Reina+Santiago+Chile",
-  },
-];
+import { locations } from "@/data/locations";
 
 export default function LocationsContent() {
   return (
@@ -101,7 +45,7 @@ export default function LocationsContent() {
               {/* Image */}
               <div className="relative h-64 md:h-auto md:col-span-2">
                 <Image
-                  src={location.image}
+                  src={location.image || "/images/locations/placeholder-location.jpg"}
                   alt={location.name}
                   fill
                   className="object-cover"
@@ -121,15 +65,15 @@ export default function LocationsContent() {
                   <div className="flex items-start gap-3">
                     <MapPin size={18} className="text-accent shrink-0 mt-0.5" />
                     <div>
-                      <p className="text-dark font-medium">{location.address}</p>
+                      <p className="text-dark font-medium">{location.address}, {location.commune}</p>
                     </div>
                   </div>
 
                   <div className="flex items-start gap-3">
                     <Clock size={18} className="text-accent shrink-0 mt-0.5" />
                     <div className="text-sm text-text-secondary">
-                      <p>{location.hours.weekdays}</p>
-                      <p>{location.hours.weekends}</p>
+                      <p>{location.displayHours.weekdays}</p>
+                      <p>{location.displayHours.weekends}</p>
                     </div>
                   </div>
 
@@ -153,7 +97,7 @@ export default function LocationsContent() {
                 </div>
 
                 <a
-                  href={location.mapUrl}
+                  href={location.googleMapsUrl}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 text-accent hover:text-accent-dark font-medium text-sm transition-colors"

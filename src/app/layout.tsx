@@ -54,9 +54,18 @@ export const metadata: Metadata = {
     siteName: "Peregrino Coffee Roasters",
     description:
       "Tostadores de café de especialidad desde 2016. Granos frescos de Perú, Colombia, Costa Rica y Brasil.",
+    images: [
+      {
+        url: "/logo-peregrino.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Peregrino Coffee Roasters",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
+    site: "@peregrinocoffee",
     description:
       "Café de especialidad tostado semanalmente con granos de Latinoamérica.",
   },
