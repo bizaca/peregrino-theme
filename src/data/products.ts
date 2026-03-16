@@ -263,7 +263,7 @@ export const products: Product[] = [
     cupScore: 84,
     roastLevel: 2,
     acidity: "Media-Baja",
-    labelColor: "#D4A843",
+    labelColor: "#1B4F72",
   },
   {
     id: "colombia-yipao",

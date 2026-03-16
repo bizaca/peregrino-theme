@@ -15,10 +15,10 @@
   --color-text-secondary: #6B6560;
   --color-text-tertiary: #756F6A;
 
-  /* Accent — golden yellow (Peregrino brand) */
-  --color-accent: #FFCB0D;
-  --color-accent-light: #FFD94E;
-  --color-accent-dark: #CC9E00;
+  /* Accent — azul petróleo (Peregrino brand) */
+  --color-accent: #005F73;
+  --color-accent-light: #0A7E8C;
+  --color-accent-dark: #003D4D;
   --color-accent-bg: #FFFFFF;
 
   /* Secondary — sage green (earthy modern) */
@@ -197,7 +197,7 @@ body {
 .input-focus:focus {
   background-color: var(--color-surface);
   border-color: var(--color-accent);
-  box-shadow: 0 0 0 3px rgba(255, 203, 13, 0.15);
+  box-shadow: 0 0 0 3px rgba(0, 95, 115, 0.15);
 }
 
 /* Selection color */

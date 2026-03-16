@@ -662,7 +662,7 @@ export default function CartPage() {
                           "flex items-center gap-3 px-4 py-3 rounded-lg",
                           shippingResult.isFree
                             ? "bg-emerald-50 border border-emerald-200"
-                            : "bg-amber-50 border border-amber-200"
+                            : "bg-sky-50 border border-[#1B4F72]/30"
                         )}
                       >
                         <Truck
@@ -670,7 +670,7 @@ export default function CartPage() {
                           className={
                             shippingResult.isFree
                               ? "text-emerald-600"
-                              : "text-amber-600"
+                              : "text-[#1B4F72]"
                           }
                         />
                         <div className="text-sm">
@@ -679,7 +679,7 @@ export default function CartPage() {
                               "font-medium",
                               shippingResult.isFree
                                 ? "text-emerald-700"
-                                : "text-amber-700"
+                                : "text-[#1B4F72]"
                             )}
                           >
                             {shippingResult.isFree

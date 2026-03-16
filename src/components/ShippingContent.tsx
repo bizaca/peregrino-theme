@@ -128,11 +128,11 @@ export default function ShippingContent() {
 
       <div className="max-w-5xl mx-auto px-4 sm:px-6 py-12 md:py-16">
         {/* Promo banner */}
-        <div className="bg-yellow-400 p-5 md:p-6 mb-12 flex items-center gap-4">
-          <div className="p-3 bg-yellow-500 shrink-0 hidden sm:block">
-            <Coffee size={24} className="text-black" />
+        <div className="bg-accent p-5 md:p-6 mb-12 flex items-center gap-4">
+          <div className="p-3 bg-accent-dark shrink-0 hidden sm:block">
+            <Coffee size={24} className="text-white" />
           </div>
-          <p className="text-sm md:text-base leading-relaxed text-black">
+          <p className="text-sm md:text-base leading-relaxed text-white">
             Todos los pedidos con{" "}
             <span className="font-bold">RETIRO EN TIENDA</span> reciben un{" "}
             <span className="font-bold">15% de descuento</span> en consumo en
@@ -160,7 +160,7 @@ export default function ShippingContent() {
                 transition={{ delay: index * 0.1 }}
                 className="relative bg-surface border border-border-light p-6 text-center"
               >
-                <div className="absolute -top-3 left-1/2 -translate-x-1/2 w-7 h-7 rounded-full bg-accent text-dark text-sm font-bold flex items-center justify-center">
+                <div className="absolute -top-3 left-1/2 -translate-x-1/2 w-7 h-7 rounded-full bg-accent text-white text-sm font-bold flex items-center justify-center">
                   {index + 1}
                 </div>
                 <div className="p-3 bg-neutral-100 w-fit mx-auto mb-4 text-dark">
@@ -213,10 +213,10 @@ export default function ShippingContent() {
               </span>{" "}
               serán despachados el día lunes.
             </p>
-            <div className="flex items-start gap-3 bg-amber-50 border border-amber-200 rounded-lg p-4 mt-2">
+            <div className="flex items-start gap-3 bg-sky-50 border border-[#1B4F72]/30 rounded-lg p-4 mt-2">
               <AlertCircle
                 size={18}
-                className="text-amber-600 shrink-0 mt-0.5"
+                className="text-[#1B4F72] shrink-0 mt-0.5"
               />
               <p className="text-dark text-sm">
                 Productos de alta demanda o durante eventos especiales (Cyber,

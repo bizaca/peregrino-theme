@@ -78,7 +78,7 @@ export default function ProductCard({ product, index = 0, headingLevel: Heading 
 
           {/* Badge */}
           {product.badge && (
-            <div className="absolute top-3 left-3 z-10 bg-accent text-dark text-[11px] font-bold px-2.5 py-1 uppercase tracking-wider">
+            <div className="absolute top-3 left-3 z-10 bg-accent text-white text-[11px] font-bold px-2.5 py-1 uppercase tracking-wider">
               {product.badge}
             </div>
           )}
