@@ -1,74 +1,16 @@
-"use client";
-
-import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "motion/react";
-import { Coffee, CalendarDays, ShieldCheck, Truck, Gift } from "lucide-react";
-import { trustBadges } from "@/data/navigation";
-
-const iconMap: Record<string, React.ElementType> = {
-  coffee: Coffee,
-  calendar: CalendarDays,
-  shield: ShieldCheck,
-  truck: Truck,
-  gift: Gift,
-};
-
-function BadgeItem({ badge, showDivider }: { badge: (typeof trustBadges)[number]; showDivider: boolean }) {
-  const Icon = iconMap[badge.icon];
-  return (
-    <div className="flex items-center gap-2.5 px-6 py-4 text-dark-muted group cursor-default shrink-0">
-      <Icon size={17} className="text-accent shrink-0 group-hover:scale-110 transition-transform duration-200" />
-      <span className="text-sm whitespace-nowrap">{badge.text}</span>
-      {showDivider && <div className="w-px h-4 bg-border ml-6" />}
-    </div>
-  );
-}
-
 export default function TrustBadges() {
-  const [current, setCurrent] = useState(0);
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrent((prev) => (prev + 1) % trustBadges.length);
-    }, 4000);
-    return () => clearInterval(timer);
-  }, []);
-
+  const items = ["Tostado fresco cada semana","Desde 2016 en Santiago","Envio gratis sobre $35.000 en RM","3 cafeterias en Santiago","Granos de origen latinoamericano","100%% cafe de especialidad"];
+  const doubled = [...items, ...items];
   return (
-    <section className="bg-base-warm border-y border-border-light">
-      {/* Desktop: infinite marquee */}
-      <div className="hidden md:block overflow-hidden">
-        <div className="animate-marquee flex w-max">
-          {/* Render badges twice for seamless loop */}
-          {[...trustBadges, ...trustBadges].map((badge, index) => (
-            <BadgeItem
-              key={`${badge.text}-${index}`}
-              badge={badge}
-              showDivider={true}
-            />
-          ))}
-        </div>
+    <div style={{ overflow: "hidden", borderBottom: "1px solid rgba(12,35,48,0.13)", borderTop: "1px solid rgba(12,35,48,0.13)", background: "#EDE7DE" }}>
+      <div className="animate-tick" style={{ display: "flex", whiteSpace: "nowrap" }}>
+        {doubled.map((text, i) => (
+          <div key={i} style={{ display: "inline-flex", alignItems: "center", gap: "0.75rem", padding: "1.1rem 2.5rem", borderRight: "1px solid rgba(12,35,48,0.13)", flexShrink: 0 }}>
+            <div style={{ width: "6px", height: "6px", borderRadius: "50%%", background: "#8B6914", flexShrink: 0 }} />
+            <span style={{ fontSize: "0.82rem", letterSpacing: "0.08em", textTransform: "uppercase", color: "rgba(13,32,48,0.52)", fontWeight: 400 }}>{text}</span>
+          </div>
+        ))}
       </div>
-
-      {/* Mobile: rotating single badge */}
-      <div className="md:hidden flex items-center justify-center h-12 overflow-hidden">
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={current}
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            transition={{ duration: 0.3 }}
-            className="flex items-center gap-2 text-dark-muted"
-          >
-            {(() => {
-              const Icon = iconMap[trustBadges[current].icon];
-              return <Icon size={15} className="text-accent" />;
-            })()}
-            <span className="text-sm">{trustBadges[current].text}</span>
-          </motion.div>
-        </AnimatePresence>
-      </div>
-    </section>
+    </div>
   );
 }
