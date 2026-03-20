@@ -15,7 +15,7 @@ Cuando el diseno este listo, se adaptara a Liquid (templates de Jumpseller) y se
 ## Identidad visual
 - Petrol blue: #0D2030 (color principal, navbar, footer, acentos)
 - Crema: #F7F3EE (fondo base)
-- Acento dorado: var(--color-accent)
+- Acento azul petróleo: var(--color-accent) → #005F73
 - Tipografia display: Bricolage Grotesque
 - Tipografia body: DM Sans
 

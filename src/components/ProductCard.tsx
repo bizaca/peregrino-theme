@@ -8,6 +8,7 @@ import { ShoppingBag, Check } from "lucide-react";
 import { type Product, formatPrice, getDiscountPercentage } from "@/data/products";
 import { useCart } from "@/context/CartContext";
 import { parseTastingNotes } from "@/lib/tasting-notes";
+import { cn } from "@/lib/utils";
 
 interface ProductCardProps {
   product: Product;
@@ -70,7 +71,7 @@ export default function ProductCard({ product, index = 0, headingLevel: Heading 
             src={product.image}
             alt={product.name}
             fill
-            className="object-cover group-hover:scale-105 transition-transform duration-500"
+            className={cn("object-cover group-hover:scale-105 transition-transform duration-500", !product.inStock && "opacity-50")}
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
             placeholder="blur"
             blurDataURL="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjQwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjRjNGMEVCIi8+PC9zdmc+"
@@ -87,6 +88,13 @@ export default function ProductCard({ product, index = 0, headingLevel: Heading 
           {hasDiscount && !product.badge && (
             <div className="absolute top-3 left-3 z-10 bg-accent-red text-white text-[11px] font-bold px-2.5 py-1">
               -{getDiscountPercentage(mainVariant.price, mainVariant.originalPrice!)}%
+            </div>
+          )}
+
+          {/* Out of stock badge */}
+          {!product.inStock && (
+            <div className="absolute top-3 right-3 z-10 bg-dark/80 text-white text-[11px] font-bold px-2.5 py-1 uppercase tracking-wider">
+              Agotado
             </div>
           )}
 
@@ -136,7 +144,7 @@ export default function ProductCard({ product, index = 0, headingLevel: Heading 
 
               {/* Bottom: Category */}
               <div>
-                <span className="text-accent text-[11px] uppercase tracking-wider font-semibold">
+                <span className="text-accent-light text-[11px] uppercase tracking-wider font-semibold">
                   {product.category === "granos" ? "Café de Especialidad" : product.category}
                 </span>
               </div>

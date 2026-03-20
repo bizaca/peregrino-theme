@@ -260,7 +260,7 @@ export default function CartPage() {
           </Link>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-10">
           {/* Left column: products + buyer form */}
           <div className="lg:col-span-2 space-y-6">
             {/* Cart items */}
@@ -510,7 +510,7 @@ export default function CartPage() {
                     value={buyerInfo.rut}
                     onChange={(e) => updateField("rut", e.target.value)}
                     className={cn(
-                      "w-full px-4 py-2.5 bg-base border rounded-lg text-dark text-sm transition-colors focus:outline-none focus:ring-2 focus:ring-accent/30 focus:border-accent sm:max-w-[calc(50%-0.5rem)]",
+                      "w-full px-4 py-2.5 bg-base border rounded-lg text-dark text-sm transition-colors focus:outline-none focus:ring-2 focus:ring-accent/30 focus:border-accent",
                       formErrors.rut
                         ? "border-red-400"
                         : "border-border"
@@ -586,7 +586,7 @@ export default function CartPage() {
                       value={buyerInfo.region}
                       onChange={(e) => handleRegionChange(e.target.value)}
                       className={cn(
-                        "w-full px-4 py-2.5 bg-base border rounded-lg text-dark text-sm transition-colors focus:outline-none focus:ring-2 focus:ring-accent/30 focus:border-accent appearance-none",
+                        "w-full px-4 py-2.5 pr-10 bg-base border rounded-lg text-dark text-sm transition-colors focus:outline-none focus:ring-2 focus:ring-accent/30 focus:border-accent appearance-none bg-[url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2212%22%20height%3D%2212%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%236B6560%22%20stroke-width%3D%222%22%3E%3Cpath%20d%3D%22M6%209l6%206%206-6%22%2F%3E%3C%2Fsvg%3E')] bg-[length:1rem] bg-[right_0.75rem_center] bg-no-repeat",
                         formErrors.region
                           ? "border-red-400"
                           : "border-border",
@@ -620,7 +620,7 @@ export default function CartPage() {
                       onChange={(e) => handleComunaChange(e.target.value)}
                       disabled={!buyerInfo.region}
                       className={cn(
-                        "w-full px-4 py-2.5 bg-base border rounded-lg text-dark text-sm transition-colors focus:outline-none focus:ring-2 focus:ring-accent/30 focus:border-accent appearance-none",
+                        "w-full px-4 py-2.5 pr-10 bg-base border rounded-lg text-dark text-sm transition-colors focus:outline-none focus:ring-2 focus:ring-accent/30 focus:border-accent appearance-none bg-[url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2212%22%20height%3D%2212%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%236B6560%22%20stroke-width%3D%222%22%3E%3Cpath%20d%3D%22M6%209l6%206%206-6%22%2F%3E%3C%2Fsvg%3E')] bg-[length:1rem] bg-[right_0.75rem_center] bg-no-repeat",
                         formErrors.comuna
                           ? "border-red-400"
                           : "border-border",
@@ -718,7 +718,7 @@ export default function CartPage() {
 
           {/* Right column: order summary */}
           <div>
-            <div className="bg-surface border border-border-light p-6 sticky top-28">
+            <div className="bg-surface border border-border-light p-6 sticky top-20 lg:top-28">
               <h2 className="font-heading text-xl font-semibold text-dark mb-6">
                 Resumen del Pedido
               </h2>

@@ -148,7 +148,7 @@ export default function Header() {
       scrolled ? "border-border shadow-md shadow-dark/5" : "border-border-light",
       hideLogoBar ? "-top-32 md:-top-36" : "top-0"
     )}>
-      <div className="mx-auto px-0 sm:px-2">
+      <div className="mx-auto px-3 sm:px-4">
         <div className="flex items-center justify-between h-32 md:h-36">
           {/* Mobile menu button */}
           <button
@@ -340,7 +340,7 @@ export default function Header() {
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
-              className="max-w-xl mx-auto mt-24 mx-4 sm:mx-auto"
+              className="max-w-xl mx-4 sm:mx-auto mt-24"
               onClick={(e) => e.stopPropagation()}
             >
               <div className="bg-white shadow-2xl overflow-hidden rounded-lg">
