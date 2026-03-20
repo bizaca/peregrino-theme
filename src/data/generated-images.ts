@@ -7,11 +7,11 @@ export const generatedImages = {
   ],
   categories: {
     beans: "/images/hero/peru-bambu.jpg",
-    accessories: "/images/hero/colombia-bolivar.jpg",
-    packs: "/images/hero/bolivia-caranavi.jpg",
-    tea: "/images/hero/colombia-yipao.jpg",
+    accessories: "/images/accessories/chemex-6-cups.png",
+    packs: "/images/packs/pack-6-variedades.png",
+    tea: "/images/infusiones/te-earl-grey-naranja.jpg",
   },
-  about: "/images/hero/bolivia-caranavi.jpg",
+  about: "/images/hero/coffee-roastery.jpg",
   newsletter: "/images/hero/colombia-yipao.jpg",
   locations: {
     providencia: "/images/hero/peru-bambu.jpg",
