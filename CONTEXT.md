@@ -16,8 +16,8 @@ Cuando el diseno este listo, se adaptara a Liquid (templates de Jumpseller) y se
 - Petrol blue: #0D2030 (color principal, navbar, footer, acentos)
 - Crema: #F7F3EE (fondo base)
 - Acento azul petróleo: var(--color-accent) → #005F73
-- Tipografia display: Bricolage Grotesque
-- Tipografia body: DM Sans
+- Tipografia display: Plus Jakarta Sans (font-heading)
+- Tipografia body: Inter (font-body)
 
 ## Archivos clave de datos
 - src/data/generated-images.ts  → todas las rutas de imagenes centralizadas

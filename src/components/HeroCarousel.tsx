@@ -135,7 +135,7 @@ export default function HeroCarousel() {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.2, duration: 0.5 }}
-                  className="inline-block text-accent-light text-sm md:text-base font-medium tracking-[0.2em] uppercase mb-3"
+                  className="inline-block text-accent-light text-sm md:text-base font-medium tracking-[0.3em] uppercase mb-3"
                 >
                   {slide.subtitle}
                 </motion.span>

@@ -241,7 +241,7 @@ export default function CartPage() {
         {/* Header */}
         <div className="flex items-center justify-between mb-10">
           <div>
-            <h1 className="font-heading text-3xl md:text-4xl font-bold text-dark">
+            <h1 className="font-heading text-2xl md:text-3xl font-bold text-dark">
               Tu Carrito
             </h1>
             <p className="text-text-secondary mt-1">
@@ -385,7 +385,7 @@ export default function CartPage() {
                   <div>
                     <label
                       htmlFor="nombre"
-                      className="block text-sm font-medium text-text-secondary mb-1.5"
+                      className="block text-sm font-medium text-dark mb-1.5"
                     >
                       Nombre *
                     </label>
@@ -395,7 +395,7 @@ export default function CartPage() {
                       value={buyerInfo.nombre}
                       onChange={(e) => updateField("nombre", e.target.value)}
                       className={cn(
-                        "w-full px-4 py-2.5 bg-base border rounded-lg text-dark text-sm transition-colors focus:outline-none focus:ring-2 focus:ring-accent/30 focus:border-accent",
+                        "w-full px-4 py-3 bg-base border rounded-lg text-dark text-sm transition-colors focus:outline-none focus:ring-2 focus:ring-accent/30 focus:border-accent",
                         formErrors.nombre
                           ? "border-red-400"
                           : "border-border"
@@ -412,7 +412,7 @@ export default function CartPage() {
                   <div>
                     <label
                       htmlFor="apellido"
-                      className="block text-sm font-medium text-text-secondary mb-1.5"
+                      className="block text-sm font-medium text-dark mb-1.5"
                     >
                       Apellido *
                     </label>
@@ -422,7 +422,7 @@ export default function CartPage() {
                       value={buyerInfo.apellido}
                       onChange={(e) => updateField("apellido", e.target.value)}
                       className={cn(
-                        "w-full px-4 py-2.5 bg-base border rounded-lg text-dark text-sm transition-colors focus:outline-none focus:ring-2 focus:ring-accent/30 focus:border-accent",
+                        "w-full px-4 py-3 bg-base border rounded-lg text-dark text-sm transition-colors focus:outline-none focus:ring-2 focus:ring-accent/30 focus:border-accent",
                         formErrors.apellido
                           ? "border-red-400"
                           : "border-border"
@@ -443,7 +443,7 @@ export default function CartPage() {
                   <div>
                     <label
                       htmlFor="email"
-                      className="block text-sm font-medium text-text-secondary mb-1.5"
+                      className="block text-sm font-medium text-dark mb-1.5"
                     >
                       Email *
                     </label>
@@ -453,7 +453,7 @@ export default function CartPage() {
                       value={buyerInfo.email}
                       onChange={(e) => updateField("email", e.target.value)}
                       className={cn(
-                        "w-full px-4 py-2.5 bg-base border rounded-lg text-dark text-sm transition-colors focus:outline-none focus:ring-2 focus:ring-accent/30 focus:border-accent",
+                        "w-full px-4 py-3 bg-base border rounded-lg text-dark text-sm transition-colors focus:outline-none focus:ring-2 focus:ring-accent/30 focus:border-accent",
                         formErrors.email
                           ? "border-red-400"
                           : "border-border"
@@ -470,7 +470,7 @@ export default function CartPage() {
                   <div>
                     <label
                       htmlFor="telefono"
-                      className="block text-sm font-medium text-text-secondary mb-1.5"
+                      className="block text-sm font-medium text-dark mb-1.5"
                     >
                       Teléfono *
                     </label>
@@ -480,7 +480,7 @@ export default function CartPage() {
                       value={buyerInfo.telefono}
                       onChange={(e) => updateField("telefono", e.target.value)}
                       className={cn(
-                        "w-full px-4 py-2.5 bg-base border rounded-lg text-dark text-sm transition-colors focus:outline-none focus:ring-2 focus:ring-accent/30 focus:border-accent",
+                        "w-full px-4 py-3 bg-base border rounded-lg text-dark text-sm transition-colors focus:outline-none focus:ring-2 focus:ring-accent/30 focus:border-accent",
                         formErrors.telefono
                           ? "border-red-400"
                           : "border-border"
@@ -500,7 +500,7 @@ export default function CartPage() {
                 <div>
                   <label
                     htmlFor="rut"
-                    className="block text-sm font-medium text-text-secondary mb-1.5"
+                    className="block text-sm font-medium text-dark mb-1.5"
                   >
                     RUT *
                   </label>
@@ -510,7 +510,7 @@ export default function CartPage() {
                     value={buyerInfo.rut}
                     onChange={(e) => updateField("rut", e.target.value)}
                     className={cn(
-                      "w-full px-4 py-2.5 bg-base border rounded-lg text-dark text-sm transition-colors focus:outline-none focus:ring-2 focus:ring-accent/30 focus:border-accent",
+                      "w-full px-4 py-3 bg-base border rounded-lg text-dark text-sm transition-colors focus:outline-none focus:ring-2 focus:ring-accent/30 focus:border-accent",
                       formErrors.rut
                         ? "border-red-400"
                         : "border-border"
@@ -530,7 +530,7 @@ export default function CartPage() {
                   <div className="sm:col-span-2">
                     <label
                       htmlFor="direccion"
-                      className="block text-sm font-medium text-text-secondary mb-1.5"
+                      className="block text-sm font-medium text-dark mb-1.5"
                     >
                       Dirección *
                     </label>
@@ -540,7 +540,7 @@ export default function CartPage() {
                       value={buyerInfo.direccion}
                       onChange={(e) => updateField("direccion", e.target.value)}
                       className={cn(
-                        "w-full px-4 py-2.5 bg-base border rounded-lg text-dark text-sm transition-colors focus:outline-none focus:ring-2 focus:ring-accent/30 focus:border-accent",
+                        "w-full px-4 py-3 bg-base border rounded-lg text-dark text-sm transition-colors focus:outline-none focus:ring-2 focus:ring-accent/30 focus:border-accent",
                         formErrors.direccion
                           ? "border-red-400"
                           : "border-border"
@@ -557,7 +557,7 @@ export default function CartPage() {
                   <div>
                     <label
                       htmlFor="depto"
-                      className="block text-sm font-medium text-text-secondary mb-1.5"
+                      className="block text-sm font-medium text-dark mb-1.5"
                     >
                       Depto / Oficina
                     </label>
@@ -577,7 +577,7 @@ export default function CartPage() {
                   <div>
                     <label
                       htmlFor="region"
-                      className="block text-sm font-medium text-text-secondary mb-1.5"
+                      className="block text-sm font-medium text-dark mb-1.5"
                     >
                       Región *
                     </label>
@@ -610,7 +610,7 @@ export default function CartPage() {
                   <div>
                     <label
                       htmlFor="comuna"
-                      className="block text-sm font-medium text-text-secondary mb-1.5"
+                      className="block text-sm font-medium text-dark mb-1.5"
                     >
                       Comuna *
                     </label>
@@ -699,7 +699,7 @@ export default function CartPage() {
                 <div>
                   <label
                     htmlFor="comentario"
-                    className="block text-sm font-medium text-text-secondary mb-1.5"
+                    className="block text-sm font-medium text-dark mb-1.5"
                   >
                     Comentarios o instrucciones especiales
                   </label>
@@ -760,7 +760,7 @@ export default function CartPage() {
 
               {/* Discount code */}
               <div className="mb-6">
-                <label className="block text-sm font-medium text-text-secondary mb-1.5">
+                <label className="block text-sm font-medium text-dark mb-1.5">
                   Código de descuento
                 </label>
                 {appliedDiscount ? (

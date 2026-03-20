@@ -278,13 +278,13 @@ export default function FaqContent() {
             href={`https://wa.me/${siteConfig.contact.whatsapp}?text=${encodeURIComponent("Hola, tengo una consulta sobre sus productos")}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 bg-accent hover:bg-accent-dark text-white font-medium px-7 py-3.5 transition-all duration-300 btn-press"
+            className="inline-flex items-center gap-2 bg-accent hover:bg-accent-dark text-white font-medium px-7 py-3.5 rounded-full transition-all duration-300 btn-press"
           >
             Contactar por WhatsApp
           </a>
           <p className="text-text-tertiary text-sm mt-4">
             O escríbenos a{" "}
-            <a href={`mailto:${siteConfig.contact.email}`} className="text-accent hover:underline">
+            <a href={`mailto:${siteConfig.contact.email}`} className="text-accent hover:text-accent-dark transition-colors">
               {siteConfig.contact.email}
             </a>
           </p>

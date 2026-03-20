@@ -29,7 +29,7 @@ export default function Newsletter() {
   );
 
   return (
-    <section className="relative py-14 md:py-20 overflow-hidden">
+    <section className="relative py-12 md:py-16 overflow-hidden">
       {/* Background image */}
       <div className="absolute inset-0">
         <Image

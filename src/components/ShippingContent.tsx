@@ -424,7 +424,7 @@ export default function ShippingContent() {
           </p>
           <Link
             href="/products"
-            className="group inline-flex items-center gap-2 bg-dark hover:bg-dark-muted text-white font-medium px-7 py-3.5 rounded-full transition-all duration-300"
+            className="group inline-flex items-center gap-2 bg-accent hover:bg-accent-dark text-white font-medium px-7 py-3.5 rounded-full transition-all duration-300 btn-press"
           >
             Ver Productos
             <ArrowRight
