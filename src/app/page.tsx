@@ -5,6 +5,7 @@ import TrustBadges from "@/components/TrustBadges";
 import CategoryGrid from "@/components/CategoryGrid";
 import FeaturedProducts from "@/components/FeaturedProducts";
 import Testimonials from "@/components/Testimonials";
+import StatsBar from "@/components/StatsBar";
 import AboutSection from "@/components/AboutSection";
 import Newsletter from "@/components/Newsletter";
 
@@ -80,6 +81,7 @@ export default function HomePage() {
       <CategoryGrid />
       <FeaturedProducts />
       <Testimonials />
+      <StatsBar />
       <AboutSection />
       <Newsletter />
     </>
