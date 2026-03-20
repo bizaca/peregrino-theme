@@ -193,10 +193,45 @@ export default function ProductDetail({ product }: ProductDetailProps) {
             </h1>
 
             {product.origin && (
-              <p className="text-text-secondary text-lg mb-6">
+              <p className="text-text-secondary text-lg mb-4">
                 {product.origin}
                 {product.region ? ` · ${product.region}` : ""}
               </p>
+            )}
+
+            {/* Origin details + Map — compact block */}
+            {product.origin && (
+              <div className="flex gap-4 bg-base-warm p-4 mb-6">
+                {hasCountrySilhouette(product.origin) && (
+                  <div className="shrink-0 flex items-center text-text-tertiary">
+                    <CountrySilhouette country={product.origin} />
+                  </div>
+                )}
+                <div className="flex-1 grid grid-cols-2 gap-x-4 gap-y-2.5">
+                  <div>
+                    <div className="text-xs text-text-tertiary uppercase tracking-wide">Origen</div>
+                    <div className="text-dark font-medium text-sm mt-0.5">{product.origin}</div>
+                  </div>
+                  <div>
+                    <div className="text-xs text-text-tertiary uppercase tracking-wide">Altitud</div>
+                    <div className="text-dark font-medium text-sm mt-0.5">{product.altitude}</div>
+                  </div>
+                  <div>
+                    <div className="text-xs text-text-tertiary uppercase tracking-wide">Proceso</div>
+                    <div className="text-dark font-medium text-sm mt-0.5">{product.process}</div>
+                  </div>
+                  <div>
+                    <div className="text-xs text-text-tertiary uppercase tracking-wide">Varietal</div>
+                    <div className="text-dark font-medium text-sm mt-0.5">{product.varietals}</div>
+                  </div>
+                  {product.acidity && (
+                    <div>
+                      <div className="text-xs text-text-tertiary uppercase tracking-wide">Acidez</div>
+                      <div className="text-dark font-medium text-sm mt-0.5">{product.acidity}</div>
+                    </div>
+                  )}
+                </div>
+              </div>
             )}
 
             {/* 2. Tasting Notes — pill badges with icons */}
@@ -425,47 +460,6 @@ export default function ProductDetail({ product }: ProductDetailProps) {
                 </p>
               </div>
 
-              {/* Detalles del Origen + Mapa */}
-              {product.origin && (
-                <div>
-                  <h2 className="text-xs font-medium text-text-tertiary uppercase tracking-widest mb-3">
-                    Detalles del Origen
-                  </h2>
-                  <div className="flex gap-4 bg-base-warm p-4">
-                    {/* Mapa del país */}
-                    {hasCountrySilhouette(product.origin) && (
-                      <div className="shrink-0 flex items-center text-text-tertiary">
-                        <CountrySilhouette country={product.origin} />
-                      </div>
-                    )}
-                    {/* Datos */}
-                    <div className="flex-1 grid grid-cols-2 gap-x-4 gap-y-2.5">
-                      <div>
-                        <div className="text-xs text-text-tertiary uppercase tracking-wide">Origen</div>
-                        <div className="text-dark font-medium text-sm mt-0.5">{product.origin}</div>
-                      </div>
-                      <div>
-                        <div className="text-xs text-text-tertiary uppercase tracking-wide">Altitud</div>
-                        <div className="text-dark font-medium text-sm mt-0.5">{product.altitude}</div>
-                      </div>
-                      <div>
-                        <div className="text-xs text-text-tertiary uppercase tracking-wide">Proceso</div>
-                        <div className="text-dark font-medium text-sm mt-0.5">{product.process}</div>
-                      </div>
-                      <div>
-                        <div className="text-xs text-text-tertiary uppercase tracking-wide">Varietal</div>
-                        <div className="text-dark font-medium text-sm mt-0.5">{product.varietals}</div>
-                      </div>
-                      {product.acidity && (
-                        <div>
-                          <div className="text-xs text-text-tertiary uppercase tracking-wide">Acidez</div>
-                          <div className="text-dark font-medium text-sm mt-0.5">{product.acidity}</div>
-                        </div>
-                      )}
-                    </div>
-                  </div>
-                </div>
-              )}
 
               {/* Cómo Preparar */}
               {product.grindOptions.length > 0 && (
