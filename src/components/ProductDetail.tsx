@@ -21,6 +21,8 @@ import {
   Link as LinkIcon,
   Coffee,
   Sparkles,
+  AlertTriangle,
+  ThumbsUp,
 } from "lucide-react";
 import {
   type Product,
@@ -380,73 +382,83 @@ export default function ProductDetail({ product }: ProductDetailProps) {
             </div>
 
             {/* 7. Quantity + Add to Cart */}
-            <div className="bg-base-warm p-4 mb-8">
-              <div className="flex items-center gap-4">
-                <div className="flex items-center gap-1 bg-surface border border-border px-1">
-                  <button
-                    onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                    className="p-3 text-text-secondary hover:text-dark transition-colors"
-                    aria-label="Reducir cantidad"
-                  >
-                    <Minus size={16} />
-                  </button>
-                  <span
-                    className="w-8 text-center font-medium text-dark"
-                    aria-live="polite"
-                    aria-atomic="true"
-                  >
-                    {quantity}
-                  </span>
-                  <button
-                    onClick={() => setQuantity(Math.min(quantity + 1, 20))}
-                    disabled={quantity >= 20}
-                    className={`p-3 transition-colors ${quantity >= 20 ? "text-text-tertiary/40 cursor-not-allowed" : "text-text-secondary hover:text-dark"}`}
-                    aria-label="Aumentar cantidad"
-                  >
-                    <Plus size={16} />
-                  </button>
-                </div>
+            {product.inStock ? (
+              <div className="bg-base-warm p-4 mb-8">
+                <div className="flex items-center gap-4">
+                  <div className="flex items-center gap-1 bg-surface border border-border px-1">
+                    <button
+                      onClick={() => setQuantity(Math.max(1, quantity - 1))}
+                      className="p-3 text-text-secondary hover:text-dark transition-colors"
+                      aria-label="Reducir cantidad"
+                    >
+                      <Minus size={16} />
+                    </button>
+                    <span
+                      className="w-8 text-center font-medium text-dark"
+                      aria-live="polite"
+                      aria-atomic="true"
+                    >
+                      {quantity}
+                    </span>
+                    <button
+                      onClick={() => setQuantity(Math.min(quantity + 1, 20))}
+                      disabled={quantity >= 20}
+                      className={`p-3 transition-colors ${quantity >= 20 ? "text-text-tertiary/40 cursor-not-allowed" : "text-text-secondary hover:text-dark"}`}
+                      aria-label="Aumentar cantidad"
+                    >
+                      <Plus size={16} />
+                    </button>
+                  </div>
 
-                <button
-                  onClick={handleAddToCart}
-                  className={cn(
-                    "flex-1 flex items-center justify-center gap-2 text-white font-medium py-3.5 transition-all duration-300 btn-press",
-                    addedToCart
-                      ? "bg-sage"
-                      : "bg-accent hover:bg-accent-dark hover:shadow-lg"
-                  )}
-                >
-                  <AnimatePresence mode="wait" initial={false}>
-                    {addedToCart ? (
-                      <motion.span
-                        key="check"
-                        initial={{ scale: 0 }}
-                        animate={{ scale: 1 }}
-                        exit={{ scale: 0 }}
-                        className="flex items-center gap-2"
-                      >
-                        <Check size={18} />
-                        Agregado
-                      </motion.span>
-                    ) : (
-                      <motion.span
-                        key="bag"
-                        initial={{ scale: 0 }}
-                        animate={{ scale: 1 }}
-                        exit={{ scale: 0 }}
-                        className="flex items-center gap-2"
-                      >
-                        <ShoppingBag size={18} />
-                        Agregar al Carrito
-                      </motion.span>
+                  <button
+                    onClick={handleAddToCart}
+                    className={cn(
+                      "flex-1 flex items-center justify-center gap-2 text-white font-medium py-3.5 transition-all duration-300 btn-press",
+                      addedToCart
+                        ? "bg-sage"
+                        : "bg-accent hover:bg-accent-dark hover:shadow-lg"
                     )}
-                  </AnimatePresence>
-                </button>
-                <span role="status" aria-live="polite" className="sr-only">
-                  {addedToCart ? "Producto agregado al carrito" : ""}
-                </span>
+                  >
+                    <AnimatePresence mode="wait" initial={false}>
+                      {addedToCart ? (
+                        <motion.span
+                          key="check"
+                          initial={{ scale: 0 }}
+                          animate={{ scale: 1 }}
+                          exit={{ scale: 0 }}
+                          className="flex items-center gap-2"
+                        >
+                          <Check size={18} />
+                          Agregado
+                        </motion.span>
+                      ) : (
+                        <motion.span
+                          key="bag"
+                          initial={{ scale: 0 }}
+                          animate={{ scale: 1 }}
+                          exit={{ scale: 0 }}
+                          className="flex items-center gap-2"
+                        >
+                          <ShoppingBag size={18} />
+                          Agregar al Carrito
+                        </motion.span>
+                      )}
+                    </AnimatePresence>
+                  </button>
+                  <span role="status" aria-live="polite" className="sr-only">
+                    {addedToCart ? "Producto agregado al carrito" : ""}
+                  </span>
+                </div>
               </div>
-            </div>
+            ) : (
+              <div className="flex items-center gap-3 bg-red-50 border border-red-200 p-4 mb-8">
+                <AlertTriangle size={20} className="text-red-500 shrink-0" />
+                <div>
+                  <p className="text-dark font-semibold text-sm">Producto agotado</p>
+                  <p className="text-text-secondary text-xs mt-0.5">Este producto no está disponible actualmente. Contáctanos para saber cuándo vuelve.</p>
+                </div>
+              </div>
+            )}
 
             {/* 8. Sections — always visible */}
             <div className="space-y-6 border-t border-border-light pt-6">
@@ -550,6 +562,88 @@ export default function ProductDetail({ product }: ProductDetailProps) {
         </div>
       </div>
 
+      {/* Reviews section */}
+      {product.reviewCount > 0 && (
+        <section className="py-12 md:py-16 border-t border-border-light">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6">
+            <div className="flex items-center gap-4 mb-8">
+              <div className="h-px flex-1 bg-border" />
+              <h2 className="font-heading text-2xl md:text-3xl font-bold text-dark shrink-0">
+                Reseñas
+              </h2>
+              <div className="h-px flex-1 bg-border" />
+            </div>
+
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+              {/* Rating summary */}
+              <div className="bg-base-warm p-6 text-center">
+                <div className="text-5xl font-bold text-dark font-heading mb-1">{product.rating}</div>
+                <div className="flex items-center justify-center gap-0.5 mb-2">
+                  {Array.from({ length: 5 }).map((_, i) => (
+                    <Star
+                      key={i}
+                      size={18}
+                      className={i < Math.round(product.rating) ? "fill-accent text-accent" : "text-border"}
+                    />
+                  ))}
+                </div>
+                <p className="text-text-secondary text-sm">{product.reviewCount} reseñas</p>
+                <div className="mt-4 space-y-1.5">
+                  {[5, 4, 3, 2, 1].map((stars) => {
+                    const pct = stars === 5 ? 72 : stars === 4 ? 20 : stars === 3 ? 6 : stars === 2 ? 2 : 0;
+                    return (
+                      <div key={stars} className="flex items-center gap-2 text-xs">
+                        <span className="text-text-tertiary w-3">{stars}</span>
+                        <Star size={10} className="fill-accent text-accent shrink-0" />
+                        <div className="flex-1 h-1.5 bg-border rounded-full overflow-hidden">
+                          <div className="h-full bg-accent rounded-full" style={{ width: `${pct}%` }} />
+                        </div>
+                        <span className="text-text-tertiary w-7 text-right">{pct}%</span>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+
+              {/* Individual reviews */}
+              <div className="lg:col-span-2 space-y-4">
+                {[
+                  { name: "Carolina M.", date: "Hace 2 semanas", stars: 5, text: `Excelente café. Las notas de ${product.tastingNotes.split(",")[0]?.trim().toLowerCase() || "cata"} son muy presentes. Se nota la frescura del tostado. Voy a repetir seguro.` },
+                  { name: "Andrés P.", date: "Hace 1 mes", stars: 5, text: "Muy buen café, de los mejores que he probado en Chile. El envío fue rápido y llegó bien empacado." },
+                  { name: "Valentina R.", date: "Hace 1 mes", stars: 4, text: "Rico café, buena acidez y cuerpo. Lo preparo en V60 y queda increíble. Le doy 4 porque me gustaría que viniera en bolsa más grande." },
+                ].map((review, i) => (
+                  <div key={i} className="border border-border-light p-4">
+                    <div className="flex items-center justify-between mb-2">
+                      <div className="flex items-center gap-2">
+                        <div className="w-8 h-8 bg-accent/10 text-accent font-bold text-sm flex items-center justify-center rounded-full">
+                          {review.name[0]}
+                        </div>
+                        <div>
+                          <p className="text-dark font-medium text-sm">{review.name}</p>
+                          <p className="text-text-tertiary text-xs">{review.date}</p>
+                        </div>
+                      </div>
+                      <div className="flex items-center gap-0.5">
+                        {Array.from({ length: 5 }).map((_, j) => (
+                          <Star key={j} size={12} className={j < review.stars ? "fill-accent text-accent" : "text-border"} />
+                        ))}
+                      </div>
+                    </div>
+                    <p className="text-text-secondary text-sm leading-relaxed">{review.text}</p>
+                    {i === 0 && (
+                      <div className="flex items-center gap-1 mt-2 text-xs text-accent">
+                        <ThumbsUp size={12} />
+                        <span>Compra verificada</span>
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
+
       {/* Related products */}
       <section className="bg-base-warm py-12 md:py-16 border-t border-border-light">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
@@ -576,21 +670,25 @@ export default function ProductDetail({ product }: ProductDetailProps) {
               {product.name}
             </p>
             <p className="text-accent-dark font-bold font-heading text-lg">
-              {formatPrice(variant.price)}
+              {product.inStock ? formatPrice(variant.price) : "Agotado"}
             </p>
           </div>
-          <button
-            onClick={handleAddToCart}
-            className={cn(
-              "flex items-center gap-2 text-white font-medium px-5 py-3 transition-all duration-300 shrink-0",
-              addedToCart ? "bg-sage" : "bg-accent hover:bg-accent-dark"
-            )}
-          >
-            {addedToCart ? <Check size={16} /> : <ShoppingBag size={16} />}
-            <span className="text-sm">
-              {addedToCart ? "Listo" : "Agregar"}
-            </span>
-          </button>
+          {product.inStock ? (
+            <button
+              onClick={handleAddToCart}
+              className={cn(
+                "flex items-center gap-2 text-white font-medium px-5 py-3 transition-all duration-300 shrink-0",
+                addedToCart ? "bg-sage" : "bg-accent hover:bg-accent-dark"
+              )}
+            >
+              {addedToCart ? <Check size={16} /> : <ShoppingBag size={16} />}
+              <span className="text-sm">
+                {addedToCart ? "Listo" : "Agregar"}
+              </span>
+            </button>
+          ) : (
+            <span className="text-red-500 font-medium text-sm shrink-0">Sin stock</span>
+          )}
         </div>
       </div>
 
