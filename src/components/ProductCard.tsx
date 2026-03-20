@@ -16,21 +16,6 @@ interface ProductCardProps {
   headingLevel?: "h2" | "h3";
 }
 
-function RoastDots({ level }: { level: number }) {
-  return (
-    <span className="inline-flex gap-[2px]">
-      {Array.from({ length: 3 }).map((_, i) => (
-        <span
-          key={i}
-          className={`inline-block w-[6px] h-[6px] rounded-full ${
-            i < level ? "bg-white" : "bg-white/30"
-          }`}
-        />
-      ))}
-    </span>
-  );
-}
-
 export default function ProductCard({ product, index = 0, headingLevel: Heading = "h3" }: ProductCardProps) {
   const { addItem } = useCart();
   const [added, setAdded] = useState(false);
@@ -65,100 +50,107 @@ export default function ProductCard({ product, index = 0, headingLevel: Heading 
         aria-label={`Ver ${product.name}`}
         className="group block"
       >
-        {/* Image container */}
-        <div className="relative aspect-square overflow-hidden bg-base-warm border border-border-light group-hover:border-dark/20 transition-all duration-300">
+        {/* Image container with flip effect */}
+        <div className="relative aspect-square overflow-hidden bg-[#EDE7DE]">
+          {/* Front image */}
           <Image
             src={product.image}
             alt={product.name}
             fill
-            className={cn("object-cover group-hover:scale-105 transition-transform duration-500", !product.inStock && "opacity-50")}
+            className={cn(
+              "object-cover transition-all duration-700 ease-in-out",
+              notes.length > 0 && "md:group-hover:opacity-0 md:group-hover:scale-105",
+              !product.inStock && "opacity-50"
+            )}
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
             placeholder="blur"
-            blurDataURL="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjQwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjRjNGMEVCIi8+PC9zdmc+"
+            blurDataURL="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjQwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjRURFN0RFIi8+PC9zdmc+"
           />
 
-          {/* Badge */}
-          {product.badge && (
-            <div className="absolute top-3 left-3 z-10 bg-accent text-white text-[11px] font-bold px-2.5 py-1 uppercase tracking-wider">
-              {product.badge}
-            </div>
-          )}
-
-          {/* Discount badge */}
-          {hasDiscount && !product.badge && (
-            <div className="absolute top-3 left-3 z-10 bg-accent-red text-white text-[11px] font-bold px-2.5 py-1">
-              -{getDiscountPercentage(mainVariant.price, mainVariant.originalPrice!)}%
-            </div>
-          )}
-
-          {/* Out of stock badge */}
-          {!product.inStock && (
-            <div className="absolute top-3 right-3 z-10 bg-dark/80 text-white text-[11px] font-bold px-2.5 py-1 uppercase tracking-wider">
-              Agotado
-            </div>
-          )}
-
-          {/* Madcap-style editorial hover overlay (desktop only, coffee products only) */}
+          {/* Back: editorial overlay on hover (desktop) */}
           {notes.length > 0 && (
             <div
-              className="absolute inset-0 opacity-0 md:group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-between p-5 pointer-events-none"
-              style={{ backgroundColor: product.labelColor ?? "#2D2926" }}
+              className="absolute inset-0 opacity-0 md:group-hover:opacity-100 transition-opacity duration-500 flex flex-col justify-between p-5 pointer-events-none"
+              style={{ backgroundColor: product.labelColor ?? "#0D2030" }}
             >
-              {/* Top: Origin + Process (left), Tueste + Acidez (right) */}
+              {/* Top: Origin + Process */}
               <div className="flex justify-between items-start">
                 <div className="space-y-0.5">
                   <p className="text-[11px] uppercase tracking-wider">
-                    <span className="text-white/50 font-bold">Origen</span>{" "}
+                    <span className="text-[#B8912A] font-bold">Origen</span>{" "}
                     <span className="text-white">{product.origin}</span>
                   </p>
                   <p className="text-[11px] uppercase tracking-wider">
-                    <span className="text-white/50 font-bold">Proceso</span>{" "}
+                    <span className="text-[#B8912A] font-bold">Proceso</span>{" "}
                     <span className="text-white">{product.process}</span>
                   </p>
                 </div>
                 <div className="text-right space-y-0.5">
-                  {product.roastLevel && (
-                    <p className="text-[11px] uppercase tracking-wider flex items-center gap-1.5 justify-end">
-                      <span className="text-white/50 font-bold">Tueste</span>
-                      <RoastDots level={product.roastLevel} />
-                    </p>
-                  )}
                   {product.acidity && (
                     <p className="text-[11px] uppercase tracking-wider">
-                      <span className="text-white/50 font-bold">Acidez</span>{" "}
+                      <span className="text-[#B8912A] font-bold">Acidez</span>{" "}
                       <span className="text-white">{product.acidity}</span>
                     </p>
                   )}
                 </div>
               </div>
 
-              {/* Center: Large name + tasting notes */}
+              {/* Center: Name + tasting notes */}
               <div className="text-center px-2">
-                <p className="text-white font-heading text-xl font-bold uppercase tracking-wider mb-2 leading-tight">
+                <p className="text-white text-xl font-bold uppercase tracking-wider mb-2 leading-tight" style={{ fontFamily: "var(--font-heading)" }}>
                   {product.name}
                 </p>
-                <p className="text-white/50 text-sm">
+                <p className="text-white/50 text-sm italic">
                   {notes.map((n) => n.label.toLowerCase()).join(", ")}
                 </p>
               </div>
 
               {/* Bottom: Category */}
               <div>
-                <span className="text-accent-light text-[11px] uppercase tracking-wider font-semibold">
+                <span className="text-[#B8912A] text-[11px] uppercase tracking-wider font-semibold">
                   {product.category === "granos" ? "Café de Especialidad" : product.category}
                 </span>
               </div>
             </div>
           )}
 
+          {/* Origin badge */}
+          {product.origin && product.origin !== "Chile" && product.origin !== "N/A" && (
+            <div className="absolute top-3 left-3 z-10 bg-[#0D2030]/80 backdrop-blur-sm text-white text-[10px] font-bold px-2.5 py-1 uppercase tracking-wider">
+              {product.origin}
+            </div>
+          )}
+
+          {/* Product badge */}
+          {product.badge && (
+            <div className="absolute top-3 right-3 z-10 bg-[#8B6914] text-white text-[10px] font-bold px-2.5 py-1 uppercase tracking-wider">
+              {product.badge}
+            </div>
+          )}
+
+          {/* Discount badge */}
+          {hasDiscount && !product.badge && (
+            <div className="absolute top-3 right-3 z-10 bg-red-600 text-white text-[10px] font-bold px-2.5 py-1">
+              -{getDiscountPercentage(mainVariant.price, mainVariant.originalPrice!)}%
+            </div>
+          )}
+
+          {/* Out of stock */}
+          {!product.inStock && (
+            <div className="absolute top-3 right-3 z-10 bg-[#0D2030]/80 text-white text-[10px] font-bold px-2.5 py-1 uppercase tracking-wider">
+              Agotado
+            </div>
+          )}
+
           {/* Quick add button */}
           <button
             onClick={handleQuickAdd}
-            className={`absolute bottom-3 right-3 z-10 p-3 shadow-lg transition-all duration-300 focus-visible:opacity-100 focus-visible:translate-y-0 focus-visible:ring-2 focus-visible:ring-white/60 ${
+            className={cn(
+              "absolute bottom-3 right-3 z-10 p-3 shadow-lg transition-all duration-300 focus-visible:opacity-100 focus-visible:translate-y-0 focus-visible:ring-2 focus-visible:ring-white/60",
               added
                 ? "bg-green-600 text-white scale-110 opacity-100 translate-y-0"
-                : "bg-dark-soft text-white opacity-100 md:opacity-0 md:group-hover:opacity-100 translate-y-0 md:translate-y-2 md:group-hover:translate-y-0 hover:bg-accent hover:scale-110"
-            }`}
+                : "bg-[#0D2030] text-white opacity-100 md:opacity-0 md:group-hover:opacity-100 translate-y-0 md:translate-y-2 md:group-hover:translate-y-0 hover:bg-[#8B6914] hover:scale-110"
+            )}
             aria-label={added ? "Agregado al carrito" : "Agregar al carrito"}
           >
             <AnimatePresence mode="wait" initial={false}>
@@ -192,20 +184,37 @@ export default function ProductCard({ product, index = 0, headingLevel: Heading 
           </span>
         </div>
 
-        {/* Content — centered below image, outside box */}
-        <div className="text-center pt-4 pb-2">
-          <Heading className="font-heading text-xs font-semibold text-dark uppercase tracking-[0.15em] line-clamp-1">
+        {/* Content below image */}
+        <div className="pt-4 pb-2">
+          <Heading
+            className="text-sm font-bold text-[#0D2030] uppercase tracking-[0.15em] line-clamp-1"
+            style={{ fontFamily: "var(--font-heading)" }}
+          >
             {product.name}
           </Heading>
-          <div className="flex items-baseline justify-center gap-2 mt-1">
-            <span className="text-dark-muted text-xs uppercase tracking-wider">
-              {formatPrice(mainVariant.price)}
-            </span>
-            {hasDiscount && (
-              <span className="text-text-tertiary text-xs line-through">
-                {formatPrice(mainVariant.originalPrice!)}
+          {notes.length > 0 && (
+            <p className="text-xs text-[#0D2030]/50 italic mt-1 line-clamp-1">
+              {notes.map((n) => n.label.toLowerCase()).join(", ")}
+            </p>
+          )}
+          <div className="flex items-center justify-between mt-2">
+            <div className="flex items-baseline gap-2">
+              <span className="text-[#0D2030] text-sm font-semibold">
+                {formatPrice(mainVariant.price)}
               </span>
-            )}
+              {hasDiscount && (
+                <span className="text-[#0D2030]/40 text-xs line-through">
+                  {formatPrice(mainVariant.originalPrice!)}
+                </span>
+              )}
+            </div>
+            <button
+              onClick={handleQuickAdd}
+              className="text-[10px] font-bold uppercase tracking-wider bg-[#8B6914] hover:bg-[#B8912A] text-white px-3 py-1.5 transition-colors btn-press"
+              aria-label={`Agregar ${product.name} al carrito`}
+            >
+              Agregar
+            </button>
           </div>
         </div>
       </Link>
