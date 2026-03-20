@@ -117,6 +117,7 @@ export default function HeroCarousel() {
               alt={slide.title}
               fill
               className="object-cover"
+              style={{ objectPosition: slide.objectPosition ?? "center" }}
               priority={current === 0}
               sizes="100vw"
               placeholder="blur"

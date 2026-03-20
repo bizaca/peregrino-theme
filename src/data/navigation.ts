@@ -22,21 +22,23 @@ export const mainNavItems: NavItem[] = [
 export const heroSlides = [
   {
     id: 1,
+    title: "Colombia Bolívar",
+    subtitle: "Proceso Natural",
+    description: "Frutos rojos, chocolate y caramelo. Desde las montañas de Antioquia.",
+    cta: "Descubrir",
+    href: "/products/colombia-ciudad-bolivar",
+    image: "/images/hero/colombia-bolivar-hero.jpg",
+    objectPosition: "center 40%",
+  },
+  {
+    id: 2,
     title: "Perú El Bambú",
     subtitle: "Especialidad del Mes",
     description: "Notas de miel con frutas maduras, naranja y mandarina. Un café excepcional de Cajamarca.",
     cta: "Comprar Ahora",
     href: "/products/peru-el-bambu",
     image: generatedImages.hero[0],
-  },
-  {
-    id: 2,
-    title: "Colombia Bolívar",
-    subtitle: "Proceso Natural",
-    description: "Frutos rojos, chocolate y caramelo. Desde las montañas de Antioquia.",
-    cta: "Descubrir",
-    href: "/products/colombia-ciudad-bolivar",
-    image: generatedImages.hero[1],
+    objectPosition: "center",
   },
   {
     id: 3,
@@ -46,6 +48,7 @@ export const heroSlides = [
     cta: "Explorar",
     href: "/products/costa-rica-colibri",
     image: generatedImages.hero[2],
+    objectPosition: "center",
   },
   {
     id: 4,
@@ -55,6 +58,7 @@ export const heroSlides = [
     cta: "Ver Más",
     href: "/products/colombia-yipao",
     image: generatedImages.hero[3],
+    objectPosition: "center",
   },
 ];
 
