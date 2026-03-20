@@ -199,18 +199,6 @@ export default function ProductDetail({ product }: ProductDetailProps) {
               </p>
             )}
 
-            {/* Country silhouette map */}
-            {hasCountrySilhouette(product.origin) && (
-              <div className="mb-6">
-                <p className="text-xs font-medium text-text-tertiary uppercase tracking-widest mb-3">
-                  Origen
-                </p>
-                <div className="flex justify-center py-3 bg-base-warm text-text-tertiary">
-                  <CountrySilhouette country={product.origin} />
-                </div>
-              </div>
-            )}
-
             {/* 2. Tasting Notes — pill badges with icons */}
             {tastingNotes.length > 0 && (
               <div className="mb-6">
@@ -437,85 +425,44 @@ export default function ProductDetail({ product }: ProductDetailProps) {
                 </p>
               </div>
 
-              {/* Detalles del Origen */}
+              {/* Detalles del Origen + Mapa */}
               {product.origin && (
                 <div>
                   <h2 className="text-xs font-medium text-text-tertiary uppercase tracking-widest mb-3">
                     Detalles del Origen
                   </h2>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                    <div className="flex items-start gap-3 p-3 bg-base-warm">
-                      <MapPin
-                        size={18}
-                        className="text-accent mt-0.5 shrink-0"
-                      />
-                      <div>
-                        <div className="text-xs text-text-tertiary uppercase tracking-wide">
-                          Origen
-                        </div>
-                        <div className="text-dark font-medium text-sm mt-0.5">
-                          {product.origin}
-                        </div>
-                      </div>
-                    </div>
-                    <div className="flex items-start gap-3 p-3 bg-base-warm">
-                      <Mountain
-                        size={18}
-                        className="text-accent mt-0.5 shrink-0"
-                      />
-                      <div>
-                        <div className="text-xs text-text-tertiary uppercase tracking-wide">
-                          Altitud
-                        </div>
-                        <div className="text-dark font-medium text-sm mt-0.5">
-                          {product.altitude}
-                        </div>
-                      </div>
-                    </div>
-                    <div className="flex items-start gap-3 p-3 bg-base-warm">
-                      <Droplets
-                        size={18}
-                        className="text-accent mt-0.5 shrink-0"
-                      />
-                      <div>
-                        <div className="text-xs text-text-tertiary uppercase tracking-wide">
-                          Proceso
-                        </div>
-                        <div className="text-dark font-medium text-sm mt-0.5">
-                          {product.process}
-                        </div>
-                      </div>
-                    </div>
-                    <div className="flex items-start gap-3 p-3 bg-base-warm">
-                      <Leaf
-                        size={18}
-                        className="text-accent mt-0.5 shrink-0"
-                      />
-                      <div>
-                        <div className="text-xs text-text-tertiary uppercase tracking-wide">
-                          Varietal
-                        </div>
-                        <div className="text-dark font-medium text-sm mt-0.5">
-                          {product.varietals}
-                        </div>
-                      </div>
-                    </div>
-                    {product.acidity && (
-                      <div className="flex items-start gap-3 p-3 bg-base-warm">
-                        <Sparkles
-                          size={18}
-                          className="text-accent mt-0.5 shrink-0"
-                        />
-                        <div>
-                          <div className="text-xs text-text-tertiary uppercase tracking-wide">
-                            Acidez
-                          </div>
-                          <div className="text-dark font-medium text-sm mt-0.5">
-                            {product.acidity}
-                          </div>
-                        </div>
+                  <div className="flex gap-4 bg-base-warm p-4">
+                    {/* Mapa del país */}
+                    {hasCountrySilhouette(product.origin) && (
+                      <div className="shrink-0 flex items-center text-text-tertiary">
+                        <CountrySilhouette country={product.origin} />
                       </div>
                     )}
+                    {/* Datos */}
+                    <div className="flex-1 grid grid-cols-2 gap-x-4 gap-y-2.5">
+                      <div>
+                        <div className="text-xs text-text-tertiary uppercase tracking-wide">Origen</div>
+                        <div className="text-dark font-medium text-sm mt-0.5">{product.origin}</div>
+                      </div>
+                      <div>
+                        <div className="text-xs text-text-tertiary uppercase tracking-wide">Altitud</div>
+                        <div className="text-dark font-medium text-sm mt-0.5">{product.altitude}</div>
+                      </div>
+                      <div>
+                        <div className="text-xs text-text-tertiary uppercase tracking-wide">Proceso</div>
+                        <div className="text-dark font-medium text-sm mt-0.5">{product.process}</div>
+                      </div>
+                      <div>
+                        <div className="text-xs text-text-tertiary uppercase tracking-wide">Varietal</div>
+                        <div className="text-dark font-medium text-sm mt-0.5">{product.varietals}</div>
+                      </div>
+                      {product.acidity && (
+                        <div>
+                          <div className="text-xs text-text-tertiary uppercase tracking-wide">Acidez</div>
+                          <div className="text-dark font-medium text-sm mt-0.5">{product.acidity}</div>
+                        </div>
+                      )}
+                    </div>
                   </div>
                 </div>
               )}

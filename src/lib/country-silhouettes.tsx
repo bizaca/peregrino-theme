@@ -48,7 +48,7 @@ export function CountrySilhouette({ country, className = "" }: CountrySilhouette
     <div className={`flex flex-col items-center ${className}`}>
       <svg
         viewBox={data.viewBox}
-        className="w-28 h-28 md:w-32 md:h-32"
+        className="w-20 h-20 md:w-24 md:h-24"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
       >
