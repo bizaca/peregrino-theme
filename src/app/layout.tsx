@@ -1,7 +1,7 @@
 import { Suspense } from "react";
 import dynamic from "next/dynamic";
 import type { Metadata, Viewport } from "next";
-import { Plus_Jakarta_Sans, Inter } from "next/font/google";
+import { Syne, Outfit } from "next/font/google";
 import { CartProvider } from "@/context/CartContext";
 import AnnouncementBar from "@/components/AnnouncementBar";
 import Header from "@/components/Header";
@@ -14,13 +14,13 @@ const WhatsAppButton = dynamic(() => import("@/components/WhatsAppButton"));
 const BackToTop = dynamic(() => import("@/components/BackToTop"));
 const ScrollToTop = dynamic(() => import("@/components/ScrollToTop"));
 
-const plusJakarta = Plus_Jakarta_Sans({
+const syne = Syne({
   variable: "--font-heading",
   subsets: ["latin"],
   display: "swap",
 });
 
-const inter = Inter({
+const outfit = Outfit({
   variable: "--font-body",
   subsets: ["latin"],
   display: "swap",
@@ -30,7 +30,7 @@ export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
   maximumScale: 5,
-  themeColor: "#2D2926",
+  themeColor: "#0D2030",
 };
 
 export const metadata: Metadata = {
@@ -77,7 +77,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="es" className={`${plusJakarta.variable} ${inter.variable}`}>
+    <html lang="es" className={`${syne.variable} ${outfit.variable}`}>
       <head>
         <link rel="preconnect" href="https://v3b.fal.media" />
         <link rel="dns-prefetch" href="https://v3b.fal.media" />

@@ -1,39 +1,42 @@
 @import "tailwindcss";
 
 @theme inline {
-  /* Clean white palette */
-  --color-base: #FFFFFF;
-  --color-base-warm: #F5F5F5;
-  --color-base-dark: #E5E5E5;
+  /* V6 warm palette */
+  --color-base: #F7F3EE;
+  --color-base-warm: #EDE7DE;
+  --color-base-dark: #D4CEC5;
   --color-surface: #FFFFFF;
-  --color-surface-hover: #F5F5F5;
+  --color-surface-hover: #F7F3EE;
 
-  /* Dark tones */
-  --color-dark: #1A1A1A;
-  --color-dark-soft: #2D2926;
-  --color-dark-muted: #4A4543;
-  --color-text-secondary: #6B6560;
-  --color-text-tertiary: #756F6A;
+  /* Dark tones — petrol blue */
+  --color-dark: #0D2030;
+  --color-dark-soft: #132a3a;
+  --color-dark-muted: #1a3648;
+  --color-text-secondary: #0D2030;
+  --color-text-tertiary: #0D2030;
 
-  /* Accent — azul petróleo (Peregrino brand) */
-  --color-accent: #005F73;
-  --color-accent-light: #0A7E8C;
-  --color-accent-dark: #003D4D;
-  --color-accent-bg: #FFFFFF;
+  /* Accent — dorado café */
+  --color-accent: #8B6914;
+  --color-accent-light: #B8912A;
+  --color-accent-dark: #6B5010;
+  --color-accent-bg: #EDE7DE;
 
-  /* Secondary — sage green (earthy modern) */
+  /* Secondary — sage warm */
   --color-sage: #6B705C;
   --color-sage-light: #8A8F7C;
-  --color-sage-bg: #F5F5F5;
+  --color-sage-bg: #F7F3EE;
 
   /* Functional */
   --color-accent-red: #C53030;
-  --color-border: #E0E0E0;
-  --color-border-light: #EBEBEB;
+  --color-border: #D4CEC5;
+  --color-border-light: #E4DDD4;
 
-  /* Typography */
-  --font-heading: "Plus Jakarta Sans", system-ui, sans-serif;
-  --font-body: "Inter", system-ui, sans-serif;
+  /* Card */
+  --color-card: #E4DDD4;
+
+  /* Typography — Syne headings, Outfit body */
+  --font-heading: "Syne", system-ui, sans-serif;
+  --font-body: "Outfit", system-ui, sans-serif;
 }
 
 /* Base styles */
@@ -59,7 +62,7 @@ body {
   border-radius: 3px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--color-text-tertiary);
+  background: var(--color-accent);
 }
 
 /* Accent gradient text */
@@ -117,9 +120,7 @@ body {
   outline-offset: 2px;
 }
 
-/* Focus ring for buttons and cards */
-
-/* Grain texture overlay — hipster/film effect */
+/* Grain texture overlay */
 .grain-overlay::after {
   content: '';
   position: absolute;
@@ -197,7 +198,7 @@ body {
 .input-focus:focus {
   background-color: var(--color-surface);
   border-color: var(--color-accent);
-  box-shadow: 0 0 0 3px rgba(0, 95, 115, 0.15);
+  box-shadow: 0 0 0 3px rgba(139, 105, 20, 0.15);
 }
 
 /* Selection color */
