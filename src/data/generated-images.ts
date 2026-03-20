@@ -12,7 +12,7 @@ export const generatedImages = {
     tea: "/images/infusiones/te-earl-grey-naranja.jpg",
   },
   about: "/images/hero/coffee-roastery.jpg",
-  newsletter: "/images/hero/colombia-yipao.jpg",
+  newsletter: "/images/hero/coffee-newsletter.jpg",
   locations: {
     providencia: "/images/hero/peru-bambu.jpg",
     lastarria: "/images/hero/colombia-bolivar.jpg",
