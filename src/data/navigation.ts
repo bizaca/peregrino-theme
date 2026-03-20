@@ -27,7 +27,7 @@ export const heroSlides = [
     description: "Frutos rojos, chocolate y caramelo. Desde las montañas de Antioquia.",
     cta: "Descubrir",
     href: "/products/colombia-ciudad-bolivar",
-    image: "/images/hero/colombia-bolivar-hero.jpg",
+    image: "/images/hero/colombia-bolivar-hero.png",
     objectPosition: "center 40%",
   },
   {
