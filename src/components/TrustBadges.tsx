@@ -13,14 +13,19 @@ const iconMap: Record<string, React.ElementType> = {
   gift: Gift,
 };
 
-function BadgeItem({ badge, showDivider }: { badge: (typeof trustBadges)[number]; showDivider: boolean }) {
+function GoldenDot() {
+  return (
+    <span className="inline-block w-[6px] h-[6px] rounded-full bg-[#B8912A] shrink-0 mx-6" />
+  );
+}
+
+function BadgeItem({ badge }: { badge: (typeof trustBadges)[number] }) {
   const Icon = iconMap[badge.icon];
   return (
-    <div className="flex items-center gap-2.5 px-6 py-4 text-dark-muted group cursor-default shrink-0">
-      <Icon size={17} className="text-accent shrink-0 group-hover:scale-110 transition-transform duration-200" />
-      <span className="text-sm whitespace-nowrap">{badge.text}</span>
-      {showDivider && <div className="w-px h-4 bg-border ml-6" />}
-    </div>
+    <span className="inline-flex items-center gap-2.5 shrink-0 whitespace-nowrap">
+      <Icon size={15} className="text-[#8B6914] shrink-0" />
+      <span className="text-sm font-medium text-[#0D2030]/70 tracking-wide uppercase">{badge.text}</span>
+    </span>
   );
 }
 
@@ -35,23 +40,21 @@ export default function TrustBadges() {
   }, []);
 
   return (
-    <section className="bg-base-warm border-y border-border-light">
-      {/* Desktop: infinite marquee */}
-      <div className="hidden md:block overflow-hidden">
-        <div className="animate-marquee flex w-max">
-          {/* Render badges twice for seamless loop */}
+    <section className="bg-[#EDE7DE] border-y border-[#D4CEC5]">
+      {/* Desktop: infinite marquee ticker with golden dots */}
+      <div className="hidden md:block overflow-hidden py-4">
+        <div className="animate-marquee flex items-center w-max">
           {[...trustBadges, ...trustBadges].map((badge, index) => (
-            <BadgeItem
-              key={`${badge.text}-${index}`}
-              badge={badge}
-              showDivider={true}
-            />
+            <span key={`${badge.text}-${index}`} className="inline-flex items-center">
+              <BadgeItem badge={badge} />
+              <GoldenDot />
+            </span>
           ))}
         </div>
       </div>
 
       {/* Mobile: rotating single badge */}
-      <div className="md:hidden flex items-center justify-center h-12 overflow-hidden">
+      <div className="md:hidden flex items-center justify-center h-14 overflow-hidden">
         <AnimatePresence mode="wait">
           <motion.div
             key={current}
@@ -59,13 +62,15 @@ export default function TrustBadges() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.3 }}
-            className="flex items-center gap-2 text-dark-muted"
+            className="flex items-center gap-2"
           >
             {(() => {
               const Icon = iconMap[trustBadges[current].icon];
-              return <Icon size={15} className="text-accent" />;
+              return <Icon size={15} className="text-[#8B6914]" />;
             })()}
-            <span className="text-sm">{trustBadges[current].text}</span>
+            <span className="text-sm font-medium text-[#0D2030]/70 tracking-wide uppercase">
+              {trustBadges[current].text}
+            </span>
           </motion.div>
         </AnimatePresence>
       </div>
