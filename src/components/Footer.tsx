@@ -109,7 +109,7 @@ export default function Footer() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="block py-3 md:py-0 text-sm text-white/50 hover:text-accent-light hover:translate-x-0.5 transition-all duration-200"
+                    className="block py-3.5 md:py-0 text-sm text-white/50 hover:text-accent-light hover:translate-x-0.5 transition-all duration-200"
                   >
                     {link.label}
                   </Link>
@@ -133,7 +133,7 @@ export default function Footer() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="block py-3 md:py-0 text-sm text-white/50 hover:text-accent-light hover:translate-x-0.5 transition-all duration-200"
+                    className="block py-3.5 md:py-0 text-sm text-white/50 hover:text-accent-light hover:translate-x-0.5 transition-all duration-200"
                   >
                     {link.label}
                   </Link>
@@ -157,7 +157,7 @@ export default function Footer() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="block py-3 md:py-0 text-sm text-white/50 hover:text-accent-light hover:translate-x-0.5 transition-all duration-200"
+                    className="block py-3.5 md:py-0 text-sm text-white/50 hover:text-accent-light hover:translate-x-0.5 transition-all duration-200"
                   >
                     {link.label}
                   </Link>

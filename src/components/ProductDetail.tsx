@@ -131,7 +131,7 @@ export default function ProductDetail({ product }: ProductDetailProps) {
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5 }}
-            className="sticky top-28 self-start"
+            className="lg:sticky lg:top-28 self-start"
           >
             <div className="relative aspect-[4/5] max-w-[500px] mx-auto overflow-hidden bg-base-warm shadow-lg shadow-dark/5">
               <Image
@@ -288,7 +288,7 @@ export default function ProductDetail({ product }: ProductDetailProps) {
                     id="size-select"
                     value={selectedVariant}
                     onChange={(e) => setSelectedVariant(Number(e.target.value))}
-                    className="w-full appearance-none bg-surface border border-border px-4 py-3 pr-10 text-dark font-medium text-sm focus:outline-none focus:ring-2 focus:ring-accent/30 focus:border-accent transition-colors cursor-pointer"
+                    className="w-full appearance-none bg-surface border border-border px-4 py-3.5 pr-10 text-dark font-medium text-sm focus:outline-none focus:ring-2 focus:ring-accent/30 focus:border-accent transition-colors cursor-pointer"
                   >
                     {product.variants.map((v, i) => (
                       <option key={v.size} value={i}>
@@ -318,7 +318,7 @@ export default function ProductDetail({ product }: ProductDetailProps) {
                     id="grind-select"
                     value={selectedGrind}
                     onChange={(e) => setSelectedGrind(Number(e.target.value))}
-                    className="w-full appearance-none bg-surface border border-border px-4 py-3 pr-10 text-dark font-medium text-sm focus:outline-none focus:ring-2 focus:ring-accent/30 focus:border-accent transition-colors cursor-pointer"
+                    className="w-full appearance-none bg-surface border border-border px-4 py-3.5 pr-10 text-dark font-medium text-sm focus:outline-none focus:ring-2 focus:ring-accent/30 focus:border-accent transition-colors cursor-pointer"
                   >
                     {product.grindOptions.map((g, i) => (
                       <option key={g} value={i}>
@@ -443,7 +443,7 @@ export default function ProductDetail({ product }: ProductDetailProps) {
                   <h2 className="text-xs font-medium text-text-tertiary uppercase tracking-widest mb-3">
                     Detalles del Origen
                   </h2>
-                  <div className="grid grid-cols-2 gap-3">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     <div className="flex items-start gap-3 p-3 bg-base-warm">
                       <MapPin
                         size={18}

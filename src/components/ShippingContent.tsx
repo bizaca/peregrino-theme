@@ -257,7 +257,7 @@ export default function ShippingContent() {
                 <div
                   key={zone.zone}
                   role="row"
-                  className={`grid grid-cols-1 sm:grid-cols-4 gap-2 sm:gap-4 px-6 py-5 ${
+                  className={`grid grid-cols-1 sm:grid-cols-4 gap-2 sm:gap-4 px-4 sm:px-6 py-5 ${
                     index !== shippingZones.length - 1
                       ? "border-b border-border-light"
                       : ""
@@ -413,7 +413,7 @@ export default function ShippingContent() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center bg-base-warm p-8 md:p-12 border border-border-light"
+          className="text-center bg-base-warm p-6 sm:p-8 md:p-12 border border-border-light"
         >
           <h2 className="font-heading text-2xl font-semibold text-dark mb-3">
             ¿Listo para pedir?

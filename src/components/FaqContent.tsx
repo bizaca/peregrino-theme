@@ -243,7 +243,7 @@ export default function FaqContent() {
               </div>
 
               {/* Questions */}
-              <div className="bg-surface border border-border-light px-6">
+              <div className="bg-surface border border-border-light px-4 sm:px-6">
                 {category.items.map((item, itemIndex) => {
                   const key = `${catIndex}-${itemIndex}`;
                   return (

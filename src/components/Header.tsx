@@ -154,7 +154,7 @@ export default function Header() {
           <button
             ref={menuButtonRef}
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="md:hidden p-2.5 ml-2 text-dark-muted hover:text-accent hover:scale-110 active:scale-95 transition-all"
+            className="md:hidden p-3 ml-1 text-dark-muted hover:text-accent hover:scale-110 active:scale-95 transition-all"
             aria-label="Menú"
             aria-expanded={isMobileMenuOpen}
           >

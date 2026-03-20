@@ -102,7 +102,7 @@ export default function AboutSection() {
             </div>
 
             {/* Stats */}
-            <div className="grid grid-cols-3 gap-4 md:gap-6 mt-6 pt-6 border-t border-border">
+            <div className="grid grid-cols-3 gap-3 sm:gap-4 md:gap-6 mt-6 pt-6 border-t border-border">
               <div>
                 <AnimatedStat value={8} suffix="+" />
                 <div className="text-text-tertiary text-xs md:text-sm mt-1">Años de experiencia</div>
