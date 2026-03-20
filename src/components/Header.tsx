@@ -1,423 +1,140 @@
 "use client";
-
-import { useState, useEffect, useRef, useCallback, useSyncExternalStore } from "react";
+import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { usePathname, useSearchParams } from "next/navigation";
-import { motion, AnimatePresence } from "motion/react";
-import { ShoppingBag, Menu, X, Instagram, Facebook, Youtube, User, Search } from "lucide-react";
-import { useRouter } from "next/navigation";
-import { products } from "@/data/products";
-import { mainNavItems } from "@/data/navigation";
+import { usePathname } from "next/navigation";
+import { ShoppingBag, Menu, X, Search } from "lucide-react";
 import { useCart } from "@/context/CartContext";
-import { siteConfig } from "@/data/site-config";
-import { cn } from "@/lib/utils";
+import { AnimatePresence, motion } from "motion/react";
 
-const noop = () => () => {};
-const getTrue = () => true;
-const getFalse = () => false;
+const navItems = [
+  { label: "Granos",      href: "/products?category=granos" },
+  { label: "Packs",       href: "/products?category=packs" },
+  { label: "Accesorios",  href: "/products?category=accesorios" },
+  { label: "Suscripcion", href: "/subscriptions" },
+  { label: "Locales",     href: "/locations" },
+  { label: "Ofertas",     href: "/products?filter=offers", highlight: true },
+];
 
 export default function Header() {
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const mounted = useSyncExternalStore(noop, getTrue, getFalse);
+  const [mobileOpen, setMobileOpen] = useState(false);
   const { totalItems, toggleCart } = useCart();
-  const mobileNavRef = useRef<HTMLDivElement>(null);
-  const menuButtonRef = useRef<HTMLButtonElement>(null);
   const pathname = usePathname();
-  const searchParams = useSearchParams();
-  const [prevPathname, setPrevPathname] = useState(pathname);
 
-  const [scrolled, setScrolled] = useState(false);
-  const [hideLogoBar, setHideLogoBar] = useState(false);
-  const lastScrollY = useRef(0);
-  const [searchOpen, setSearchOpen] = useState(false);
-  const [searchQuery, setSearchQuery] = useState("");
-  const searchInputRef = useRef<HTMLInputElement>(null);
-  const router = useRouter();
+  useEffect(() => { setMobileOpen(false); }, [pathname]);
 
-  const searchResults = searchQuery.length >= 2
-    ? products.filter((p) =>
-        p.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        p.category.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        p.tastingNotes.toLowerCase().includes(searchQuery.toLowerCase())
-      ).slice(0, 6)
-    : [];
-
-  // Close mobile menu on route changes (render-phase derived state)
-  if (prevPathname !== pathname) {
-    setPrevPathname(pathname);
-    setIsMobileMenuOpen(false);
-  }
-
-  // Track scroll position for header shadow + logo bar hide/show
   useEffect(() => {
-    const onScroll = () => {
-      const currentY = window.scrollY;
-      setScrolled(currentY > 20);
-
-      // Only hide logo bar after scrolling past its height
-      if (currentY > 150) {
-        setHideLogoBar(currentY > lastScrollY.current);
-      } else {
-        setHideLogoBar(false);
-      }
-      lastScrollY.current = currentY;
-    };
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
-  // Focus search input when opened
-  useEffect(() => {
-    if (searchOpen) {
-      searchInputRef.current?.focus();
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
-      setSearchQuery("");
-    }
-  }, [searchOpen]);
-
-  // Close search on Escape
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape" && searchOpen) setSearchOpen(false);
-      if (e.key === "k" && (e.metaKey || e.ctrlKey)) {
-        e.preventDefault();
-        setSearchOpen(true);
-      }
-    };
-    window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [searchOpen]);
-
-  // Lock body scroll when mobile menu is open
-  useEffect(() => {
-    if (isMobileMenuOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
-    }
+    document.body.style.overflow = mobileOpen ? "hidden" : "";
     return () => { document.body.style.overflow = ""; };
-  }, [isMobileMenuOpen]);
-
-  // Focus trap for mobile menu
-  const handleMobileMenuKeyDown = useCallback(
-    (e: React.KeyboardEvent) => {
-      if (!isMobileMenuOpen || !mobileNavRef.current) return;
-      if (e.key === "Escape") {
-        setIsMobileMenuOpen(false);
-        menuButtonRef.current?.focus();
-        return;
-      }
-      if (e.key === "Tab") {
-        const focusable = mobileNavRef.current.querySelectorAll<HTMLElement>(
-          'a[href], button:not([disabled])'
-        );
-        if (focusable.length === 0) return;
-        const first = focusable[0];
-        const last = focusable[focusable.length - 1];
-        if (e.shiftKey && document.activeElement === first) {
-          e.preventDefault();
-          last.focus();
-        } else if (!e.shiftKey && document.activeElement === last) {
-          e.preventDefault();
-          first.focus();
-        }
-      }
-    },
-    [isMobileMenuOpen]
-  );
-
-  const isNavActive = (href: string) => {
-    const [itemPath, itemQuery] = href.split("?");
-    if (itemQuery) {
-      // Items with query params: match pathname + query exactly
-      const params = new URLSearchParams(itemQuery);
-      if (pathname !== itemPath) return false;
-      return Array.from(params).every(([k, v]) => searchParams.get(k) === v);
-    }
-    // Items without query params: exact match or sub-route match (except "/")
-    if (itemPath === "/") return pathname === "/";
-    return pathname === itemPath || pathname.startsWith(itemPath + "/");
-  };
+  }, [mobileOpen]);
 
   return (
-    <header className={cn(
-      "sticky z-50 bg-white border-b transition-all duration-300",
-      scrolled ? "border-border shadow-md shadow-dark/5" : "border-border-light",
-      hideLogoBar ? "-top-32 md:-top-36" : "top-0"
-    )}>
-      <div className="mx-auto px-3 sm:px-4">
-        <div className="flex items-center justify-between h-32 md:h-36">
-          {/* Mobile menu button */}
-          <button
-            ref={menuButtonRef}
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="md:hidden p-3 ml-1 text-dark-muted hover:text-accent hover:scale-110 active:scale-95 transition-all"
-            aria-label="Menú"
-            aria-expanded={isMobileMenuOpen}
-          >
-            {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
+    <>
+      {/* STICKY NAV */}
+      <nav
+        style={{
+          position: "sticky", top: 0, zIndex: 100,
+          display: "flex", alignItems: "center", justifyContent: "space-between",
+          padding: "0 48px", height: "74px",
+          borderBottom: "1px solid rgba(12,35,48,0.2)",
+          background: "rgba(13,32,48,0.97)",
+          backdropFilter: "blur(24px)",
+        }}
+      >
+        {/* Brand */}
+        <Link href="/" style={{ display: "flex", alignItems: "center", gap: "12px", textDecoration: "none" }}>
+          <Image
+            src="https://assets.jumpseller.com/store/peregrino-coffee-roasters/themes/560099/settings/3a234517c1296458fbf1/185x200%20Logo%20Movil%202.png?1727368964"
+            alt="Peregrino" width={38} height={42} style={{ display: "block" }}
+          />
+          <Image
+            src="https://assets.jumpseller.com/store/peregrino-coffee-roasters/themes/560099/settings/60cd8a7ea2d80bba2f96/logo%20web.png?1727193528"
+            alt="Peregrino Coffee Roasters" width={160} height={32} style={{ display: "block" }}
+            className="hidden md:block"
+          />
+        </Link>
 
-          {/* Spacer for desktop to balance layout */}
-          <div className="hidden md:flex items-center w-32" />
-
-          {/* Logo — centered */}
-          <Link href="/" className="flex items-center justify-center group absolute left-1/2 -translate-x-1/2">
-            <Image
-              src="/logo-peregrino.jpg"
-              alt="Peregrino Coffee Roasters"
-              width={144}
-              height={144}
-              className="h-32 md:h-36 w-auto"
-            />
-          </Link>
-
-          {/* Right side actions */}
-          <div className="flex items-center gap-2 mr-4 md:mr-6">
-            {/* Social links - desktop only */}
-            <div className="hidden lg:flex items-center gap-1 mr-3">
-              <a
-                href={siteConfig.social.instagram}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-1.5 text-text-tertiary hover:text-accent hover:scale-110 transition-all"
-                aria-label="Instagram"
-              >
-                <Instagram size={17} />
-              </a>
-              <a
-                href={siteConfig.social.facebook}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-1.5 text-text-tertiary hover:text-accent hover:scale-110 transition-all"
-                aria-label="Facebook"
-              >
-                <Facebook size={17} />
-              </a>
-              <a
-                href={siteConfig.social.youtube}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-1.5 text-text-tertiary hover:text-accent hover:scale-110 transition-all"
-                aria-label="YouTube"
-              >
-                <Youtube size={17} />
-              </a>
-            </div>
-
-            <div className="w-px h-5 bg-border hidden lg:block" />
-
-            {/* Search */}
-            <button
-              onClick={() => setSearchOpen(true)}
-              className="p-3 text-dark-muted hover:text-accent transition-colors"
-              aria-label="Buscar"
-            >
-              <Search size={20} />
-            </button>
-
-            {/* Account */}
-            <Link
-              href="/account"
-              className="p-3 text-dark-muted hover:text-accent transition-colors"
-              aria-label="Mi cuenta"
-            >
-              <User size={20} />
-            </Link>
-
-            {/* Cart */}
-            <button
-              onClick={toggleCart}
-              className="relative p-3 -mr-2 text-dark-muted hover:text-accent transition-colors"
-              aria-label="Carrito"
-            >
-              <ShoppingBag size={20} />
-              {mounted && totalItems > 0 && (
-                <motion.span
-                  initial={{ scale: 0 }}
-                  animate={{ scale: 1 }}
-                  className="absolute -top-0.5 -right-0.5 bg-accent text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center"
-                >
-                  {totalItems}
-                </motion.span>
-              )}
-            </button>
-          </div>
-        </div>
-
-      </div>
-
-      {/* Desktop navigation — full width accent bar */}
-      <div className="hidden md:block bg-accent">
-        <nav className="flex items-center justify-center gap-0.5 py-0" aria-label="Navegación principal">
-          {mainNavItems.map((item) => {
-            const isActive = isNavActive(item.href);
-            return (
+        {/* Desktop Nav */}
+        <ul style={{ display: "flex", gap: "2rem", listStyle: "none", margin: 0, padding: 0 }} className="hidden md:flex">
+          {navItems.map((item) => (
+            <li key={item.href}>
               <Link
-                key={item.href}
                 href={item.href}
-                className={cn(
-                  "px-3 py-0.5 text-xs font-medium transition-colors tracking-wide",
-                  isActive ? "text-white bg-white/20" : "text-white/70 hover:text-white hover:bg-white/10"
-                )}
+                style={{
+                  color: item.highlight ? "#D4AA40" : "rgba(244,238,228,0.65)",
+                  textDecoration: "none", fontSize: "0.9rem",
+                  letterSpacing: "0.04em", fontWeight: item.highlight ? 600 : 400,
+                  transition: "color 0.2s",
+                }}
+                onMouseEnter={e => (e.currentTarget.style.color = item.highlight ? "#FFD966" : "#F4EEE4")}
+                onMouseLeave={e => (e.currentTarget.style.color = item.highlight ? "#D4AA40" : "rgba(244,238,228,0.65)")}
               >
                 {item.label}
               </Link>
-            );
-          })}
-        </nav>
-      </div>
+            </li>
+          ))}
+        </ul>
 
-      {/* Mobile navigation — extends below sticky header to cover viewport */}
-      <AnimatePresence>
-        {isMobileMenuOpen && (
-          <motion.div
-            ref={mobileNavRef}
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.25, ease: "easeInOut" }}
-            className="md:hidden bg-surface border-t border-border-light overflow-hidden"
-            onKeyDown={handleMobileMenuKeyDown}
-            role="dialog"
-            aria-label="Menú de navegación"
+        {/* Right */}
+        <div style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
+          <button
+            onClick={() => toggleCart()}
+            style={{
+              display: "flex", alignItems: "center", gap: "0.5rem",
+              fontSize: "0.85rem", letterSpacing: "0.06em",
+              color: "#0D2030", background: "#B8912A",
+              border: "none", padding: "0.6rem 1.25rem",
+              cursor: "pointer", fontFamily: "Outfit, sans-serif",
+              fontWeight: 500, borderRadius: "3px", transition: "background 0.2s",
+            }}
+            onMouseEnter={e => (e.currentTarget.style.background = "#D4AA40")}
+            onMouseLeave={e => (e.currentTarget.style.background = "#B8912A")}
           >
-            <nav className="px-4 py-4 space-y-1">
-              {mainNavItems.map((item, i) => {
-                const isActive = isNavActive(item.href);
-                return (
-                  <motion.div
-                    key={item.href}
-                    initial={{ opacity: 0, x: -12 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: i * 0.03 }}
-                  >
-                    <Link
-                      href={item.href}
-                      onClick={() => setIsMobileMenuOpen(false)}
-                      className={cn(
-                        "block px-3 py-3 transition-colors text-sm tracking-wide",
-                        isActive
-                          ? "text-accent bg-accent-bg font-medium"
-                          : "text-text-secondary hover:text-accent hover:bg-base-warm"
-                      )}
-                    >
-                      {item.label}
-                    </Link>
-                  </motion.div>
-                );
-              })}
-              <div className="flex items-center gap-2 px-1 pt-4 border-t border-border-light mt-4">
-                <a href={siteConfig.social.instagram} target="_blank" rel="noopener noreferrer" className="p-3 text-text-tertiary hover:text-accent hover:scale-110 transition-all" aria-label="Instagram">
-                  <Instagram size={20} />
-                </a>
-                <a href={siteConfig.social.facebook} target="_blank" rel="noopener noreferrer" className="p-3 text-text-tertiary hover:text-accent hover:scale-110 transition-all" aria-label="Facebook">
-                  <Facebook size={20} />
-                </a>
-                <a href={siteConfig.social.youtube} target="_blank" rel="noopener noreferrer" className="p-3 text-text-tertiary hover:text-accent hover:scale-110 transition-all" aria-label="YouTube">
-                  <Youtube size={20} />
-                </a>
-              </div>
-            </nav>
+            <ShoppingBag size={16} />
+            <span>Carro {totalItems > 0 && `(${totalItems})`}</span>
+          </button>
+
+          {/* Mobile hamburger */}
+          <button
+            className="md:hidden"
+            onClick={() => setMobileOpen(!mobileOpen)}
+            style={{ color: "#F4EEE4", background: "none", border: "none", cursor: "pointer" }}
+          >
+            {mobileOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
+        </div>
+      </nav>
+
+      {/* MOBILE MENU */}
+      <AnimatePresence>
+        {mobileOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            style={{
+              position: "fixed", top: "74px", left: 0, right: 0, bottom: 0,
+              background: "rgba(13,32,48,0.98)", zIndex: 99,
+              padding: "2rem", display: "flex", flexDirection: "column", gap: "1.5rem",
+            }}
+          >
+            {navItems.map((item) => (
+              <Link
+                key={item.href} href={item.href}
+                style={{
+                  color: item.highlight ? "#D4AA40" : "#F4EEE4",
+                  textDecoration: "none", fontSize: "1.3rem",
+                  fontFamily: "Syne, sans-serif", fontWeight: 700,
+                  textTransform: "uppercase", letterSpacing: "0.05em",
+                }}
+                onClick={() => setMobileOpen(false)}
+              >
+                {item.label}
+              </Link>
+            ))}
           </motion.div>
         )}
       </AnimatePresence>
-
-      {/* Search overlay */}
-      <AnimatePresence>
-        {searchOpen && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[60] bg-dark/60 backdrop-blur-sm"
-            onClick={() => setSearchOpen(false)}
-          >
-            <motion.div
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              className="max-w-xl mx-4 sm:mx-auto mt-24"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <div className="bg-white shadow-2xl overflow-hidden rounded-lg">
-                {/* Search input */}
-                <div className="flex items-center gap-3 px-5 py-4 border-b border-border-light">
-                  <Search size={20} className="text-text-tertiary shrink-0" />
-                  <input
-                    ref={searchInputRef}
-                    type="search"
-                    placeholder="Buscar productos..."
-                    value={searchQuery}
-                    onChange={(e) => setSearchQuery(e.target.value)}
-                    onKeyDown={(e) => {
-                      if (e.key === "Enter" && searchResults.length > 0) {
-                        router.push(`/products/${searchResults[0].slug}`);
-                        setSearchOpen(false);
-                      }
-                    }}
-                    className="flex-1 text-dark placeholder:text-text-tertiary outline-none text-base bg-transparent"
-                    autoComplete="off"
-                  />
-                  <button
-                    onClick={() => setSearchOpen(false)}
-                    className="text-text-tertiary hover:text-dark transition-colors"
-                  >
-                    <X size={18} />
-                  </button>
-                </div>
-
-                {/* Results */}
-                {searchQuery.length >= 2 && (
-                  <div className="max-h-80 overflow-y-auto">
-                    {searchResults.length > 0 ? (
-                      searchResults.map((product) => (
-                        <Link
-                          key={product.id}
-                          href={`/products/${product.slug}`}
-                          onClick={() => setSearchOpen(false)}
-                          className="flex items-center gap-4 px-5 py-3 hover:bg-base-warm transition-colors"
-                        >
-                          <div className="w-12 h-12 bg-base rounded overflow-hidden shrink-0 relative">
-                            <Image
-                              src={product.image}
-                              alt={product.name}
-                              fill
-                              className="object-cover"
-                              sizes="48px"
-                            />
-                          </div>
-                          <div className="flex-1 min-w-0">
-                            <p className="text-sm font-medium text-dark truncate">{product.name}</p>
-                            <p className="text-xs text-text-tertiary capitalize">{product.category}</p>
-                          </div>
-                          <p className="text-sm font-medium text-accent shrink-0">
-                            ${product.variants[0].price.toLocaleString("es-CL")}
-                          </p>
-                        </Link>
-                      ))
-                    ) : (
-                      <div className="px-5 py-8 text-center text-text-tertiary text-sm">
-                        No se encontraron productos para &ldquo;{searchQuery}&rdquo;
-                      </div>
-                    )}
-                  </div>
-                )}
-
-                {/* Hint */}
-                {searchQuery.length < 2 && (
-                  <div className="px-5 py-6 text-center text-text-tertiary text-sm">
-                    Escribe al menos 2 caracteres para buscar
-                  </div>
-                )}
-              </div>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </header>
+    </>
   );
 }

@@ -1,146 +1,51 @@
 @import "tailwindcss";
+@import url("https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Outfit:wght@300;400;500;600&display=swap");
 
 @theme inline {
-  /* Clean white palette */
-  --color-base: #FFFFFF;
-  --color-base-warm: #F5F5F5;
-  --color-base-dark: #E5E5E5;
-  --color-surface: #FFFFFF;
-  --color-surface-hover: #F5F5F5;
-
-  /* Dark tones */
-  --color-dark: #1A1A1A;
-  --color-dark-soft: #2D2926;
-  --color-dark-muted: #4A4543;
-  --color-text-secondary: #6B6560;
-  --color-text-tertiary: #756F6A;
-
-  /* Accent — azul petróleo (Peregrino brand) */
-  --color-accent: #005F73;
-  --color-accent-light: #0A7E8C;
-  --color-accent-dark: #003D4D;
-  --color-accent-bg: #FFFFFF;
-
-  /* Secondary — sage green (earthy modern) */
-  --color-sage: #6B705C;
-  --color-sage-light: #8A8F7C;
-  --color-sage-bg: #F5F5F5;
-
-  /* Functional */
-  --color-accent-red: #C53030;
-  --color-border: #E0E0E0;
-  --color-border-light: #EBEBEB;
-
-  /* Typography */
-  --font-heading: "Plus Jakarta Sans", system-ui, sans-serif;
-  --font-body: "Inter", system-ui, sans-serif;
+  --color-bg:       #F7F3EE;
+  --color-bg2:      #EDE7DE;
+  --color-card:     #E4DDD4;
+  --color-line:     rgba(12,35,48,0.13);
+  --color-dark:     #0D2030;
+  --color-muted:    rgba(13,32,48,0.52);
+  --color-accent:   #8B6914;
+  --color-accent2:  #B8912A;
+  --color-adim:     rgba(139,105,20,0.12);
+  --color-base:     #F7F3EE;
+  --color-base-warm:#EDE7DE;
+  --color-surface:  #F7F3EE;
+  --color-border:   rgba(12,35,48,0.13);
+  --font-heading:   "Syne", system-ui, sans-serif;
+  --font-body:      "Outfit", system-ui, sans-serif;
 }
 
-/* Base styles */
-html {
-  scroll-behavior: smooth;
-}
+html { scroll-behavior: smooth; }
 
 body {
-  background-color: var(--color-base);
-  color: var(--color-dark);
-  font-family: var(--font-body);
+  background: #F7F3EE;
+  color: #0D2030;
+  font-family: "Outfit", sans-serif;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
 }
 
-/* Custom scrollbar */
-::-webkit-scrollbar {
-  width: 6px;
-}
-::-webkit-scrollbar-track {
-  background: var(--color-base);
-}
-::-webkit-scrollbar-thumb {
-  background: var(--color-base-dark);
-  border-radius: 3px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: var(--color-text-tertiary);
-}
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #F7F3EE; }
+::-webkit-scrollbar-thumb { background: #E4DDD4; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(13,32,48,0.3); }
 
-/* Accent gradient text */
+::selection { background-color: rgba(139,105,20,0.15); color: #0D2030; }
+
+:focus-visible { outline: 2px solid #8B6914; outline-offset: 2px; }
+
 .text-accent-gradient {
-  background: linear-gradient(135deg, var(--color-accent), var(--color-accent-dark));
+  background: linear-gradient(135deg, #8B6914, #B8912A);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
-/* Shimmer animation */
-@keyframes shimmer {
-  0% { background-position: -200% 0; }
-  100% { background-position: 200% 0; }
-}
-
-.animate-shimmer {
-  background: linear-gradient(90deg, var(--color-base-warm) 25%, var(--color-base-dark) 50%, var(--color-base-warm) 75%);
-  background-size: 200% 100%;
-  animation: shimmer 1.5s infinite;
-}
-
-/* Underline animation */
-.accent-underline {
-  position: relative;
-  display: inline-block;
-}
-.accent-underline::after {
-  content: '';
-  position: absolute;
-  bottom: -2px;
-  left: 0;
-  width: 0;
-  height: 1.5px;
-  background: var(--color-accent);
-  transition: width 0.3s ease;
-}
-.accent-underline:hover::after,
-.accent-underline-active::after {
-  width: 100%;
-}
-
-/* Hide scrollbar for carousels */
-.scrollbar-hide::-webkit-scrollbar {
-  display: none;
-}
-.scrollbar-hide {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-}
-
-/* Focus visible ring for keyboard navigation */
-:focus-visible {
-  outline: 2px solid var(--color-accent);
-  outline-offset: 2px;
-}
-
-/* Focus ring for buttons and cards */
-
-/* Grain texture overlay — hipster/film effect */
-.grain-overlay::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  opacity: 0.04;
-  pointer-events: none;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
-  background-repeat: repeat;
-  background-size: 256px 256px;
-  z-index: 1;
-}
-
-/* Tactile button press effect */
-.btn-press {
-  transition: transform 0.1s ease;
-}
-.btn-press:active {
-  transform: scale(0.97);
-}
-
-/* Announcement bar gradient shimmer */
 @keyframes gradient-shift {
   0%, 100% { background-position: 0% 50%; }
   50% { background-position: 100% 50%; }
@@ -151,67 +56,61 @@ body {
   animation: gradient-shift 8s ease infinite;
 }
 
-/* Infinite marquee animation */
-@keyframes marquee {
-  0% { transform: translateX(0); }
+@keyframes slow-zoom {
+  from { transform: scale(1); }
+  to   { transform: scale(1.06); }
+}
+.animate-slow-zoom { animation: slow-zoom 18s ease-in-out infinite alternate; }
+
+@keyframes tick {
+  0%   { transform: translateX(0); }
   100% { transform: translateX(-50%); }
 }
-.animate-marquee {
-  animation: marquee 30s linear infinite;
+.animate-tick { animation: tick 22s linear infinite; }
+.animate-tick:hover { animation-play-state: paused; }
+
+@keyframes marquee {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
 }
-.animate-marquee:hover {
-  animation-play-state: paused;
+.animate-marquee { animation: marquee 30s linear infinite; }
+.animate-marquee:hover { animation-play-state: paused; }
+
+@keyframes shimmer {
+  0%   { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+.animate-shimmer {
+  background: linear-gradient(90deg, #EDE7DE 25%, #E4DDD4 50%, #EDE7DE 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
 }
 
-/* Card shine/gleam effect */
-.card-shine {
-  position: relative;
-  overflow: hidden;
+.btn-press { transition: transform 0.1s ease; }
+.btn-press:active { transform: scale(0.97); }
+
+.scrollbar-hide::-webkit-scrollbar { display: none; }
+.scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+
+.accent-underline { position: relative; display: inline-block; }
+.accent-underline::after {
+  content: ''; position: absolute; bottom: -2px; left: 0;
+  width: 0; height: 1.5px; background: #8B6914; transition: width 0.3s ease;
 }
+.accent-underline:hover::after { width: 100%; }
+
+.card-shine { position: relative; overflow: hidden; }
 .card-shine::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 60%;
-  height: 100%;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(255, 255, 255, 0.08),
-    transparent
-  );
-  z-index: 1;
-  pointer-events: none;
-  transition: none;
+  content: ''; position: absolute; top: 0; left: -100%;
+  width: 60%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.08), transparent);
+  z-index: 1; pointer-events: none; transition: none;
 }
-.card-shine:hover::before {
-  left: 100%;
-  transition: left 0.6s ease;
-}
+.card-shine:hover::before { left: 100%; transition: left 0.6s ease; }
 
-/* Enhanced form input focus */
-.input-focus {
-  transition: border-color 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
-}
-.input-focus:focus {
-  background-color: var(--color-surface);
-  border-color: var(--color-accent);
-  box-shadow: 0 0 0 3px rgba(0, 95, 115, 0.15);
-}
-
-/* Selection color */
-::selection {
-  background-color: var(--color-accent-bg);
-  color: var(--color-accent-dark);
-}
-
-/* Reduced motion preferences */
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .animate-shimmer,
-  .animate-marquee,
-  .animate-gradient-shift { animation: none; }
-  .card-shine::before { transition: none; }
+  .animate-shimmer, .animate-marquee, .animate-gradient-shift,
+  .animate-tick, .animate-slow-zoom { animation: none; }
   .btn-press { transition: none; }
 }
