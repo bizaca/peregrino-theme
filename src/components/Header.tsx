@@ -252,7 +252,7 @@ export default function Header() {
 
       {/* Desktop navigation — full width accent bar */}
       <div className="hidden md:block bg-accent">
-        <nav className="flex items-center justify-center gap-1 py-1.5" aria-label="Navegación principal">
+        <nav className="flex items-center justify-center gap-1 py-2.5" aria-label="Navegación principal">
           {mainNavItems.map((item) => {
             const isActive = isNavActive(item.href);
             return (
@@ -260,7 +260,7 @@ export default function Header() {
                 key={item.href}
                 href={item.href}
                 className={cn(
-                  "px-4 py-1.5 text-sm font-medium transition-colors tracking-wide",
+                  "px-5 py-2 text-[13px] font-semibold transition-colors tracking-wider uppercase",
                   isActive ? "text-white bg-white/20" : "text-white/70 hover:text-white hover:bg-white/10"
                 )}
               >
