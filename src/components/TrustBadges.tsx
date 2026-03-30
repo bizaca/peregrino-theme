@@ -1,7 +1,7 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "motion/react";
+import { useEffect, useRef } from "react";
+import gsap from "gsap";
 import { Coffee, CalendarDays, ShieldCheck, Truck, Gift } from "lucide-react";
 import { trustBadges } from "@/data/navigation";
 
@@ -30,20 +30,60 @@ function BadgeItem({ badge }: { badge: (typeof trustBadges)[number] }) {
 }
 
 export default function TrustBadges() {
-  const [current, setCurrent] = useState(0);
+  const marqueeRef = useRef<HTMLDivElement>(null);
+  const mobileRef = useRef<HTMLDivElement>(null);
+  const currentIndex = useRef(0);
 
+  // Desktop: GSAP seamless marquee
   useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrent((prev) => (prev + 1) % trustBadges.length);
+    const el = marqueeRef.current;
+    if (!el) return;
+
+    // Wait for layout to measure width of one set of badges
+    const totalWidth = el.scrollWidth / 2;
+
+    const tween = gsap.to(el, {
+      x: -totalWidth,
+      duration: 25,
+      ease: "none",
+      repeat: -1,
+      modifiers: {
+        x: gsap.utils.unitize((x: number) => parseFloat(x as unknown as string) % totalWidth),
+      },
+    });
+
+    return () => { tween.kill(); };
+  }, []);
+
+  // Mobile: GSAP rotating badge
+  useEffect(() => {
+    const el = mobileRef.current;
+    if (!el) return;
+    const children = el.children;
+    if (children.length === 0) return;
+
+    // Show first, hide rest
+    gsap.set(children, { opacity: 0, y: 10 });
+    gsap.set(children[0], { opacity: 1, y: 0 });
+
+    const interval = setInterval(() => {
+      const prev = currentIndex.current;
+      const next = (prev + 1) % children.length;
+
+      gsap.to(children[prev], { opacity: 0, y: -10, duration: 0.3, ease: "power2.in" });
+      gsap.fromTo(children[next], { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.3, ease: "power2.out", delay: 0.15 });
+
+      currentIndex.current = next;
     }, 4000);
-    return () => clearInterval(timer);
+
+    return () => clearInterval(interval);
   }, []);
 
   return (
     <section className="bg-[#EDE7DE] border-y border-[#D4CEC5]">
-      {/* Desktop: infinite marquee ticker with golden dots */}
+      {/* Desktop: GSAP infinite marquee ticker */}
       <div className="hidden md:block overflow-hidden py-4">
-        <div className="animate-marquee flex items-center w-max">
+        <div ref={marqueeRef} className="flex items-center w-max">
           {[...trustBadges, ...trustBadges].map((badge, index) => (
             <span key={`${badge.text}-${index}`} className="inline-flex items-center">
               <BadgeItem badge={badge} />
@@ -53,26 +93,21 @@ export default function TrustBadges() {
         </div>
       </div>
 
-      {/* Mobile: rotating single badge */}
-      <div className="md:hidden flex items-center justify-center h-14 overflow-hidden">
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={current}
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            transition={{ duration: 0.3 }}
-            className="flex items-center gap-2"
-          >
-            {(() => {
-              const Icon = iconMap[trustBadges[current].icon];
-              return <Icon size={15} className="text-[#8B6914]" />;
-            })()}
-            <span className="text-sm font-medium text-[#0D2030]/70 tracking-wide uppercase">
-              {trustBadges[current].text}
-            </span>
-          </motion.div>
-        </AnimatePresence>
+      {/* Mobile: GSAP rotating single badge */}
+      <div className="md:hidden relative h-14 overflow-hidden">
+        <div ref={mobileRef} className="absolute inset-0 flex items-center justify-center">
+          {trustBadges.map((badge, i) => {
+            const Icon = iconMap[badge.icon];
+            return (
+              <div key={badge.text} className="absolute flex items-center gap-2">
+                <Icon size={15} className="text-[#8B6914]" />
+                <span className="text-sm font-medium text-[#0D2030]/70 tracking-wide uppercase">
+                  {badge.text}
+                </span>
+              </div>
+            );
+          })}
+        </div>
       </div>
     </section>
   );
