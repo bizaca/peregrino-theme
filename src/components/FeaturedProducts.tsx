@@ -1,14 +1,45 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
 import Link from "next/link";
 import { motion } from "motion/react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ChevronLeft, ChevronRight, ArrowRight } from "lucide-react";
 import { products } from "@/data/products";
 import ProductCard from "./ProductCard";
 
+gsap.registerPlugin(ScrollTrigger);
+
 export default function FeaturedProducts() {
   const scrollRef = useRef<HTMLDivElement>(null);
+  const cardsRef = useRef<HTMLDivElement>(null);
+
+  // GSAP: staggered reveal on scroll
+  useEffect(() => {
+    const el = cardsRef.current;
+    if (!el) return;
+
+    const cards = el.querySelectorAll("[data-gsap-card]");
+
+    gsap.set(cards, { opacity: 0, y: 60, scale: 0.95 });
+
+    gsap.to(cards, {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      duration: 0.7,
+      stagger: 0.15,
+      ease: "power3.out",
+      scrollTrigger: {
+        trigger: el,
+        start: "top 80%",
+        once: true,
+      },
+    });
+
+    return () => { ScrollTrigger.getAll().forEach(t => t.kill()); };
+  }, []);
 
   const scroll = (direction: "left" | "right") => {
     if (!scrollRef.current) return;
@@ -87,7 +118,7 @@ export default function FeaturedProducts() {
         {/* Product carousel */}
         <div className="relative overflow-hidden">
           <div
-            ref={scrollRef}
+            ref={(el) => { scrollRef.current = el; cardsRef.current = el; }}
             role="region"
             aria-label="Productos destacados"
             tabIndex={0}
@@ -98,7 +129,7 @@ export default function FeaturedProducts() {
             className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 pb-4 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent/30"
           >
             {featuredProducts.slice(0, 4).map((product, index) => (
-              <div key={product.id}>
+              <div key={product.id} data-gsap-card>
                 <ProductCard product={product} index={index} />
               </div>
             ))}
