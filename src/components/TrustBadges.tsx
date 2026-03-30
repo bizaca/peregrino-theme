@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import gsap from "gsap";
+import { gsap } from "gsap";
 import { Coffee, CalendarDays, ShieldCheck, Truck, Gift } from "lucide-react";
 import { trustBadges } from "@/data/navigation";
 
