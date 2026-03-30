@@ -39,20 +39,12 @@ export default function TrustBadges() {
     const el = marqueeRef.current;
     if (!el) return;
 
-    // Wait for layout to measure width of one set of badges
     const totalWidth = el.scrollWidth / 2;
 
-    const tween = gsap.to(el, {
-      x: -totalWidth,
-      duration: 25,
-      ease: "none",
-      repeat: -1,
-      modifiers: {
-        x: gsap.utils.unitize((x: number) => parseFloat(x as unknown as string) % totalWidth),
-      },
-    });
+    const tl = gsap.timeline({ repeat: -1 });
+    tl.fromTo(el, { x: 0 }, { x: -totalWidth, duration: 25, ease: "none" });
 
-    return () => { tween.kill(); };
+    return () => { tl.kill(); };
   }, []);
 
   // Mobile: GSAP rotating badge
